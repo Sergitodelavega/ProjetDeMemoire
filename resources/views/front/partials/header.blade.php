@@ -8,7 +8,7 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#">Memoires</a></li>
+          <li><a class="nav-link scrollto active" href="#">Accueil</a></li>
           <li><a class="nav-link scrollto" href="#">Publier</a></li>
           <li><a class="nav-link scrollto" href="#">Rechercher</a></li>
           <li><a class="nav-link scrollto " href="#">Faq</a></li>
@@ -17,7 +17,7 @@
       </nav><!-- .navbar -->
       <div class="cta d-none d-md-block">
         @guest
-        <a href="{{ route('register') }}" class="scrollto" id="btn-i">S'inscrire</a>
+        {{-- <a href="{{ route('register') }}" class="scrollto" id="btn-i">S'inscrire</a> --}}
         <a href="{{ route('login') }}" class="scrollto">Se connecter</a>
         @else
         <form id="logout" action="{{ route('logout') }}" method="POST">

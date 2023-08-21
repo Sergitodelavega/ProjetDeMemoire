@@ -25,8 +25,6 @@ class User extends Authenticatable
         'password',
     ];
 
-    const ROLE_DOCTORANT = 'doctorant';
-    const ROLE_ENCADREUR = 'encadreur';
 
     /**
      * The attributes that should be hidden for serialization.
@@ -54,5 +52,16 @@ class User extends Authenticatable
 
     public function encadreur(): HasOne {
         return $this->hasOne(Encadreur::class, 'user_id');
+    }
+
+
+    public function getRole()
+    {
+        return $this->attributes['role'];
+    }
+
+    public function setRole($role)
+    {
+        return $this->attributes['role'] = $role;
     }
 }

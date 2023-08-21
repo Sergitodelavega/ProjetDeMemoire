@@ -2,6 +2,15 @@
 @section('title', 'ProfilAdmin')
 @section('content')
 
+<?php 
+
+if (auth()->check()) {
+    // L'utilisateur est connecté, vous pouvez accéder à sa session
+    $user = auth()->user(); // Récupérer l'objet User de l'utilisateur connecté
+}
+
+?>
+@if($user->role === "admin")
   <div class="page-breadcrumb">
       <div class="row align-items-center">
           <div class="col-md-6 col-8 align-self-center">
@@ -43,8 +52,8 @@
                             <div class="card-body profile-card">
                                 <center class="mt-4"> <img src="{{ asset('back/assets/images/users/5.jpg') }}"
                                         class="rounded-circle" width="150" />
-                                    <h4 class="card-title mt-2">Hanna Gover</h4>
-                                    <h6 class="card-subtitle">administrateur@gmail.com</h6>
+                                    <h4 class="card-title mt-2">{{ $user->name }}</h4>
+                                    <h6 class="card-subtitle">{{ $user->email }}</h6>
                                 </center>
                             </div>
                         </div>
@@ -58,7 +67,7 @@
                                     <div class="form-group">
                                         <label for="example-email" class="col-md-12">Email</label>
                                         <div class="col-md-12">
-                                            <input type="email" placeholder="johnathan@admin.com"
+                                            <input type="email" value="{{ $user->email }}"
                                                 class="form-control ps-0 form-control-line" name="example-email"
                                                 id="example-email">
                                         </div>
@@ -103,5 +112,5 @@
                     <!-- Column -->
                 </div>
             </div>
-
+@endif
 @endsection

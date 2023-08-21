@@ -5,11 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Formation extends Model
+class Activity extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'title', 'location', 'description', 'date_heure', 'image'
-    ];
 }

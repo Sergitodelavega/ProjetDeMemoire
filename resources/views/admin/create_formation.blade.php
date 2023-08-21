@@ -1,5 +1,5 @@
 @extends('back.appback')
-@section('title', "Créer un doctorant")
+@section('title', "Créer une formation")
 @section('content')
 
 <div class="page-breadcrumb">
@@ -13,63 +13,77 @@
         </div>
     </div>
 </div>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-8 col-xlg-9 col-md-7">
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin.store.doctorant') }}" class="form-horizontal form-material mx-2" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.store.formation') }}" class="form-horizontal form-material mx-2" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="name" class="col-md-12 mb-0">Nom et Prénoms</label>
+                            <label for="title" class="col-md-12 mb-0">Titre</label>
                             <div class="col-md-12">
-                                <input type="text" name="name" id="name" value="{{ old('name') }}" placeholder="Johnathan Doe"
+                                <input type="text" name="title" id="title" value="{{ old('title') }}" placeholder=""
                                     class="form-control ps-0 form-control-line">
                             </div>
                             <!-- Le message d'erreur pour "name" -->
-                            @error("name")
+                            @error("title")
                             <div>{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="form-group">
-                            <label for="email" class="col-md-12">Email</label>
+                            <label for="date_heure" class="col-md-12">Date et Heure</label>
                             <div class="col-md-12">
-                                <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="johnathan@admin.com"
+                                <input type="datetime-local" name="date_heure" id="date_heure" value="{{ old('date_heure') }}" placeholder=""
                                     class="form-control ps-0 form-control-line">
                                     
                             </div>
                             <!-- Le message d'erreur pour "name" -->
-                            @error("email")
+                            @error("date_heure")
                             <div>{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="form-group">
-                            <label for="matricule" class="col-md-12">Matricule</label>
+                            <label for="location" class="col-md-12">Lieu</label>
                             <div class="col-md-12">
-                                <input type="text" name="matricule" id="matricule" value="{{ old('matricule') }}" placeholder="123 456 789"
+                                <input type="text" name="location" id="location" value="{{ old('location') }}" placeholder=""
                                     class="form-control ps-0 form-control-line">
                                     
                             </div>
                             <!-- Le message d'erreur pour "name" -->
-                            @error("matricule")
+                            @error("location")
                             <div>{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="form-group">
-                            <label for="specialite" class="col-md-12 mb-0">Spécialité</label>
+                            <label for="description" class="col-md-12 mb-0">Description</label>
                             <div class="col-md-12">
-                                <input type="text" name="specialite" id="specialite" value="{{ old('specialite') }}" placeholder="123 456 7890"
-                                    class="form-control ps-0 form-control-line">
+                                <textarea name="description" id="description" value="{{ old('description') }}" required rows="8"
+                                    class="form-control ps-0 form-control-line"></textarea>
                             </div>
                             <!-- Le message d'erreur pour "name" -->
-                            @error("specialite")
+                            @error("description")
                             <div>{{ $message }}</div>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-primary mx-auto mx-md-0 text-white">Créer le compte</button>
+
+                        <div class="form-group">
+                            <label for="image" class="col-md-12">Image</label>
+                            <div class="col-md-12">
+                                <input type="file" name="image"
+                                    class="form-control ps-0 form-control-line">
+                                    
+                            </div>
+                            <!-- Le message d'erreur pour "name" -->
+                            @error("image")
+                            <div>{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <button type="submit" class="btn btn-primary mx-auto mx-md-0 text-white">Ajouter</button>
                     </form>
                 </div>
             </div>

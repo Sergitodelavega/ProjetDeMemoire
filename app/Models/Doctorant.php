@@ -15,6 +15,6 @@ class Doctorant extends Model
     }
 
     protected $fillable = [
-        'user_id, matricule', 'specialite',
+        'user_id, matricule', 'specialite', 'matricule',
     ];
 }       

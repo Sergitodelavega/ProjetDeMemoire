@@ -10,8 +10,4 @@ class HomeController extends Controller
         return view('front.home.index');
     }
 
-    public function index1(){
-        return view('doctorant.doctorants');
-    }
-
 }

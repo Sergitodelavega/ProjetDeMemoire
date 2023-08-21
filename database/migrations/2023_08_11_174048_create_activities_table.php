@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('encadreurs', function (Blueprint $table) {
+        Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->string('matricule');
-            $table->string('grade');
-            $table->string('specialite');
-            $table->foreignId('user_id')->constrained();
+            $table->string('title');
+            $table->text('description');
+            $table->enum('status', ['en attente', 'validée', 'rejetée']);
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('encadreurs');
+        Schema::dropIfExists('activities');
     }
 };

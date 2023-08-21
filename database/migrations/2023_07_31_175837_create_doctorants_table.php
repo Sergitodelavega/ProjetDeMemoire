@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('doctorants', function (Blueprint $table) {
             $table->id();
-            // $table->string('matricule')->nullable();
+            $table->string('matricule');
             $table->string('specialite');
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')->constrained();
+            // $table->date('date_inscription');
             $table->timestamps();
         });
     }

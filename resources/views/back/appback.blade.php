@@ -16,7 +16,7 @@
     @include('back.partials.style')
 
     <!-- Le css Bootstrap -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
     <style>
       .hide {
           display: none;
@@ -42,7 +42,6 @@
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
     @include('back.partials.header')
-
 
       <!-- Left Sidebar - style you can find in sidebar.scss  -->
     @include('back.partials.sidebar')
@@ -78,6 +77,6 @@
     @include('back.partials.script')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.3/dist/sweetalert2.all.min.js"></script>
     <!-- Le javascript Bootstrap -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
   </body>
 </html>

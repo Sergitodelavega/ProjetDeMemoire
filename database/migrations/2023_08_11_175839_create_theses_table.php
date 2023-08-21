@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('encadreurs', function (Blueprint $table) {
+        Schema::create('theses', function (Blueprint $table) {
             $table->id();
-            $table->string('matricule');
-            $table->string('grade');
-            $table->string('specialite');
-            $table->foreignId('user_id')->constrained();
+            $table->string('title');
+            $table->text('description');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->string('status');
+            $table->foreignId('doctorant_id');
+            $table->foreignId('encadreur_id');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('encadreurs');
+        Schema::dropIfExists('theses');
     }
 };

@@ -12,19 +12,21 @@ use Illuminate\Queue\SerializesModels;
 class MessageDoctorant extends Mailable
 {
     use Queueable, SerializesModels;
-    public $data;
+    public $doctorant;
+    public $link;
+    public $password;
     /**
      * Create a new message instance.
      */
-    public function __construct($data)
+    public function __construct($doctorant, $link, $password)
     {
-        $this->data = $data;
+        $this->doctorant = $doctorant;
+        $this->link = $link;
+        $this->password = $password;
     }
     
     public function build(){
-        return $this->from("sergitodelavega@gmail.com") // L'expéditeur
-        ->subject("Message via le SMTP Google") // Le sujet
-        ->view('emails.message_doctorant');
+        return $this->subject('Création de votre compte doctorant')->view('emails.message_doctorant');
     }
     
     /**

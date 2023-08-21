@@ -2,16 +2,16 @@
 @section('title', 'Formations')
 @section('content')
 
-    <br>
-    <div class="container" style="margin-left: 50px">
-        <h1>Formations</h1><br>
-        <p>
-        <!-- Lien pour créer un nouveau doctorant : "posts.create" -->
-        <a href="{{ route('admin.create.formation') }}" title="Ajouter une formation"  class="btn btn-primary">Ajouter une formation</a>
-        </p>
-    </div>
 
-        <!-- Le tableau pour lister les doctorants -->
+<div class="page-breadcrumb">
+    <div class="row align-items-center">
+        <div class="col-md-6 col-8 align-self-center">
+            <h3 class="page-title mb-0 p-0">Formations</h3>
+            <div class="d-flex align-items-center">
+            </div>
+        </div>
+    </div>
+</div>
 
         <div class="container-fluid">
             <!-- ============================================================== -->
@@ -27,13 +27,7 @@
                             <h4 class="card-title">{{ $formation->title }}</h4>
                             <p class="card-text h4"><small class="text-muted">{{ $formation->date_heure }}</small></p>
                             <div class="d-flex justify-content-end">
-                                <a href="#" class="btn btn-warning">Modifier</a>
-
-                                <form action="{{ route('admin.delete.formation', $formation->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger text-white" style="margin-left: 10px">Supprimer</button>
-                                </form>
+                                <a href="#" class="btn btn-secondary">Voir plus</a>
                             </div>
                         </div>
                     </div>

@@ -10,7 +10,7 @@ class Encadreur extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id', 'grade', 'specialite',
+        'user_id', 'grade', 'specialite', 'matricule',
     ];
 
     public function user() : BelongsTo{

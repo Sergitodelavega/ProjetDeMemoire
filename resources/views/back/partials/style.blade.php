@@ -10,6 +10,6 @@
     <!-- Custom CSS -->
     <link href="{{ asset('back/css/style.min.css') }}" rel="stylesheet">
 
-{{-- <!-- Le css Bootstrap -->
-<link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
+<!-- Le css Bootstrap -->
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 

@@ -1,3 +1,14 @@
+<?php 
+
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
+if (auth()->check()) {
+    // L'utilisateur est connecté, vous pouvez accéder à sa session
+    $user = auth()->user(); // Récupérer l'objet User de l'utilisateur connecté
+}
+?>
+
 <header class="topbar" data-navbarbg="skin6">
   <nav class="navbar top-navbar navbar-expand-md navbar-dark">
       <div class="navbar-header" data-logobg="skin6">
@@ -43,16 +54,15 @@
           <!-- toggle and nav items -->
           <!-- ============================================================== -->
           <ul class="navbar-nav me-auto mt-md-0 ">
-              <!-- ============================================================== -->
-              <!-- Search -->
-              <!-- ============================================================== -->
-
-              <li class="nav-item search-box">
-                  <a class="nav-link text-muted" href="javascript:void(0)"><i class="ti-search"></i></a>
-                  <form class="app-search" style="display: none;">
-                      <input type="text" class="form-control" placeholder="Search &amp; enter"> <a
-                          class="srh-btn"><i class="ti-close"></i></a> </form>
-              </li>
+            @if ($user->role === "admin")
+              <li class="nav-item text-white" style="margin-left: 50px; font-size:20px">Espace Admin</li>
+            @endif
+            @if ($user->role === "encadreur")
+              <li class="nav-item text-white" style="margin-left: 50px; font-size:20px">Espace Encadreur</li>
+            @endif
+            @if ($user->role === "doctorant")
+              <li class="nav-item text-white" style="margin-left: 50px; font-size:20px">Espace Doctorant</li>
+            @endif
           </ul>
 
           <!-- ============================================================== -->
@@ -64,9 +74,20 @@
               <!-- ============================================================== -->
               <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <img src="{{ asset('back/assets/images/users/1.jpg') }}" alt="user" class="profile-pic me-2">Markarn Doe
+                      <img src="{{ asset('back/assets/images/users/1.jpg') }}" alt="user" class="profile-pic me-2">{{ $user->name }}
                   </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown"></ul>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    @if ($user->role === "admin")
+                    <li class="dropdown-item"><a href="{{ route('admin.profil') }}">Profil</a></li>
+                    @endif
+                    @if ($user->role === "encadreur")
+                    <li class="dropdown-item"><a href="{{ route('encadreur.profil') }}">Profil</a></li>
+                    @endif
+                    @if ($user->role === "doctorant")
+                    <li class="dropdown-item"><a href="{{ route('doctorant.profil') }}">Profil</a></li>
+                    @endif
+                    <li class="dropdown-item"><a href="{{ route('index') }}">Déconnexion</a></li>
+                  </ul>
               </li>
           </ul>
       </div>

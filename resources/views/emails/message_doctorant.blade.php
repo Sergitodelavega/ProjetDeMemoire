@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
-<body style="background: #e5e5e5; padding: 30px;" >
-
-<div style="max-width: 320px; margin: 0 auto; padding: 20px; background: #fff;">
-	<h3>Message via le SMTP Google :</h3>
-	<div>{{ $data['message'] }}</div>
-</div>
-
-</body>
+    <head>
+        <title>Bienvenue sur notre plateforme</title>
+    </head>
+    <body>
+        <h1>Bienvenue sur notre plateforme</h1>
+        <p>
+            Bonjour <strong>{{ $doctorant->user->name }}</strong>.
+        </p>
+        <p>
+            Votre compte doctorant a été créé avec succès. <br>
+            Voici vos informations de connexion :
+            <ul>
+                <li><strong>Email :</strong> {{ $doctorant->user->email }}</li>
+                <li><strong>Mot de passe :</strong> {{ $password }}</li>
+            </ul>
+        </p>
+        <p>
+            Veuillez cliquer sur ce <a href="<?php echo $link; ?>">lien</a>  pour vous connecter à votre espace membre.
+        </p>
+        <p>
+            Cordialement, 
+        </p>
+    </body>
 </html>

@@ -1,31 +1,90 @@
 <?php
-    namespace App\Http\Controllers\Admin;
-    use App\Http\Controllers\Controller;
+    
+namespace App\Http\Controllers\Admin;
+
 use session;
 use App\Models\User;
 use App\Models\Doctorant;
 use App\Models\Encadreur;
-use App\Mail\AccountActivationEmail;
+use App\Models\Formation;
 use Illuminate\Http\Request;
+use App\Mail\MessageDoctorant;
+use App\Mail\MessageEncadreur;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
+    public function deleteFormation($id){
+        Formation::where('id', $id)->delete();
+
+        // Ajoutez le message flash pour la suppression de la formation 
+        session()->flash('success', 'Formation supprimée avec succès !');
+
+        return redirect()->route('admin.formations');
+    }
+
+    public function formations(){
+        $formations = Formation::latest()->get();
+        return view('admin.formations', compact('formations'));
+    }
+
+    public function createFormation(){
+        return view('admin.create_formation');
+    }
+
+    public function storeFormation(Request $request){
+        // Validation des données du formulaire
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'bail|required',
+            'date_heure' => 'bail|required',
+            'location' => 'bail|required|string|max:255',
+            'image' => 'bail|required|image',
+        ]);
+
+        // On upload l'image dans "/storage/app/public/posts"
+        $chemin_image = $request->image->store("formations");
+
+        // On enregistre les informations du Formation
+        Formation::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'date_heure' => $request->date_heure,
+            'location' => $request->location,
+            'image' => $chemin_image,
+        ]);
+
+        // Ajoutez le message flash pour la création de la formation 
+        $request->session()->flash('success', 'Formation créé avec succès !');
+
+        return redirect()->route('admin.formations');
+
+    }
+
+    public function indexTheses(){
+        return view('admin.theses');
+    }
+
     public function index(){
         return view('admin.index');
     }
     
     public function doctorants()
     {
-        $doctorants = Doctorant::all();
+        // $doctorants = User::where('role', 'doctorant')->get();
+        $doctorants = Doctorant::latest()->get();
 
         return view("admin.doctorants", compact("doctorants"));
     }
 
     public function encadreurs(){
 
-        $encadreurs = Encadreur::all();
+        // $encadreurs = User::where('role', 'encadreur')->get();
+        $encadreurs = Encadreur::latest()->get();
 
         return view("admin.encadreurs", compact("encadreurs"));
     }
@@ -59,9 +118,8 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:6',
+            'matricule' => 'required|string',
             'specialite' => 'required|string'
-            // Ajoutez ici les autres règles de validation pour le doctorant
         ]);
 
         // Créer un nouvel utilisateur (Doctorant)
@@ -69,12 +127,14 @@ class AdminController extends Controller
         $user = new User([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
         ]);
         $user->role ="doctorant";
+        $password = bin2hex(random_bytes(4));
+        $user->password = $password;
         $user->save();
 
         $doctorant = new Doctorant([
+            'matricule' => $request->input('matricule'),
             'specialite' => $request->input('specialite'),
         ]);
         $doctorant->user()->associate($user);
@@ -82,9 +142,9 @@ class AdminController extends Controller
 
         $link = asset(route('index'));
 
-        Mail::to($doctorant->user->email)->send(new AccountActivationEmail($doctorant, $link));
+        Mail::to($doctorant->user->email)->send(new MessageDoctorant($doctorant, $link, $password));
        
-        // Ajoutez le message flash pour la création du post
+        // Ajoutez le message flash pour la création du compte doctorant
         $request->session()->flash('success', 'Doctorant créé avec succès !');
 
         return redirect()->route('admin.doctorant');
@@ -101,33 +161,44 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:6',
+            'matricule' => 'required|string',
             'grade' => 'required|string',
             'specialite' => 'required|string'
-            // Ajoutez ici les autres règles de validation pour l'encadreur
         ]);
 
          // Créer un nouvel utilisateur (Encadreur)
          $user = new User([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
         ]);
         $user->role ="encadreur";
+        $password = bin2hex(random_bytes(4));
+        $user->password = $password;
+        $user->password= bcrypt($password);
         $user->save();
 
          // Créer un enregistrement dans la table "encadreurs" avec les informations spécifiques
          $encadreur = new Encadreur([
+            'matricule' => $request->input('matricule'),
             'grade' => $request->input('grade'),
             'specialite' => $request->input('specialite'),
         ]);
         $encadreur->user()->associate($user);
         $encadreur->save();
 
-        // Ajoutez le message flash pour la création du doctorant
+        $link = asset(route('login'));
+
+        Mail::to($encadreur->user->email)->send(new MessageEncadreur($encadreur, $link));
+
+        // Ajoutez le message flash pour la création du compte encadreur
         $request->session()->flash('success', 'Encadreur créé avec succès !');
 
-            return redirect()->route('admin.encadreur')->with('success', 'Compte encadreur créé avec succès.');
+            return redirect()->route('admin.encadreur');
+    }
+
+    public function manageUsers(){
+        $users = User::latest()->get();
+        return view('admin.manage_users', compact('users'));
     }
 
 }

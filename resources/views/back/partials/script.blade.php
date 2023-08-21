@@ -20,4 +20,4 @@
     <script src="{{ asset('back/js/custom.js') }}"></script>
 
     <!-- Le javascript Bootstrap -->
-{{-- <script src="{{ asset('js/app.js') }}"></script> --}}
+<script src="{{ asset('js/app.js') }}"></script>

@@ -2,7 +2,16 @@
 @section('title', 'ProfilEncadreur')
 @section('content')
 
-  <div class="page-breadcrumb">
+<?php 
+
+if (auth()->check()) {
+    // L'utilisateur est connecté, vous pouvez accéder à sa session
+    $user = auth()->user(); // Récupérer l'objet User de l'utilisateur connecté
+}
+
+?>
+@if($user->role === "encadreur")
+  {{-- <div class="page-breadcrumb">
       <div class="row align-items-center">
           <div class="col-md-6 col-8 align-self-center">
               <h3 class="page-title mb-0 p-0">Profil</h3>
@@ -12,7 +21,7 @@
                           <li class="breadcrumb-item"><a href="#">Home</a></li>
                           <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                       </ol>
-                  </nav> --}}
+                  </nav> 
               </div>
           </div>
           <div class="col-md-6 col-4 align-self-center">
@@ -23,31 +32,26 @@
               </div>
           </div>
       </div>
-  </div>
-  <!-- ============================================================== -->
-  <!-- End Bread crumb and right sidebar toggle -->
-  <!-- ============================================================== -->
-   <!-- ============================================================== -->
-    <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
+  
+    </div> --}}
+
             <div class="container-fluid">
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <!-- Row -->
-                <div class="row">
+                <div class="row" style="padding-top: 20px">
                     <!-- Column -->
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
                             <div class="card-body profile-card">
                                 <center class="mt-4"> <img src="{{ asset('back/assets/images/users/5.jpg') }}"
                                         class="rounded-circle" width="150" />
-                                    <h4 class="card-title mt-2">Sergio Lissanou</h4>
-                                    <h6 class="card-subtitle">sergitodelavega@gmail.com</h6>
-                                    <h5 class="card-subtitle">Matricule</h5>
-                                    <h5 class="card-subtitle">Grade</h5>
-                                    <h5 class="card-subtitle">Spécialité</h5>
+                                    <h4 class="card-title mt-2">{{ $user->name }}</h4>
+                                    <h6 class="card-subtitle">{{ $user->email }}</h6>
+                                    <h5 class="card-subtitle">{{ $user->encadreur->matricule }}</h5>
+                                    <h5 class="card-subtitle">{{ $user->encadreur->grade }}</h5>
+                                    <h5 class="card-subtitle">{{ $user->encadreur->specialite }}</h5>
                                 </center>
                             </div>
                         </div>
@@ -61,7 +65,7 @@
                                     <div class="form-group">
                                         <label for="example-email" class="col-md-12">Email</label>
                                         <div class="col-md-12">
-                                            <input type="email" placeholder="johnathan@admin.com"
+                                            <input type="email" value="{{ $user->email }}"
                                                 class="form-control ps-0 form-control-line" name="example-email"
                                                 id="example-email">
                                         </div>
@@ -106,5 +110,5 @@
                     <!-- Column -->
                 </div>
             </div>
-
+@endif
 @endsection
