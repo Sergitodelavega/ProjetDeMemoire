@@ -32,5 +32,6 @@ class EncadreurController extends Controller
 
     public function publications(){
         return view('encadreur.publications');
+        // abort('404', message:"User not found");
     }
 }
