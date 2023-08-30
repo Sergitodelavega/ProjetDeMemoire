@@ -15,11 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->date('deadline');
             $table->string('status');
-            $table->foreignId('doctorant_id');
-            $table->foreignId('encadreur_id');
+            $table->foreignId('doctorant_id')->constrained();
+            $table->foreignId('encadreur_id')->constrained();
             $table->timestamps();
         });
     }
@@ -32,3 +31,4 @@ return new class extends Migration
         Schema::dropIfExists('theses');
     }
 };
+

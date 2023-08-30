@@ -51,9 +51,10 @@ Route::middleware('auth')->group(function() {
         Route::get('formations/{id}', [AdminController::class, 'showFormation'])->name('admin.formation');
 
         // Gestion des thèses
+        Route::get('/create-these', [AdminController::class, 'createThese'])->name('admin.create.these');
+        Route::post('/store-these', [AdminController::class, 'storeThese'])->name('admin.store.these');
         Route::get('/theses', [AdminController::class, 'indexTheses'])->name('admin.theses');
         Route::get('theses/{id}', [AdminController::class, 'showThese'])->name('admin.theses.show');
-        Route::post('/theses', [AdminController::class, 'storeThese'])->name('admin.theses.store');
         Route::put('/theses/{id}', [AdminController::class, 'updateThese'])->name('admin.theses.update');
         Route::delete('/theses/{id}', [AdminController::class, 'destroyThese'])->name('admin.theses.delete');
     });

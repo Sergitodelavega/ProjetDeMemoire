@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Mail\MessageDoctorant;
 use App\Mail\MessageEncadreur;
 use App\Http\Controllers\Controller;
+use App\Models\These;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -18,6 +19,55 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
+    public function createThese(){
+        $doctorants = Doctorant::latest()->get();
+        // $doctorantNames = $doctorants->mapWithKeys(function ($doctorant) {
+        //     return [$doctorant->user->id => $doctorant->user->name];
+        // });
+
+        $encadreurs = Encadreur::latest()->get();
+        // $encadreurNames = $encadreurs->mapWithKeys(function ($encadreur) {
+        //     return [$encadreur->user->id => $encadreur->user->name];
+        // });
+        return view('admin.create_these', compact('doctorants', 'encadreurs'));
+    }
+
+    public function storeThese(Request $request){
+        // Validation des données du formulaire
+        
+        $request->validate([
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'deadline' => 'required|date',
+            'doctorant_id' => 'required|exists:doctorants,id',
+            'encadreur_id' => 'required|exists:encadreurs,id',
+            'status' => 'required',
+        ]);
+        
+        // Créer un nouvel projet
+        $these = new These([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'deadline' => $request->input('deadline'),
+            'status' => $request->input('status'),
+            'doctorant_id' => $request->input('doctorant_id'),
+            'encadreur_id' => $request->input('encadreur_id'),
+        ]);
+
+        $doctorantId = $request->input('doctorant_id');
+        $encadreurId = $request->input('encadreur_id');
+
+        if($doctorantId && $encadreurId){
+            $these->doctorant()->associate($doctorantId);
+            $these->encadreur()->associate($encadreurId);
+        }
+
+        $these->save();
+
+        return redirect()->route('admin.theses');
+
+    }
+
     public function deleteFormation($id){
         Formation::where('id', $id)->delete();
 
@@ -66,7 +116,8 @@ class AdminController extends Controller
     }
 
     public function indexTheses(){
-        return view('admin.theses');
+        $theses = These::all();
+        return view('admin.theses', compact('theses'));
     }
 
     public function index(){
