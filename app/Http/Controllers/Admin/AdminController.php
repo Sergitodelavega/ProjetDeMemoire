@@ -17,24 +17,33 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
+
 class AdminController extends Controller
 {
+    public function showThese($id){
+        $these = These::find($id);
+        // $these->load('doctorant', 'encadreur');
+        return view('admin.theses.show', compact('these'));
+    }
+
     public function createThese(){
-        $doctorants = Doctorant::latest()->get();
+        // $doctorants = Doctorant::with('user')->get();
         // $doctorantNames = $doctorants->mapWithKeys(function ($doctorant) {
-        //     return [$doctorant->user->id => $doctorant->user->name];
+        //     return [$doctorant->id => $doctorant->user->name];
         // });
 
+        $doctorants = Doctorant::latest()->get();
         $encadreurs = Encadreur::latest()->get();
+
+        // $encadreurs = Encadreur::with('user')->get();
         // $encadreurNames = $encadreurs->mapWithKeys(function ($encadreur) {
-        //     return [$encadreur->user->id => $encadreur->user->name];
+        //     return [$encadreur->id => $encadreur->user->name];
         // });
-        return view('admin.create_these', compact('doctorants', 'encadreurs'));
+        return view('admin.theses.create', compact("doctorants", "encadreurs"));
     }
 
     public function storeThese(Request $request){
         // Validation des données du formulaire
-        
         $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
@@ -43,7 +52,7 @@ class AdminController extends Controller
             'encadreur_id' => 'required|exists:encadreurs,id',
             'status' => 'required',
         ]);
-        
+       
         // Créer un nouvel projet
         $these = new These([
             'title' => $request->input('title'),
@@ -53,17 +62,16 @@ class AdminController extends Controller
             'doctorant_id' => $request->input('doctorant_id'),
             'encadreur_id' => $request->input('encadreur_id'),
         ]);
-
+       
         $doctorantId = $request->input('doctorant_id');
         $encadreurId = $request->input('encadreur_id');
-
+        
         if($doctorantId && $encadreurId){
             $these->doctorant()->associate($doctorantId);
             $these->encadreur()->associate($encadreurId);
         }
-
+        
         $these->save();
-
         return redirect()->route('admin.theses');
 
     }
@@ -79,11 +87,11 @@ class AdminController extends Controller
 
     public function formations(){
         $formations = Formation::latest()->get();
-        return view('admin.formations', compact('formations'));
+        return view('admin.formations.index', compact('formations'));
     }
 
     public function createFormation(){
-        return view('admin.create_formation');
+        return view('admin.formations.create');
     }
 
     public function storeFormation(Request $request){
@@ -117,7 +125,7 @@ class AdminController extends Controller
 
     public function indexTheses(){
         $theses = These::all();
-        return view('admin.theses', compact('theses'));
+        return view('admin.theses.index', compact('theses'));
     }
 
     public function index(){
@@ -126,10 +134,9 @@ class AdminController extends Controller
     
     public function doctorants()
     {
-        // $doctorants = User::where('role', 'doctorant')->get();
         $doctorants = Doctorant::latest()->get();
 
-        return view("admin.doctorants", compact("doctorants"));
+        return view('admin.doctorants.index', compact("doctorants"));
     }
 
     public function encadreurs(){
@@ -137,7 +144,7 @@ class AdminController extends Controller
         // $encadreurs = User::where('role', 'encadreur')->get();
         $encadreurs = Encadreur::latest()->get();
 
-        return view("admin.encadreurs", compact("encadreurs"));
+        return view('admin.encadreurs.index', compact("encadreurs"));
     }
 
     public function profilAdmin(){
@@ -148,19 +155,19 @@ class AdminController extends Controller
         $doctorants = Doctorant::all();
         $doctorant = Doctorant::find($id);
 
-        return view('admin.doctorant_profile', compact('doctorant', 'doctorants'));
+        return view('admin.doctorants.profile', compact('doctorant', 'doctorants'));
     }
 
     public function profilEncadreur($id){
-        $doctorants = Doctorant::all();
         $encadreur = Encadreur::find($id);
-
-        return view('admin.encadreur_profile', compact('encadreur', 'doctorants'));
+        $doctorants = $encadreur->doctorants;
+        return view('admin.encadreurs.profile', compact('encadreur', 'doctorants'));
     }
 
     public function createDoctorant()
     {
-        return view('admin.create_doctorant');
+        $encadreurs = Encadreur::latest()->get();
+        return view('admin.doctorants.create', compact('encadreurs'));
     }
 
     public function storeDoctorant(Request $request)
@@ -170,7 +177,8 @@ class AdminController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'matricule' => 'required|string',
-            'specialite' => 'required|string'
+            'specialite' => 'required|string',
+            'encadreur_id' => 'required|exists:encadreurs,id'
         ]);
 
         // Créer un nouvel utilisateur (Doctorant)
@@ -187,8 +195,16 @@ class AdminController extends Controller
         $doctorant = new Doctorant([
             'matricule' => $request->input('matricule'),
             'specialite' => $request->input('specialite'),
+            'encadreur_id' => $request->input('encadreur_id'),
         ]);
         $doctorant->user()->associate($user);
+        // Assigner l'encadreur au doctorant s'il est spécifié
+        $encadreurId = $request->input('encadreur_id');
+        
+        if($encadreurId){
+            $doctorant->encadreur()->associate($encadreurId);
+        }
+
         $doctorant->save();
 
         $link = asset(route('index'));
@@ -203,7 +219,7 @@ class AdminController extends Controller
 
     public function createEncadreur()
     {
-        return view('admin.create_encadreur');
+        return view('admin.encadreurs.create');
     }
 
     public function storeEncadreur(Request $request)
@@ -225,7 +241,6 @@ class AdminController extends Controller
         $user->role ="encadreur";
         $password = bin2hex(random_bytes(4));
         $user->password = $password;
-        $user->password= bcrypt($password);
         $user->save();
 
          // Créer un enregistrement dans la table "encadreurs" avec les informations spécifiques
@@ -239,7 +254,7 @@ class AdminController extends Controller
 
         $link = asset(route('login'));
 
-        Mail::to($encadreur->user->email)->send(new MessageEncadreur($encadreur, $link));
+        Mail::to($encadreur->user->email)->send(new MessageEncadreur($encadreur, $link, $password));
 
         // Ajoutez le message flash pour la création du compte encadreur
         $request->session()->flash('success', 'Encadreur créé avec succès !');
@@ -249,7 +264,7 @@ class AdminController extends Controller
 
     public function manageUsers(){
         $users = User::latest()->get();
-        return view('admin.manage_users', compact('users'));
+        return view('admin.users', compact('users'));
     }
 
 }

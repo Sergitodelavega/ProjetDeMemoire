@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     BackController, HomeController, DashboardController, 
-    EncadreurController, DoctorantController
+    EncadreurController, DoctorantController, ActivityController
 };
 use App\Http\Controllers\Admin\{
     AdminController
@@ -55,6 +55,7 @@ Route::middleware('auth')->group(function() {
         Route::post('/store-these', [AdminController::class, 'storeThese'])->name('admin.store.these');
         Route::get('/theses', [AdminController::class, 'indexTheses'])->name('admin.theses');
         Route::get('theses/{id}', [AdminController::class, 'showThese'])->name('admin.theses.show');
+        Route::get('/theses/{id}/edit', [AdminController::class, 'editThese'])->name('admin.theses.edit');
         Route::put('/theses/{id}', [AdminController::class, 'updateThese'])->name('admin.theses.update');
         Route::delete('/theses/{id}', [AdminController::class, 'destroyThese'])->name('admin.theses.delete');
     });
@@ -76,6 +77,7 @@ Route::middleware('auth')->group(function() {
         Route::get('/activity', [DoctorantController::class, 'activity'])->name('doctorant.activity');
         Route::get('/profil', [DoctorantController::class, 'profilDoctorant'])->name('doctorant.profil');
         Route::get('/formation', [DoctorantController::class, 'formation'])->name('doctorant.formation');
+        Route::resource('activities', ActivityController::class);
     });
 
 

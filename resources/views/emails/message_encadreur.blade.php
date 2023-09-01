@@ -13,7 +13,7 @@
             Voici vos informations de connexion :
             <ul>
                 <li><strong>Email :</strong> {{ $encadreur->user->email }}</li>
-                <li><strong>Mot de passe :</strong> {{ $encadreur->user->password }}</li>
+                <li><strong>Mot de passe :</strong> {{ $password }}</li>
             </ul>
         </p>
         <p>

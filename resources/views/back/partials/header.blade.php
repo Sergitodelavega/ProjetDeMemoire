@@ -74,7 +74,15 @@ if (auth()->check()) {
               <!-- ============================================================== -->
               <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      @if ($user->role === "admin")
                       <img src="{{ asset('back/assets/images/users/1.jpg') }}" alt="user" class="profile-pic me-2">{{ $user->name }}
+                      @endif
+                      @if ($user->role === "encadreur")
+                      <img src="{{ asset('back/assets/images/users/4.jpg') }}" alt="user" class="profile-pic me-2">{{ $user->name }}
+                      @endif
+                      @if ($user->role === "doctorant")
+                      <img src="{{ asset('back/assets/images/users/5.jpg') }}" alt="user" class="profile-pic me-2">{{ $user->name }}
+                      @endif
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     @if ($user->role === "admin")

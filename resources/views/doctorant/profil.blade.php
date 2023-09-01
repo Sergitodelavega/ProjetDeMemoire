@@ -11,7 +11,7 @@ if (auth()->check()) {
 
 ?>
 @if($user->role === 'doctorant')
-  <div class="page-breadcrumb">
+ <!-- <div class="page-breadcrumb">
       <div class="row align-items-center">
           <div class="col-md-6 col-8 align-self-center">
               <h3 class="page-title mb-0 p-0">Profil</h3>
@@ -33,8 +33,8 @@ if (auth()->check()) {
           </div>
       </div>
   </div>
-  <!-- ============================================================== -->
-  <!-- End Bread crumb and right sidebar toggle -->
+   ============================================================== 
+  End Bread crumb and right sidebar toggle -->
   <!-- ============================================================== -->
    <!-- ============================================================== -->
     <!-- ============================================================== -->
@@ -45,7 +45,7 @@ if (auth()->check()) {
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <!-- Row -->
-                <div class="row">
+                <div class="row" style="padding-top:20px;">
                     <!-- Column -->
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">

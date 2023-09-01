@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('matricule');
             $table->string('specialite');
             $table->foreignId('user_id')->constrained();
+           
             // $table->date('date_inscription');
             $table->timestamps();
         });

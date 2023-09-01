@@ -66,9 +66,9 @@
                                         <thead>
                                             <tr scope="row">
                                                 <th class="border-top-0">#</th>
-                                                <th class="border-top-0">Titre</th>
-                                                <th class="border-top-0">Status</th>
-                                                <th class="border-top-0">Date de validation</th>
+                                                <th class="border-top-0">Nom et Preénoms</th>
+                                                <th class="border-top-0">Email</th>
+                                                <th class="border-top-0">Spécialité</th>
                                                 <th class="border-top-0">Opération</th>
                                             </tr>
                                         </thead>

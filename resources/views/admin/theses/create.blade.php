@@ -29,15 +29,15 @@
                             </div>
                             <!-- Le message d'erreur pour "name" -->
                             @error("title")
-                            <div>{{ $message }}</div>
+                                <div>{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="description" class="col-md-12 mb-0">Description</label>
                             <div class="col-md-12">
-                                <textarea name="description" id="description" value="{{ old('description') }}" required rows="4"
-                                    class="form-control ps-0 form-control-line"></textarea>
+                                <textarea name="description" id="description" required rows="4"
+                                    class="form-control ps-0 form-control-line">{{ old('description') }}</textarea>
                             </div>
                             <!-- Le message d'erreur pour "name" -->
                             @error("description")
@@ -47,9 +47,9 @@
 
                         
                         <div class="form-group">
-                            <label for="date" class="col-md-12">Deadline</label>
+                            <label for="deadline" class="col-md-12">Deadline</label>
                             <div class="col-md-12">
-                                <input type="date" name="date" id="date" value="{{ old('date') }}" placeholder=""
+                                <input type="date" name="deadline" id="deadline" value="{{ old('date') }}" placeholder=""
                                     class="form-control ps-0 form-control-line">
                                     
                             </div>
@@ -81,7 +81,7 @@
                                 <select name="encadreur_id" id="encadreur_id" class="form-control ps-0 form-control-line" required>
                                     @foreach($encadreurs as $encadreur)
                                     <option
-                                        value="{{ $encadreur->id }}">{{ $encadreur->user->name }}</option>
+                                        value="{{ $encadreur->id }}" {{ old('encadreur_id') == $encadreur->id ? 'selected' : '' }}>{{ $encadreur->user->name }}</option>
                                     @endforeach
                                 </select>    
                             </div>
@@ -96,8 +96,7 @@
                             <div class="col-md-12">
                                 <select name="doctorant_id" id="doctorant_id" class="form-control ps-0 form-control-line" required>
                                     @foreach($doctorants as $doctorant)
-                                    <option
-                                        value="{{ $doctorant->id }}">{{ $doctorant->user->name }}</option>
+                                    <option value="{{ $doctorant->id }}"  {{ old('doctorant_id') == $doctorant->id ? 'selected' : '' }}>{{ $doctorant->user->name }}</option>
                                     @endforeach
                                 </select>    
                             </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doctorant;
+use App\Models\Encadreur;
 use Illuminate\Http\Request;
 
 class EncadreurController extends Controller
@@ -20,7 +21,17 @@ class EncadreurController extends Controller
     }
 
     public function indexDoctorant(){
-        $doctorants = Doctorant::latest()->get();
+        if (auth()->check()) {
+            // L'utilisateur est connecté, vous pouvez accéder à sa session
+            $user = auth()->user(); // Récupérer l'objet User de l'utilisateur connecté
+            if($user->role === "encadreur"){
+                $id = $user->id;
+                $encadreur = Encadreur::where('user_id', $id)->first();
+                $doctorants = $encadreur->doctorants;
+            }
+            
+        }
+
         return view('encadreur.doctorant', compact('doctorants'));
     }
 

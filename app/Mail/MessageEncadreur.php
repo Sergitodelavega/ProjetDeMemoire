@@ -14,14 +14,16 @@ class MessageEncadreur extends Mailable
     use Queueable, SerializesModels;
     public $encadreur;
     public $link;
+    public $password;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($encadreur, $link)
+    public function __construct($encadreur, $link, $password)
     {
         $this->encadreur = $encadreur;
         $this->link = $link;
+        $this->password = $password;
     }
 
     public function build(){

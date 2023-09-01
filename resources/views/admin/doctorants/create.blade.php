@@ -5,7 +5,7 @@
 <div class="page-breadcrumb">
     <div class="row align-items-center">
         <div class="col-md-6 col-8 align-self-center">
-            <h3 class="page-title mb-0 p-0">Formulaire d'ajout d'une formation</h3>
+            <h3 class="page-title mb-0 p-0">Formulaire d'ajout d'un doctorant</h3>
             <div class="d-flex align-items-center">
             </div>
         </div>
@@ -66,6 +66,21 @@
                             </div>
                             <!-- Le message d'erreur pour "name" -->
                             @error("specialite")
+                            <div>{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="encadreur_id" class="col-md-12">Encadreur assigné</label>
+                            <div class="col-md-12">
+                                <select name="encadreur_id" id="encadreur_id" class="form-control ps-0 form-control-line" required>
+                                    @foreach($encadreurs as $encadreur)
+                                    <option
+                                        value="{{ $encadreur->id }}" {{ old('encadreur_id') == $encadreur->id ? 'selected' : '' }}>{{ $encadreur->user->name }}</option>
+                                    @endforeach
+                                </select>    
+                            </div>
+                            <!-- Le message d'erreur pour "name" -->
+                            @error("encadreur_id")
                             <div>{{ $message }}</div>
                             @enderror
                         </div>

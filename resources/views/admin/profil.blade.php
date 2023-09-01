@@ -11,7 +11,7 @@ if (auth()->check()) {
 
 ?>
 @if($user->role === "admin")
-  <div class="page-breadcrumb">
+ <!--  <div class="page-breadcrumb">
       <div class="row align-items-center">
           <div class="col-md-6 col-8 align-self-center">
               <h3 class="page-title mb-0 p-0">Profil</h3>
@@ -33,7 +33,7 @@ if (auth()->check()) {
           </div>
       </div>
   </div>
-  <!-- ============================================================== -->
+  ============================================================== -->
   <!-- End Bread crumb and right sidebar toggle -->
   <!-- ============================================================== -->
    <!-- ============================================================== -->
@@ -45,12 +45,12 @@ if (auth()->check()) {
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <!-- Row -->
-                <div class="row">
+                <div class="row" style="padding-top:20px; ">
                     <!-- Column -->
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
                             <div class="card-body profile-card">
-                                <center class="mt-4"> <img src="{{ asset('back/assets/images/users/5.jpg') }}"
+                                <center class="mt-4"> <img src="{{ asset('back/assets/images/users/1.jpg') }}"
                                         class="rounded-circle" width="150" />
                                     <h4 class="card-title mt-2">{{ $user->name }}</h4>
                                     <h6 class="card-subtitle">{{ $user->email }}</h6>

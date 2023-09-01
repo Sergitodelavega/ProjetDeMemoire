@@ -1,13 +1,13 @@
 @extends('back.appback')
-@section('title', 'Theses')
+@section('title', 'Activities')
 @section('content')
 
     <br>
     <div class="container" style="margin-left: 50px">
-        <h1>Thèses</h1><br>
+        <h1>Activities</h1><br>
         <p>
         <!-- Lien pour créer un nouveau doctorant : "posts.create" -->
-        <a href="{{ route('admin.create.these') }}" title="Ajouter une thèse"  class="btn btn-primary">Ajouter une thèse</a>
+        <a href="{{ route('admin.create.these') }}" title="Soumettre une activité"  class="btn btn-primary">Soumettre une activité</a>
         </p>
     </div>
 
@@ -22,30 +22,31 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
-                            {{-- <h4 class="card-title">Basic Table</h4>
-                            <h6 class="card-subtitle">Add class <code>.table</code></h6> --}}
+                            <h4 class="card-title">Liste des activités soumises</h4>
+                           {{--  <h6 class="card-subtitle">Add class <code>.table</code></h6> --}}
                             <div class="table-responsive">
                                 <table class="table user-table">
                                     <thead>
                                         <tr scope="row">
                                             <th class="border-top-0">#</th>
                                             <th class="border-top-0">Titre</th>
-                                            <th class="border-top-0">Doctorant assigné</th>
-                                            <th class="border-top-0">Étudiant assigné</th>
+                                            <th class="border-top-0">Description</th>
+                                            <th class="border-top-0">Status</th>
                                             <th class="border-top-0">Opération</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($theses as $these)
+                                        @foreach ($activities as $activity)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $these->title }}</td>
-                                            <td>{{ $these->doctorant->user->name }}</td>
+                                            <td><a href="{{ route('doctorant.activities', $activity->id) }}">{{ $activity->title }}</a></td>
+                                            <td>{{ $activity->description }}</td>
+                                            
                                             <td>
-                                              {{ $these->encadreur->user->name }}
-                                            </td>
+                                                @if($these->status == "en attente")<span class="badge bg-primary">{{$these->status}}</span> @endif
+                                                @if($these->status == "validee")<span class="badge bg-success">{{$these->status}}</span> @endif 
                                             <td>
-                                                <a href="#" class="btn btn-info d-none d-md-inline-block text-white">Voir plus
+                                                <a href="{{ route('admin.theses.edit', $activity) }}" class="btn btn-warning d-none d-md-inline-block text-white">Edit
                                                 </a>
                                             </td>
                                         </tr>
