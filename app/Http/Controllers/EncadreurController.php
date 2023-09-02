@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use App\Models\Doctorant;
 use App\Models\Encadreur;
 use Illuminate\Http\Request;
@@ -36,9 +37,9 @@ class EncadreurController extends Controller
     }
 
     public function showDoctorant($id){
-        $doctorants = Doctorant::all();
         $doctorant = Doctorant::find($id);
-        return view("encadreur.show_doctorant", compact('doctorants', 'doctorant'));
+        $activities = $doctorant->activities;
+        return view("encadreur.show_doctorant", compact('doctorant', 'activities'));
     }
 
     public function publications(){

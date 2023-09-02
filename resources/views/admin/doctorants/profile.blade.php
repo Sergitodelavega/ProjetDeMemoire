@@ -65,27 +65,28 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Ses activités et leur évolution</h4>
-                                {{-- <h6 class="card-subtitle">Add class <code>.table</code></h6> --}}
                                 <div class="table-responsive">
                                     <table class="table user-table">
                                         <thead>
                                             <tr scope="row">
                                                 <th class="border-top-0">#</th>
                                                 <th class="border-top-0">Titre</th>
+                                                <th class="border-top-0">Description</th>
                                                 <th class="border-top-0">Status</th>
-                                                <th class="border-top-0">Date de validation</th>
+                                                
                                                 <th class="border-top-0">Opération</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($doctorants as $doctorant)
+                                            @foreach ($activities as $activity)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $doctorant->user->name }}</td>
-                                                <td>{{ $doctorant->user->email }}</td>
+                                                <td>{{ $activity->title }}</td>
+                                                <td>{{ $activity->description }}</td>
                                                 <td>
-                                                  {{ $doctorant->specialite }}
-                                                </td>
+                                                    @if($activity->status == "en attente")<span class="badge bg-primary">{{$activity->status}}</span> @endif
+                                                    @if($activity->status == "validée")<span class="badge bg-success">{{$activity->status}}</span> @endif 
+                                                </td>>
                                                 <td>
                                                     <a href="{{ route('admin.doctorant.profil', $doctorant->id) }}" class="btn btn-info d-none d-md-inline-block text-white">Voir plus
                                                     </a>

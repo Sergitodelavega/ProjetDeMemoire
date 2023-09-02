@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activity;
+use App\Models\Doctorant;
 use Illuminate\Http\Request;
 
 class ActivityController extends Controller
@@ -31,7 +32,17 @@ public function store(Request $request)
 public function index()
 {
     // Récupérez toutes les activités soumises
-    $activities = Activity::latest()->get();
+    
+    if (auth()->check()) {
+        // L'utilisateur est connecté, vous pouvez accéder à sa session
+        $user = auth()->user(); // Récupérer l'objet User de l'utilisateur connecté
+        if($user->role === "doctorant"){
+            $id = $user->id;
+            $doctorant = Doctorant::where('user_id', $id)->first();
+            $activities = $doctorant->activities;
+        }
+        
+    }
 
     return view('activities.index', compact('activities'));
 }

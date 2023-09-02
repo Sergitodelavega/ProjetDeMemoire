@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('activities', function(Blueprint $table){
+        Schema::create('activities', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->text('description');
+            $table->enum('status', ['en attente', 'validée', 'rejetée']);
             $table->foreignId('doctorant_id');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('activities', function(Blueprint $table){
-            $table->dropColumn(['doctorant_id']);
-        }); 
+        Schema::dropIfExists('activities');
     }
 };

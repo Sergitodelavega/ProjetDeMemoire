@@ -65,22 +65,23 @@
                                             <tr scope="row">
                                                 <th class="border-top-0">#</th>
                                                 <th class="border-top-0">Titre</th>
+                                                <th class="border-top-0">Description</th>
                                                 <th class="border-top-0">Status</th>
-                                                <th class="border-top-0">Date de validation</th>
                                                 <th class="border-top-0">Opération</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($doctorants as $doctorant)
+                                            @foreach ($activities as $activity)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $doctorant->user->name }}</td>
-                                                <td>{{ $doctorant->user->email }}</td>
-                                                <td>
-                                                  {{ $doctorant->specialite }}
+                                                <td>{{ $activity->title }}</td>
+                                                <td>{{ $activity->description}}</td>
+                                                  <td>
+                                                    @if($activity->status == "en attente")<span class="badge bg-primary">{{$activity->status}}</span> @endif
+                                                    @if($activity->status == "validée")<span class="badge bg-success">{{$activity->status}}</span> @endif 
                                                 </td>
                                                 <td>
-                                                    <a class="btn btn-info d-none d-md-inline-block text-white">Voir plus
+                                                    <a class="btn btn-info d-none d-md-inline-block text-white">Valider
                                                     </a>
                                                 </td>
                                             </tr>

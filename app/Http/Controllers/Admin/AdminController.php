@@ -152,10 +152,9 @@ class AdminController extends Controller
     }
 
     public function profilDoctorant($id){
-        $doctorants = Doctorant::all();
         $doctorant = Doctorant::find($id);
-
-        return view('admin.doctorants.profile', compact('doctorant', 'doctorants'));
+        $activities = $doctorant->activities;
+        return view('admin.doctorants.profile', compact('doctorant', 'activities'));
     }
 
     public function profilEncadreur($id){

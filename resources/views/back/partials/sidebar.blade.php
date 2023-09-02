@@ -55,6 +55,10 @@ if (auth()->check()) {
                           class="hide-menu">Doctorants</span></a>
               </li>
               <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                href="{{ route('encadreur.doctorant.index') }}" aria-expanded="false"><i class="mdi me-2 mdi-account"></i><span
+                    class="hide-menu">Thèse</span></a>
+              </li>
+              <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                 href="{{ route('encadreur.publications') }}" aria-expanded="false"><i
                     class="mdi me-2 mdi-book-open-variant"></i><span class="hide-menu">Publications</span></a>
               </li>
@@ -62,13 +66,17 @@ if (auth()->check()) {
 
             @if($user->role === "doctorant")
             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                href="pages-error-404.html" aria-expanded="false"><i class="mdi me-2 mdi-help-circle"></i><span
+                href="{{ route('activities.index') }}" aria-expanded="false"><i class="mdi me-2 mdi-help-circle"></i><span
                     class="hide-menu">Activités</span></a>
             </li>
             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                 href="{{ route('doctorant.formation') }}" aria-expanded="false"><i class="mdi me-2 mdi-table"></i><span
                     class="hide-menu">Formations</span></a>
             </li>
+            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+              href="{{ route('doctorant.formation') }}" aria-expanded="false"><i class="mdi me-2 mdi-table"></i><span
+                  class="hide-menu">Thèse</span></a>
+          </li>
             @endif
             
             <li class="text-center p-10 upgrade-btn">

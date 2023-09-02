@@ -39,14 +39,14 @@
                                         @foreach ($activities as $activity)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td><a href="{{ route('doctorant.activities', $activity->id) }}">{{ $activity->title }}</a></td>
+                                            <td><a href="{{ route('activities.show', $activity->id) }}">{{ $activity->title }}</a></td>
                                             <td>{{ $activity->description }}</td>
                                             
                                             <td>
-                                                @if($these->status == "en attente")<span class="badge bg-primary">{{$these->status}}</span> @endif
-                                                @if($these->status == "validee")<span class="badge bg-success">{{$these->status}}</span> @endif 
+                                                @if($activity->status == "en attente")<span class="badge bg-primary">{{$activity->status}}</span> @endif
+                                                @if($activity->status == "validée")<span class="badge bg-success">{{$activity->status}}</span> @endif 
                                             <td>
-                                                <a href="{{ route('admin.theses.edit', $activity) }}" class="btn btn-warning d-none d-md-inline-block text-white">Edit
+                                                <a href="{{ route('activities.edit', $activity) }}" class="btn btn-warning d-none d-md-inline-block text-white">Edit
                                                 </a>
                                             </td>
                                         </tr>
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div
         </div>
 
 
