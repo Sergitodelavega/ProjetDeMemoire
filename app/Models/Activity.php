@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Activity extends Model
 {
     use HasFactory;
-
+    public const STATUS = ['non soumis', 'en attente', 'validée', 'rejetée'];
     protected $fillable = [
         'title', 'description', 'status', 'doctorant_id'
     ];

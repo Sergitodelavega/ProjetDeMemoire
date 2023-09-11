@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use session;
 use App\Models\User;
+use App\Models\These;
+use App\Models\Activity;
 use App\Models\Doctorant;
 use App\Models\Encadreur;
 use App\Models\Formation;
@@ -11,10 +13,10 @@ use Illuminate\Http\Request;
 use App\Mail\MessageDoctorant;
 use App\Mail\MessageEncadreur;
 use App\Http\Controllers\Controller;
-use App\Models\These;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Database\Factories\ActivityFactory;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -205,6 +207,7 @@ class AdminController extends Controller
         }
 
         $doctorant->save();
+
 
         $link = asset(route('index'));
 

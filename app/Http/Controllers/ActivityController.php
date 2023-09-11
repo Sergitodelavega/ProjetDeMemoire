@@ -10,7 +10,7 @@ class ActivityController extends Controller
 {
     public function create()
 {
-    return view('activities.create');
+    return view('doctorant.activities.create');
 }
 
 public function store(Request $request)
@@ -26,7 +26,7 @@ public function store(Request $request)
     // Associez l'activité au doctorant actuellement authentifié
     auth()->user()->activities()->save($activite);
 
-    return redirect()->route('activites.index');
+    return redirect()->route('doctorant.activites.index');
 }
 
 public function index()
@@ -44,7 +44,7 @@ public function index()
         
     }
 
-    return view('activities.index', compact('activities'));
+    return view('doctorant.activities.index', compact('activities'));
 }
 
 }

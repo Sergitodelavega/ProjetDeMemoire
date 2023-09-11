@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->enum('status', ['en attente', 'validée', 'rejetée']);
+            $table->enum('status', ['non soumis', 'en attente', 'validée', 'rejetée']);
+            $table->text('comment')->nullable();
             $table->foreignId('doctorant_id');
             $table->timestamps();
         });

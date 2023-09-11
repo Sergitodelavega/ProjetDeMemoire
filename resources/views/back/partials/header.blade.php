@@ -15,7 +15,7 @@ if (auth()->check()) {
           <!-- ============================================================== -->
           <!-- Logo -->
           <!-- ============================================================== -->
-          <a class="navbar-brand ms-4" href="index.html">
+          <a class="navbar-brand ms-4" href="{{ route('index') }}">
               <!-- Logo icon -->
               <b class="logo-icon">
                   <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -27,7 +27,8 @@ if (auth()->check()) {
               <!-- Logo text -->
               <span class="logo-text">
                   <!-- dark Logo text -->
-                  <img src="{{ asset('back/assets/images/logo-light-text.png') }}" alt="homepage" class="dark-logo" />
+                  {{-- <img src="{{ asset('back/assets/images/logo-light-text.png') }}" alt="homepage" class="dark-logo" /> --}}
+              
 
               </span>
           </a>

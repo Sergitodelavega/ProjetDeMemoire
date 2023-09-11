@@ -37,7 +37,7 @@ class LoginController extends Controller
     // Définir la redirection en fonction du rôle
     switch ($role) {
         case 'admin':
-            return '/admin';
+            return '/admin/profil';
             break;
         case 'encadreur':
             return '/encadreur/profil';
