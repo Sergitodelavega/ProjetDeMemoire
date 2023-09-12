@@ -5,7 +5,7 @@
         <h1>Tous les doctorants</h1><br>
         <p>
         <!-- Lien pour créer un nouveau doctorant : "posts.create" -->
-        <a href="{{ route('admin.create.doctorant') }}" title="Créer un doctorant"  class="btn btn-primary">Créer un nouveau doctorant</a>
+        <a href="{{ route('admin.create.doctorant') }}" title="Créer un doctorant"  class="btn btn-primary">Créer un compte doctorant</a>
         </p>
     </div>
 

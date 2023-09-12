@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Mail\MessageDoctorant;
 use App\Mail\MessageEncadreur;
 use App\Http\Controllers\Controller;
+use Database\Seeders\ActivitySeeder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -208,6 +209,8 @@ class AdminController extends Controller
 
         $doctorant->save();
 
+        $activitySeeder = new ActivitySeeder();
+        $activitySeeder->run();
 
         $link = asset(route('index'));
 

@@ -13,27 +13,30 @@ class ActivitySeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Activity::factory()->create([
+        $latestDoctorant = Doctorant::latest()->first();
+
+            \App\Models\Activity::create([
                 'title' => 'Activité 1',
                 'description' => 'Description de l\'activité 1',
                 'status' => 'non soumis',
                 'comment' => null,
-                'doctorant_id' => 1, // ID du doctorant associé
+                'doctorant_id' => $latestDoctorant->id, // ID du doctorant associé
         ]);
-        \App\Models\Activity::factory()->create([
+        \App\Models\Activity::create([
                 'title' => 'Activité 2',
                 'description' => 'Description de l\'activité 2',
                 'status' => 'non soumis',
                 'comment' => null,
-                'doctorant_id' => 1, // ID du doctorant associé
+                'doctorant_id' => $latestDoctorant->id, // ID du doctorant associé
     ]);
-    \App\Models\Activity::factory()->create([
+    \App\Models\Activity::create([
                 'title' => 'Activité 3',
                 'description' => 'Description de l\'activité 3',
                 'status' => 'non soumis',
                 'comment' => null,
-                'doctorant_id' => 1, // ID du doctorant associé
+                'doctorant_id' => $latestDoctorant->id, // ID du doctorant associé
     ]);
+        
 
     }
 }

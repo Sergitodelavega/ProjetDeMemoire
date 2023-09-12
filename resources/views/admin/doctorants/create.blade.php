@@ -28,20 +28,20 @@
                             </div>
                             <!-- Le message d'erreur pour "name" -->
                             @error("name")
-                            <div>{{ $message }}</div>
+                            <span class="alert-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="email" class="col-md-12">Email</label>
                             <div class="col-md-12">
-                                <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="johnathan@admin.com"
+                                <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="johnathandoe@admin.com"
                                     class="form-control ps-0 form-control-line">
                                     
                             </div>
                             <!-- Le message d'erreur pour "name" -->
                             @error("email")
-                            <div>{{ $message }}</div>
+                            <span class="alert-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -54,25 +54,26 @@
                             </div>
                             <!-- Le message d'erreur pour "name" -->
                             @error("matricule")
-                            <div>{{ $message }}</div>
+                            <span class="alert-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="specialite" class="col-md-12 mb-0">Spécialité</label>
                             <div class="col-md-12">
-                                <input type="text" name="specialite" id="specialite" value="{{ old('specialite') }}" placeholder="123 456 7890"
+                                <input type="text" name="specialite" id="specialite" value="{{ old('specialite') }}" placeholder="Mathématiques"
                                     class="form-control ps-0 form-control-line">
                             </div>
                             <!-- Le message d'erreur pour "name" -->
                             @error("specialite")
-                            <div>{{ $message }}</div>
+                            <span class="alert-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label for="encadreur_id" class="col-md-12">Encadreur assigné</label>
                             <div class="col-md-12">
                                 <select name="encadreur_id" id="encadreur_id" class="form-control ps-0 form-control-line" required>
+                                    <option value="">---</option>
                                     @foreach($encadreurs as $encadreur)
                                     <option
                                         value="{{ $encadreur->id }}" {{ old('encadreur_id') == $encadreur->id ? 'selected' : '' }}>{{ $encadreur->user->name }}</option>
@@ -81,7 +82,7 @@
                             </div>
                             <!-- Le message d'erreur pour "name" -->
                             @error("encadreur_id")
-                            <div>{{ $message }}</div>
+                            <span class="alert-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <button type="submit" class="btn btn-primary mx-auto mx-md-0 text-white">Créer le compte</button>

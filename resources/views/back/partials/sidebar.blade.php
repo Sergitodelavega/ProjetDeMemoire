@@ -54,11 +54,11 @@ if (auth()->check()) {
                       href="{{ route('encadreur.doctorant.index') }}" aria-expanded="false"><i class="mdi me-2 mdi-account"></i><span
                           class="hide-menu">Doctorants</span></a>
               </li>
-              <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+              {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                 href="{{ route('encadreur.doctorant.index') }}" aria-expanded="false"><i
                 class="mdi me-2 mdi-book-open-variant"></i><span
                     class="hide-menu">Thèse</span></a>
-              </li>
+              </li> --}}
               <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                 href="{{ route('encadreur.publications') }}" aria-expanded="false"><i
                     class="mdi me-2 mdi-book-open-variant"></i><span class="hide-menu">Publications</span></a>
@@ -74,11 +74,11 @@ if (auth()->check()) {
                 href="{{ route('doctorant.formation') }}" aria-expanded="false"><i class="mdi me-2 mdi-table"></i><span
                     class="hide-menu">Formations</span></a>
             </li>
-            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-              href="{{ route('doctorant.formation') }}" aria-expanded="false"><i
+            {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+              href="#" aria-expanded="false"><i
               class="mdi me-2 mdi-book-open-variant"></i><span
                   class="hide-menu">Thèse</span></a>
-          </li>
+          </li> --}}
             @endif
             
             {{-- <li class="text-center p-10 upgrade-btn">

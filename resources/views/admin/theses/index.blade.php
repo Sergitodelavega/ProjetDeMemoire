@@ -48,8 +48,9 @@
                                             </td>
                                             <td>{{ $these->deadline }}</td>
                                             <td>
-                                                @if($these->status == "open")<span class="badge bg-primary">{{$these->status}}</span> @endif
-                                                @if($these->status == "completed")<span class="badge bg-success">{{$these->status}}</span> @endif 
+                                                @if($these->status == "open")<span class="badge bg-secondary">{{$these->status}}</span> @endif
+                                                @if($these->status == "completed")<span class="badge bg-success">{{$these->status}}</span> @endif
+                                                @if($these->status == "in progress")<span class="badge bg-primary">{{$these->status}}</span> @endif  
                                             <td>
                                                 <a href="{{ route('admin.theses.edit', $these) }}" class="btn btn-warning d-none d-md-inline-block text-white">Edit
                                                 </a>

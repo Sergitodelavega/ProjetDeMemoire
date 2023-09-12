@@ -2,47 +2,17 @@
 @section('title', "Créer un encadreur")
 @section('content')
  
-{{-- <form method="POST" action="{{ route('admin.store.doctorant') }}" enctype="multipart/form-data">
-    @csrf
-    <p>
-        <label for="name">Nom et Prénom</label><br>
-        <input type="text" name="name" value="{{ old('name') }}" placeholder="Nom et Prénom" id="name">
-
-        <!-- Le message d'erreur pour "name" -->
-			@error("name")
-			<div>{{ $message }}</div>
-			@enderror
-    </p>
-    <p>
-        <label for="name">Email</label><br>
-        <input type="email" name="email" value="{{ old('email') }}" placeholder="Email" id="email">
-
-        <!-- Le message d'erreur pour "email" -->
-			@error("email")
-			<div>{{ $message }}</div>
-			@enderror
-    </p>
-    <p>
-        <label for="password">Mot de passe</label><br>
-        <input type="password" name="password" value="{{ old('password') }}" placeholder="Mot de passe" id="password">
-
-        <!-- Le message d'erreur pour "password" -->
-			@error("password")
-			<div>{{ $message }}</div>
-			@enderror
-    </p>
-    <p>
-        <label for="specialite">Spécialité</label><br>
-        <input type="text" name="specialite" value="{{ old('specialite') }}" placeholder="Spécialité" id="specialite">
-
-        <!-- Le message d'erreur pour "specialite" -->
-			@error("specialite")
-			<div>{{ $message }}</div>
-			@enderror
-    </p>
-
-    <button type="submit" class="btn btn-primary">Créer le compte</button>
-</form>  --}}
+<div class="page-breadcrumb">
+    <div class="row align-items-center">
+        <div class="col-md-6 col-8 align-self-center">
+            <h3 class="page-title mb-0 p-0">Formulaire d'ajout d'un encadreur</h3>
+            <div class="d-flex align-items-center">
+            </div>
+        </div>
+        <div class="col-md-6 col-4 align-self-center">
+        </div>
+    </div>
+</div>
 
 <div class="container-fluid">
     <div class="row">
@@ -59,7 +29,7 @@
                             </div>
                             <!-- Le message d'erreur pour "name" -->
                             @error("name")
-                            <div>{{ $message }}</div>
+                            <span class="alert-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -72,7 +42,7 @@
                             </div>
                             <!-- Le message d'erreur pour "email" -->
                             @error("email")
-                            <div>{{ $message }}</div>
+                            <span class="alert-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -85,7 +55,7 @@
                             </div>
                             <!-- Le message d'erreur pour "name" -->
                             @error("matricule")
-                            <div>{{ $message }}</div>
+                            <span class="alert-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -97,7 +67,7 @@
                             </div>
                             <!-- Le message d'erreur pour "grade" -->
                             @error("grade")
-                            <div>{{ $message }}</div>
+                            <span class="alert-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -109,7 +79,7 @@
                             </div>
                             <!-- Le message d'erreur pour "specialite" -->
                             @error("specialite")
-                            <div>{{ $message }}</div>
+                            <span class="alert-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <button type="submit" class="btn btn-primary mx-auto mx-md-0 text-white">Créer le compte</button>

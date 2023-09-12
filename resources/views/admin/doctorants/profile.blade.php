@@ -15,13 +15,13 @@
                   </nav> --}}
               </div>
           </div>
-          <div class="col-md-6 col-4 align-self-center">
+          {{-- <div class="col-md-6 col-4 align-self-center">
               <div class="text-end upgrade-btn">
                   <a href="https://www.wrappixel.com/templates/materialpro/"
                       class="btn btn-danger d-none d-md-inline-block text-white" target="_blank">Upgrade to
                       Pro</a>
               </div>
-          </div>
+          </div> --}}
       </div>
   </div>
   <!-- ============================================================== -->
@@ -45,6 +45,7 @@
                                         class="rounded-circle" width="150" />
                                     <h4 class="card-title mt-2">{{ $doctorant->user->name }}</h4>
                                     <h6 class="card-subtitle">{{ $doctorant->user->email }}</h6>
+                                    <h5 class="card-subtitle">{{ $doctorant->matricule }}</h5>
                                     <h5 class="card-subtitle">{{ $doctorant->specialite }}</h5>
                                     ---------
                                     @if ($doctorant->encadreur)
@@ -72,6 +73,7 @@
                                                 <th class="border-top-0">#</th>
                                                 <th class="border-top-0">Titre</th>
                                                 <th class="border-top-0">Description</th>
+                                                <th class="border-top-0">Deadline</th>
                                                 <th class="border-top-0">Status</th>
                                                 
                                                 <th class="border-top-0">Opération</th>
@@ -83,9 +85,11 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $activity->title }}</td>
                                                 <td>{{ $activity->description }}</td>
+                                                <td>{{ $activity->created_at }}</td>
                                                 <td>
                                                     @if($activity->status == "en attente")<span class="badge bg-primary">{{$activity->status}}</span> @endif
-                                                    @if($activity->status == "validée")<span class="badge bg-success">{{$activity->status}}</span> @endif 
+                                                    @if($activity->status == "validée")<span class="badge bg-success">{{$activity->status}}</span> @endif
+                                                    @if($activity->status == "non soumis")<span class="badge bg-secondary">{{$activity->status}}</span> @endif
                                                 </td>>
                                                 <td>
                                                     <a href="{{ route('admin.doctorant.profil', $doctorant->id) }}" class="btn btn-info d-none d-md-inline-block text-white">Voir plus
