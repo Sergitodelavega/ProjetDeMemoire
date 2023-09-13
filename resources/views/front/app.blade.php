@@ -15,10 +15,11 @@
 </head>
 <body>
 @include('front.partials.header')
+
 @yield('content')
+
 @include('front.partials.footer')
 
 @include('front.partials.script')
-@yield('script')
 </body>
 </html>

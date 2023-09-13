@@ -49,7 +49,7 @@
                         <div class="form-group">
                             <label for="matricule" class="col-md-12">Matricule</label>
                             <div class="col-md-12">
-                                <input type="text" name="matricule" id="matricule" value="{{ old('matricule') }}" placeholder="123 456 789"
+                                <input type="text" name="matricule" id="matricule" value="{{ old('matricule') }}" placeholder="12345678"
                                     class="form-control ps-0 form-control-line">
                                     
                             </div>

@@ -154,7 +154,7 @@ h1, h2, h3, h4, h5, h6 {
 # Header
 --------------------------------------------------------------*/
 #header {
-  background: var(--bg-primary-blue);
+  background: var(--bg-primary-green);
   transition: all 0.5s;
   z-index: 99;
   height: 70px;
@@ -274,8 +274,9 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: none;
   color: #032e54;
 }
-.navbar .dropdown ul a i {
-  font-size: 12px;
+.navbar ul a i {
+  font-size: 16px;
+  margin-right: 10px;
 }
 .navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
   color: #0880e8;
@@ -300,19 +301,23 @@ h1, h2, h3, h4, h5, h6 {
 #header .cta {
   background: transparent;
 }
+#header .cta a i {
+  font-size: 16px;
+  margin-right: 5px;
+}
 #header #btn-i{
   margin-right: 15px;
 }
 #header .cta a {
   color: #fff;
-  background: var(--btn-orange);
+  background: #f1a40a;
   padding: 6px 24px 8px 24px;
   display: inline-block;
   transition: 0.3s;
   border-radius: 50px;
 }
 #header .cta a:hover {
-  background: #f1a40a;
+  background: var(--btn-orange);
 }
 
 @media (max-width: 1366px) {
@@ -540,7 +545,7 @@ section {
   text-transform: uppercase;
   margin-bottom: 20px;
   padding-bottom: 0;
-  color: #054a85;
+  color: #2A8C28;
 }
 .section-title p {
   margin-bottom: 0;
@@ -1958,14 +1963,12 @@ section {
 # Footer
 --------------------------------------------------------------*/
 #footer {
-  background: var(--bg-primary-blue);
-  padding: 0 0 30px 0;
+  background: #222222;
   color: #fff;
   font-size: 14px;
 }
 #footer .footer-newsletter {
-  padding: 50px 0;
-  background: #05579e;
+  
 }
 #footer .footer-newsletter h4 {
   font-size: 24px;
@@ -1975,7 +1978,6 @@ section {
   font-weight: 600;
 }
 #footer .footer-newsletter form {
-  margin-top: 30px;
   background: #fff;
   padding: 6px 10px;
   position: relative;
@@ -2005,7 +2007,7 @@ section {
   background: #0880e8;
 }
 #footer .footer-top {
-  background: #065fad;
+  background: #222222;
   padding: 60px 0 30px 0;
 }
 #footer .footer-top .footer-info {
@@ -2062,7 +2064,7 @@ section {
 }
 #footer .footer-top .footer-links ul i {
   padding-right: 2px;
-  color: #5db1f9;
+  color: white;
   font-size: 18px;
   line-height: 1;
 }
@@ -2084,7 +2086,7 @@ section {
   color: #fff;
 }
 #footer .footer-top .footer-contact {
-  margin-bottom: 30px;
+ 
 }
 #footer .footer-top .footer-contact p {
   line-height: 26px;

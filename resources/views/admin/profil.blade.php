@@ -50,7 +50,7 @@ if (auth()->check()) {
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
                             <div class="card-body profile-card">
-                                <center class="mt-4"> <img src="{{ asset('back/assets/images/users/1.jpg') }}"
+                                <center class="mt-4"> <img src="{{ asset('back/assets/images/users/1.png') }}"
                                         class="rounded-circle" width="150" />
                                     <h4 class="card-title mt-2">{{ $user->name }}</h4>
                                     <h6 class="card-subtitle">{{ $user->email }}</h6>

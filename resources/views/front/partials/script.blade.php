@@ -12,3 +12,12 @@
 
 <!-- Le javascript Bootstrap -->
 <script src="{{ asset('js/app.js') }}"></script>
+
+<script>
+     $(document).ready(function() {
+    $('#news-carousel').carousel({
+      interval: 3000, // Temps d'affichage en millisecondes entre chaque diapositive (3 secondes dans cet exemple)
+      pause: 'hover' // Optionnelle : Mettre en pause le carrousel lorsque la souris survole la zone
+    });
+  });
+</script>
