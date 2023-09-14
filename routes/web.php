@@ -68,7 +68,9 @@ Route::middleware('auth')->group(function() {
         Route::get('/doctorant/{id}', [EncadreurController::class, 'showDoctorant'])->name('encadreur.doctorant.show');
         Route::get('/publications', [EncadreurController::class, 'publications'])->name('encadreur.publications');
         Route::get('/publish', [EncadreurController::class, 'publish'])->name('encadreur.publish');
-        Route::get('/publish/{id}', [EncadreurController::class, 'publishDoctorant'])->name('encadreur.doctorant.publish');
+        Route::get('/activity/{id}', [EncadreurController::class, 'showActivity'])->name('encadreur.show_activity');
+        Route::post('/validate/activity/{id}', [ActivityController::class, 'validate_activity'])->name('encadreur.validate_activity');
+        Route::post('/reject/activity/{id}', [ActivityController::class, 'reject_activity'])->name('encadreur.reject_activity');
     });
 
     // Routes pour l'espace doctorant 
@@ -77,7 +79,12 @@ Route::middleware('auth')->group(function() {
         Route::get('/activity', [DoctorantController::class, 'activity'])->name('doctorant.activity');
         Route::get('/profil', [DoctorantController::class, 'profilDoctorant'])->name('doctorant.profil');
         Route::get('/formation', [DoctorantController::class, 'formation'])->name('doctorant.formation');
-        Route::resource('activities', ActivityController::class);
+        Route::get('activities', [ActivityController::class, 'index'])->name('doctorant.activity.index');
+        Route::get('activity/{id}', [ActivityController::class, 'show'])->name('doctorant.activity.show');
+        Route::post('activity/store', [ActivityController::class, 'store'])->name('doctorant.activity.store');
+
+        Route::get('/activity/submit/{id}', [ActivityController::class, 'activity_submit'])->name('doctorant.activity_submit');
+        Route::get('/activity/submitted/{id}', [ActivityController::class, 'submit'])->name('doctorant.submitted_activity');
     });
 
 

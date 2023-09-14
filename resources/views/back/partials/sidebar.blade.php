@@ -67,7 +67,7 @@ if (auth()->check()) {
 
             @if($user->role === "doctorant")
             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                href="{{ route('activities.index') }}" aria-expanded="false"><i class="mdi me-2 mdi-table"></i><span
+                href="{{ route('doctorant.activity.index') }}" aria-expanded="false"><i class="mdi me-2 mdi-table"></i><span
                     class="hide-menu">Activités</span></a>
             </li>
             <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"

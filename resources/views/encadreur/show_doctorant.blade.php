@@ -65,26 +65,28 @@
                                             <tr scope="row">
                                                 <th class="border-top-0">#</th>
                                                 <th class="border-top-0">Titre</th>
-                                                <th class="border-top-0">Description</th>
+                                                <th class="border-top-0">Semestre</th>
                                                 <th class="border-top-0">Status</th>
                                                 <th class="border-top-0">Opération</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($activities as $activity)
+                                            @if($activity->status == "en attente")    
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $activity->title }}</td>
-                                                <td>{{ $activity->description}}</td>
+                                                <td>{{ $activity->semestre}}</td>
                                                   <td>
                                                     @if($activity->status == "en attente")<span class="badge bg-primary">{{$activity->status}}</span> @endif
                                                     @if($activity->status == "validée")<span class="badge bg-success">{{$activity->status}}</span> @endif 
                                                 </td>
                                                 <td>
-                                                    <a class="btn btn-info d-none d-md-inline-block text-white">Valider
+                                                    <a href="{{ route('encadreur.show_activity', $activity) }}" class="btn btn-info d-none d-md-inline-block text-white">Voir plus
                                                     </a>
                                                 </td>
                                             </tr>
+                                            @endif
                                             @endforeach
                                         </tbody>
                                     </table>

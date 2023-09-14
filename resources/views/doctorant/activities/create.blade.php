@@ -19,13 +19,12 @@
         <div class="col-lg-8 col-xlg-9 col-md-7">
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin.store.these') }}" class="form-horizontal form-material mx-2" enctype="multipart/form-data">
+                    <form method="GET" action="{{ route('doctorant.submitted_activity', $activity->id ) }}" class="form-horizontal form-material mx-2" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="title" class="col-md-12 mb-0">Titre</label>
                             <div class="col-md-12">
-                                <input type="text" name="title" id="title" value="{{ old('title') }}" placeholder=""
-                                    class="form-control ps-0 form-control-line">
+                                <h3>{{ $activity->title }}</h3>
                             </div>
                             <!-- Le message d'erreur pour "name" -->
                             @error("title")
@@ -36,8 +35,7 @@
                         <div class="form-group">
                             <label for="description" class="col-md-12 mb-0">Description</label>
                             <div class="col-md-12">
-                                <textarea name="description" id="description" required rows="4"
-                                    class="form-control ps-0 form-control-line">{{ old('description') }}</textarea>
+                                <p>{{ $activity->description }}</p>
                             </div>
                             <!-- Le message d'erreur pour "name" -->
                             @error("description")
@@ -47,18 +45,14 @@
 
                        
                         <div class="form-group">
-                            <label for="status" class="col-md-12">Status</label>
+                            <label for="comment" class="col-md-12 mb-0">Commentaire</label>
                             <div class="col-md-12">
-                                <select name="status" id="status" class="form-control ps-0 form-control-line">
-                                    @foreach(App\Models\These::STATUS as $status)
-                                    <option
-                                        value="{{ $status }}" {{ old('status') == $status ? 'selected' : '' }}>{{ ucfirst($status) }}</option>
-                                    @endforeach
-                                </select>    
+                                <textarea name="comment" id="comment" required rows="4"
+                                    class="form-control ps-0 form-control-line" placeholder="Votre commentaire">{{ isset($activity->comment) ? $activity->comment : old('comment') }}</textarea>
                             </div>
                             <!-- Le message d'erreur pour "name" -->
-                            @error("status")
-                            <div>{{ $message }}</div>
+                            @error("comment")
+                                <div>{{ $message }}</div>
                             @enderror
                         </div>
 

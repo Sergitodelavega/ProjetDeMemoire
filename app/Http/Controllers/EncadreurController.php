@@ -46,4 +46,10 @@ class EncadreurController extends Controller
         return view('encadreur.publications');
         // abort('404', message:"User not found");
     }
+
+    public function showActivity($id){
+        $activity = Activity::find($id);
+        
+        return view('encadreur.show_activity', compact('activity'));
+    }
 }
