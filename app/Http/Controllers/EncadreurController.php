@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class EncadreurController extends Controller
 {
+    public function messages(){
+        return view('encadreur.messages');
+    }
+
     public function index(){
         return view('back.home.index');
     }

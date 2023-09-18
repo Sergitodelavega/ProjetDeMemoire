@@ -71,6 +71,7 @@ Route::middleware('auth')->group(function() {
         Route::get('/activity/{id}', [EncadreurController::class, 'showActivity'])->name('encadreur.show_activity');
         Route::post('/validate/activity/{id}', [ActivityController::class, 'validate_activity'])->name('encadreur.validate_activity');
         Route::post('/reject/activity/{id}', [ActivityController::class, 'reject_activity'])->name('encadreur.reject_activity');
+        Route::get('/messages', [EncadreurController::class, 'messages'])->name('encadreur.messages');
     });
 
     // Routes pour l'espace doctorant 
@@ -85,6 +86,7 @@ Route::middleware('auth')->group(function() {
 
         Route::get('/activity/submit/{id}', [ActivityController::class, 'activity_submit'])->name('doctorant.activity_submit');
         Route::get('/activity/submitted/{id}', [ActivityController::class, 'submit'])->name('doctorant.submitted_activity');
+        Route::get('/messages', [DoctorantController::class, 'messages'])->name('doctorant.messages');
     });
 
 

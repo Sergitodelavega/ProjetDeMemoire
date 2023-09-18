@@ -23,4 +23,8 @@ class DoctorantController extends Controller
         $formations = Formation::latest()->get();
         return view('doctorant.formation', compact('formations'));
     }
+
+    public function messages(){
+        return view('doctorant.messages');
+    }
 }
