@@ -7,12 +7,11 @@
 
         <div class="col-lg-3 col-md-6 footer-info">
           <h3>À PROPOS DE NOUS</h3>
-          <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+          <p>La Plateforme Numérique Doctorale est une plateforme web de gestion et de suivi des projets de thèse des écoles doctorales de l'UAC.</p>
           <div class="social-links mt-3">
             <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
             <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
             <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
             <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
           </div>
         </div>
@@ -36,7 +35,7 @@
           </ul><br>
           <h4>CONTACT</h4>
           <p>
-            <strong>Phone:</strong> +1 5589 55488 55<br>
+            <strong>Phone:</strong> +229 98 52 61 32<br>
             <strong>Email:</strong> info@example.com<br>
           </p>
         </div>
@@ -44,12 +43,12 @@
 
         <div class="col-lg-3 col-md-6">
           <div>
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+            <h4>Newsletter</h4>
+            <p>Abonnez-vous à la newsletter.</p>
           </div><br>
           <div class="footer-newsletter">
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
+            <form action="{{ route('newsletter') }}" method="post">
+              <input type="email" name="email"><input type="submit" value="S'abonner">
             </form>
           </div>
         </div>

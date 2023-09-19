@@ -26,6 +26,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::post('/newsletter', [HomeController::class, 'newsletter'])->name('newsletter');
 
 Route::middleware('auth')->group(function() {
 

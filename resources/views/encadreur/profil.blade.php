@@ -11,29 +11,6 @@ if (auth()->check()) {
 
 ?>
 @if($user->role === "encadreur")
-  {{-- <div class="page-breadcrumb">
-      <div class="row align-items-center">
-          <div class="col-md-6 col-8 align-self-center">
-              <h3 class="page-title mb-0 p-0">Profil</h3>
-              <div class="d-flex align-items-center">
-                  {{-- <nav aria-label="breadcrumb">
-                      <ol class="breadcrumb">
-                          <li class="breadcrumb-item"><a href="#">Home</a></li>
-                          <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                      </ol>
-                  </nav> 
-              </div>
-          </div>
-          <div class="col-md-6 col-4 align-self-center">
-              <div class="text-end upgrade-btn">
-                  <a href="https://www.wrappixel.com/templates/materialpro/"
-                      class="btn btn-danger d-none d-md-inline-block text-white" target="_blank">Upgrade to
-                      Pro</a>
-              </div>
-          </div>
-      </div>
-  
-    </div> --}}
 
             <div class="container-fluid">
                 <!-- ============================================================== -->
@@ -72,26 +49,25 @@ if (auth()->check()) {
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12 d-flex">
-                                            <button class="btn btn-success mx-auto mx-md-0 text-white">Update
-                                                Email</button>
+                                            <button class="btn btn-success mx-auto mx-md-0 text-white">Modifier</button>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12 mb-0">Old Password</label>
+                                        <label class="col-md-12 mb-0">Ancien mot de passe</label>
                                         <div class="col-md-12">
                                             <input type="password" value="password"
                                                 class="form-control ps-0 form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12 mb-0">New Password</label>
+                                        <label class="col-md-12 mb-0">Nouveau mot de passe</label>
                                         <div class="col-md-12">
                                             <input type="password" value="password"
                                                 class="form-control ps-0 form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12 mb-0">Confirm Password</label>
+                                        <label class="col-md-12 mb-0">Confirmer mot de passe</label>
                                         <div class="col-md-12">
                                             <input type="password" value="password"
                                                 class="form-control ps-0 form-control-line">
@@ -99,8 +75,7 @@ if (auth()->check()) {
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12 d-flex">
-                                            <button class="btn btn-success mx-auto mx-md-0 text-white">Update
-                                                Password</button>
+                                            <button class="btn btn-success mx-auto mx-md-0 text-white">Changer mot de passe</button>
                                         </div>
                                     </div>
                                 </form>
