@@ -9,19 +9,6 @@ use Illuminate\Http\Request;
 
 class EncadreurController extends Controller
 {
-    public function messages(){
-        if (auth()->check()) {
-            // L'utilisateur est connecté, vous pouvez accéder à sa session
-            $user = auth()->user(); // Récupérer l'objet User de l'utilisateur connecté
-            if($user->role === "encadreur"){
-                $id = $user->id;
-                $encadreur = Encadreur::where('user_id', $id)->first();
-                $doctorants = $encadreur->doctorants;
-            }
-            
-        }
-        return view('encadreur.messages', compact('doctorants'));
-    }
 
     public function index(){
         return view('back.home.index');

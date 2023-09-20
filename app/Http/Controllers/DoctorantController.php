@@ -25,19 +25,4 @@ class DoctorantController extends Controller
         return view('doctorant.formation', compact('formations'));
     }
 
-    public function messages(){
-        if (auth()->check()) {
-            // L'utilisateur est connecté, vous pouvez accéder à sa session
-            $user = auth()->user(); // Récupérer l'objet User de l'utilisateur connecté
-            if($user->role === "doctorant"){
-                $id = $user->id;
-                $doctorant = Doctorant::where('user_id', $id)->first();
-                $encadreur = $doctorant->encadreur;
-            }
-            
-        }
-
-
-        return view('doctorant.messages', compact('encadreur'));
-    }
 }
