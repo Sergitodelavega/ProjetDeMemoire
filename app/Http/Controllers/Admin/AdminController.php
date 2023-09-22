@@ -209,8 +209,8 @@ class AdminController extends Controller
 
         $doctorant->save();
 
-        $activitySeeder = new ActivitySeeder();
-        $activitySeeder->run();
+        // $activitySeeder = new ActivitySeeder();
+        // $activitySeeder->run();
 
         $link = asset(route('index'));
 

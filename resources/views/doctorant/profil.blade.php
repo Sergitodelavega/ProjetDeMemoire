@@ -30,8 +30,10 @@ if (auth()->check()) {
                                         class="rounded-circle" width="150" />
                                     <h4 class="card-title mt-2">{{ $user->name }}</h4>
                                     <h6 class="card-subtitle">{{ $user->email }}</h6>
-                                    <h5 class="card-subtitle">{{ $user->doctorant->matricule }}</h5>
-                                    <h5 class="card-subtitle">{{ $user->doctorant->specialite }}</h5>
+                                    <h5 class="card-subtitle text-dark">{{ $user->doctorant->matricule }}</h5>
+                                    <h5 class="card-subtitle text-dark">{{ $user->doctorant->specialite }}</h5>
+                                    <h5 class="card-subtitle text-dark">Laboratoire de Chimie Organique Physique et de Synthèse (LRCOPS)</h5>
+                                    <h5 class="card-subtitle text-dark">École doctorale Chimie Application</h5>
                                 </center>
                             </div>
                         </div>

@@ -30,9 +30,9 @@
                                         <tr scope="row">
                                             <th class="border-top-0">#</th>
                                             <th class="border-top-0">Semestre</th>
-                                            <th class="border-top-0">Titre</th>
-                                            <th class="border-top-0">Deadline</th>
-                                            <th class="border-top-0">Status</th>
+                                            <th class="border-top-0">Intitulé</th>
+                                            <th class="border-top-0">Date limite</th>
+                                            <th class="border-top-0">Statut</th>
                                             <th class="border-top-0">Opération</th>
                                         </tr>
                                     </thead>

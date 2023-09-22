@@ -8,6 +8,12 @@
             <h1 style="color:black; font-size:50px;">Plateforme Numérique Doctorale </h1>
           </div>
       </div>
+      <div class="carousel-item" data-bs-interval="10000">
+        <img src="{{ asset('front/img/accueil.jpg') }}" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h1 style="color:black; font-size:50px;">Plateforme Numérique Doctorale </h1>
+          </div>
+      </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -19,7 +25,7 @@
     </button>
   </div>
 
-  <!-- ======= Portfoio Section ======= -->
+  <!-- ======= Events Section ======= -->
   <section id="portfolio" class="portfoio">
     <div class="container">
 
@@ -32,11 +38,11 @@
               <div class="col-lg-4 col-md-3 col-sm-6">
                 <!-- Première card -->
                 <div class="card">
-                  <img src="{{ asset('front/img/portfolio-4.jpg') }}" class="card-img-top" alt="card-img-top">
+                  <img src="{{ asset('front/img/uac-2.jpg') }}" class="card-img-top" alt="card-img-top">
                   <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <h5 class="card-title">Formations scientifiques pour un impact sur le développement</h5>
+                    <p class="card-text">Les Centres d’Excellence d’Afrique pour l’Impact sur le développement...</p>
+                    <p class="card-text"><small class="text-muted">Publié il y a 3 min</small></p>
                     <a href="#" class="btn btn-danger" style="font-size: 13px;">Lire la suite</a>
                   </div>
                 </div>
@@ -44,11 +50,11 @@
               <div class="col-lg-4 col-md-3 col-sm-6">
                 <!-- Première card -->
                 <div class="card">
-                  <img src="{{ asset('front/img/portfolio-1.jpg') }}" class="card-img-top" alt="card-img-top">
+                  <img src="{{ asset('front/img/jeunes-etudiants-frequentant-classe-universitaire.jpg') }}" class="card-img-top" alt="card-img-top">
                   <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <h5 class="card-title">Formations à l'Ecole Doctorale des Sciences Agronomiques et de l’Eau</h5>
+                    <p class="card-text">De nouvelles offres de formation peuvent être ajoutées conformément...</p>
+                    <p class="card-text"><small class="text-muted">Publié il y a 20 min</small></p>
                     <a href="#" class="btn btn-danger" style="font-size: 13px;">Lire la suite</a>
                   </div>
                 </div>
@@ -56,11 +62,11 @@
               <div class="col-lg-4 col-md-3 col-sm-6">
                 <!-- Première card -->
                 <div class="card">
-                  <img src="{{ asset('front/img/portfolio-2.jpg') }}" class="card-img-top" alt="card-img-top">
+                  <img src="{{ asset('front/img/Patrice-net-1.jpg') }}" class="card-img-top" alt="card-img-top">
                   <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <h5 class="card-title">Enseignement supérieur : Talon réorganise la création des écoles doctorales.</h5>
+                    <p class="card-text">Le Chef de l'État a pris trois décrets pour réorganiser les écoles doctorales...</p>
+                    <p class="card-text"><small class="text-muted">Publié il y a 1 heure</small></p>
                     <a href="#" class="btn btn-danger" style="font-size: 13px;">Lire la suite</a>
                   </div>
                 </div>
@@ -74,56 +80,40 @@
     </div>
   </section><!-- End Portfoio Section -->
 
-       <!-- ======= Services Section ======= -->
+       <!-- ======= Offres Section ======= -->
     <section id="services" class="services">
       <div class="container">
 
         <div class="section-title">
-          <h2>Appels d'offres</h2>
-          <p>Découvrez toutes les appels d'offres récents.</p>
+          <h2>Offres de thèses</h2>
+          <p>Découvrez toutes les offres de thèse récentes des écoles doctorales.</p>
         </div>
 
         <div class="row">
           <div class="col-md-6 d-flex align-items-stretch">
             <div class="icon-box">
-              <i class="bi bi-card-checklist"></i>
-              <h4><a href="#">Lorem Ipsum</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <h4><a href="#">Appel à candidature pour le Doctorat au titre de l’année académique 2023-2024</a></h4>
+              <p>Dans le cadre de ses activités académiques, le CoE-EIE lance un appel à candidature pour la bourse de thèse de doctorat pour le compte de l'année universitaire 2023-2024...</p>
             </div>
           </div>
           <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
             <div class="icon-box">
-              <i class="bi bi-bar-chart"></i>
-              <h4><a href="#">Dolor Sitema</a></h4>
-              <p>Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+              <h4><a href="#">Doctorales des centres d’excellence du Bénin</a></h4>
+              <p>Les Centres d’Excellence d’Afrique pour l’Impact sur le développement de l’Université d’Abomey-Calavi organisent, en collaboration avec les entités qui hébergent ces centres (IMSP, INE, EPAC) et les entités partenaires (IFRI, FAST, LABEF, ASE)...</p>
             </div>
           </div>
           <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
             <div class="icon-box">
-              <i class="bi bi-binoculars"></i>
-              <h4><a href="#">Sed ut perspiciatis</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+              <h4><a href="#">Proposition de projet de thèse en sciences de l’éducation.</a></h4>
+              <p>L'éducation est un pilier essentiel du développement d'une société, mais de nombreux élèves issus de milieux socio-économiques défavorisés sont confrontés à des obstacles qui entravent leur réussite scolaire...</p>
             </div>
           </div>
           <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
             <div class="icon-box">
-              <i class="bi bi-brightness-high"></i>
-              <h4><a href="#">Nemo Enim</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-            </div>
-          </div>
-          <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-            <div class="icon-box">
-              <i class="bi bi-calendar4-week"></i>
-              <h4><a href="#">Magni Dolore</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-            </div>
-          </div>
-          <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-            <div class="icon-box">
-              <i class="bi bi-briefcase"></i>
-              <h4><a href="#">Eiusmod Tempor</a></h4>
-              <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+              <h4><a href="#">Apprentissage en ligne utilisant Experience Replay destiné aux systèmes embarqués.</a></h4>
+              <p>Les systèmes embarqués sont omniprésents dans la technologie moderne, des
+                appareils IoT aux systèmes automobiles, et ils sont tenus de gérer diverses
+                tâches...</p>
             </div>
           </div>
         </div>

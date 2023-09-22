@@ -12,7 +12,7 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs profile-tab" role="tablist">
                         <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#home"
-                                role="tab">Activity</a>
+                                role="tab">Discussion</a>
                         </li>
                     </ul>
                     <!-- Tab panes -->

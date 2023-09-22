@@ -59,10 +59,10 @@ if (auth()->check()) {
                 class="mdi me-2 mdi-book-open-variant"></i><span
                     class="hide-menu">Messages</span></a>
               </li>
-              <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+              {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                 href="{{ route('encadreur.publications') }}" aria-expanded="false"><i
                     class="mdi me-2 mdi-book-open-variant"></i><span class="hide-menu">Publications</span></a>
-              </li>
+              </li> --}}
             @endif
 
             @if($user->role === "doctorant")

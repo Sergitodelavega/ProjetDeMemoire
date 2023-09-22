@@ -7,8 +7,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header text-center h2">Connexion à votre espace</div>
-                <br>
                 <div class="card-body">
+                    <p style="margin-left:70px;">Utilisez ce formulaire si vous possédez un compte dédié à l'application.</p>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
