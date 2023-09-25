@@ -64,6 +64,9 @@ if (auth()->check()) {
             @if ($user->role === "doctorant")
               <li class="nav-item text-white" style="margin-left: 50px; font-size:20px">Espace Doctorant</li>
             @endif
+            @if ($user->role === "conseil")
+              <li class="nav-item text-white" style="margin-left: 50px; font-size:20px">Conseil Scientifique</li>
+            @endif
           </ul>
 
           <!-- ============================================================== -->
@@ -82,6 +85,9 @@ if (auth()->check()) {
                       <img src="{{ asset('back/assets/images/users/4.jpg') }}" alt="user" class="profile-pic me-2">{{ $user->name }}
                       @endif
                       @if ($user->role === "doctorant")
+                      <img src="{{ asset('back/assets/images/users/5.jpg') }}" alt="user" class="profile-pic me-2">{{ $user->name }}
+                      @endif
+                      @if ($user->role === "conseil")
                       <img src="{{ asset('back/assets/images/users/5.jpg') }}" alt="user" class="profile-pic me-2">{{ $user->name }}
                       @endif
                   </a>

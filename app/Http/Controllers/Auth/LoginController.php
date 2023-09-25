@@ -45,6 +45,9 @@ class LoginController extends Controller
         case 'doctorant':
             return '/doctorant/profil';
             break;
+        case 'conseil':
+            return '/conseil/index';
+            break;
         default:
             return '/';
     }

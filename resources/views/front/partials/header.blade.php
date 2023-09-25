@@ -8,10 +8,10 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="#"><i class="bi bi-house"></i>Accueil</a></li>
-          <li><a class="nav-link scrollto" href="#"><i class="bi bi-calendar-event"></i>Évènements</a></li>
-          <li><a class="nav-link scrollto" href="#"><i class="bi bi-hdd-rack"></i>Offres</a></li>
-          <li><a class="nav-link scrollto" href="#"><i class="bi bi-calendar-event"></i>Partenaires</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('index') }}"><i class="bi bi-house"></i>Gouvernance</a></li>
+          <li><a class="nav-link scrollto" href="#portfolio"><i class="bi bi-calendar-event"></i>Évènements</a></li>
+          <li><a class="nav-link scrollto" href="#services"><i class="bi bi-hdd-rack"></i>Offres</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('theses') }}"><i class="bi bi-calendar-event"></i>Thèses</a></li>
           <li><a class="nav-link scrollto " href="#"><i class="bi bi-telephone-fill"></i>Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>

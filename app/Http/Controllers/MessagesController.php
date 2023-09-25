@@ -30,7 +30,7 @@ class MessagesController extends Controller
                 return null;
             }
             
-        }
+        }   
     }
 
     public function show($ids){

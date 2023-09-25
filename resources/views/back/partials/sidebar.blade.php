@@ -80,11 +80,15 @@ if (auth()->check()) {
                   class="hide-menu">Messages</span></a>
           </li>
             @endif
+
+            @if($user->role === "conseil")
+            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                href="{{ route('conseil.index') }}" aria-expanded="false"><i class="mdi me-2 mdi-table"></i><span
+                    class="hide-menu">Dashboard</span></a>
+            </li>
+            @endif
             
-            {{-- <li class="text-center p-10 upgrade-btn">
-                  <a href="{{ route('index') }}"
-                      class="btn btn-warning text-white mt-4">Home Page</a>
-            </li> --}}
+          
           </ul>
 
       </nav>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     BackController, HomeController, DashboardController, 
-    EncadreurController, DoctorantController, ActivityController, MessagesController
+    EncadreurController, DoctorantController, ActivityController, ConseilController, MessagesController
 };
 use App\Http\Controllers\Admin\{
     AdminController
@@ -26,6 +26,8 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/theses', [HomeController::class, 'theses'])->name('theses');
+Route::get('/theses/{id}', [HomeController::class, 'showTheses'])->name('theses.show');
 Route::post('/newsletter', [HomeController::class, 'newsletter'])->name('newsletter');
 
 Route::middleware('auth')->group(function() {
@@ -89,7 +91,16 @@ Route::middleware('auth')->group(function() {
         Route::get('/activity/submit/{id}', [ActivityController::class, 'activity_submit'])->name('doctorant.activity_submit');
         Route::get('/activity/submitted/{id}', [ActivityController::class, 'submit'])->name('doctorant.submitted_activity');
         Route::get('/messages', [MessagesController::class, 'index'])->name('doctorant.messages');
-        Route::get('/messages/{id}', [MessagesController::class, 'show'])->name('encadreur.messages.show');
+        Route::get('/messages/{id}', [MessagesController::class, 'show'])->name('doctorant.messages.show');
+    });
+
+    // Routes pour l'espace conseil scientifique 
+    Route::prefix('conseil')->group(function() {
+        Route::get('/index', [ConseilController::class, 'home'])->name('conseil.index');
+        Route::get('/ecoles', [ConseilController::class, 'home'])->name('conseil.ecoles');
+        Route::get('/doctorants', [ConseilController::class, 'doctorants'])->name('conseil.doctorant');
+        Route::get('/encadreurs', [ConseilController::class, 'encadreurs'])->name('conseil.encadreur');
+        Route::get('/profil', [ConseilController::class, 'profil'])->name('conseil.profil');
     });
 
 

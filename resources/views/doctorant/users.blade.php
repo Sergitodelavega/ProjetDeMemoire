@@ -10,16 +10,14 @@
             <div class="message-box contact-box">
                 
                 <div class="message-widget contact-widget">
-                   @foreach ($doctorants as $doctorant)
                       <!-- Message -->
-                    <a id="myDiv" href="{{ route('encadreur.messages.show', $doctorant->id) }}" class="d-flex align-items-center">
+                    <a id="myDiv" href="{{ route('doctorant.messages.show', $encadreur->id) }}" class="d-flex align-items-center">
                         <div class="mail-contnet">
-                            <h5 class="mb-0">{{ $doctorant->user->name }}</h5> 
+                            <h5 class="mb-0">{{ $encadreur->user->name }}</h5> 
                             <span
-                                class="mail-desc">{{ $doctorant->user->email }}</span>
+                                class="mail-desc">{{ $encadreur->user->email }}</span>
                         </div>
                     </a> 
-                   @endforeach
                     
                 </div>
             </div>

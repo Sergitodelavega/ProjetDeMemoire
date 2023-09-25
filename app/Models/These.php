@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class These extends Model
 {
     use HasFactory;
-    public const STATUS = ['open', 'in progress', 'completed'];
+    public const STATUS = ['inscrit', 'en cours', 'terminée'];
     protected $fillable = [
         'title', 'description', 'deadline', 'status', 'doctorant_id', 'encadreur_id'
     ];
@@ -19,5 +19,10 @@ class These extends Model
 
     public function encadreur(){
         return $this->belongsTo(Encadreur::class);
+    }
+
+    public function scopeOrderByStatus($query)
+    {
+        return $query->orderByRaw("CASE WHEN status = 'en cours' THEN 1 ELSE 2 END");
     }
 }

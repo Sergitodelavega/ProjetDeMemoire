@@ -22,7 +22,7 @@
                     <form method="POST" action="{{ route('admin.store.these') }}" class="form-horizontal form-material mx-2" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="title" class="col-md-12 mb-0">Titre</label>
+                            <label for="title" class="col-md-12 mb-0">Intitulé de thèse</label>
                             <div class="col-md-12">
                                 <input type="text" name="title" id="title" value="{{ old('title') }}" placeholder=""
                                     class="form-control ps-0 form-control-line">
@@ -47,7 +47,7 @@
 
                         
                         <div class="form-group">
-                            <label for="deadline" class="col-md-12">Deadline</label>
+                            <label for="deadline" class="col-md-12">Date limite</label>
                             <div class="col-md-12">
                                 <input type="date" name="deadline" id="deadline" value="{{ old('date') }}" placeholder=""
                                     class="form-control ps-0 form-control-line">
@@ -60,7 +60,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="status" class="col-md-12">Status</label>
+                            <label for="status" class="col-md-12">Statut</label>
                             <div class="col-md-12">
                                 <select name="status" id="status" class="form-control ps-0 form-control-line">
                                     @foreach(App\Models\These::STATUS as $status)

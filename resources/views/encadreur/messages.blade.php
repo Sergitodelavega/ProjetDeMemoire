@@ -7,7 +7,7 @@
         <div class="row">
             <!-- Column -->
             @include('encadreur.users', ['doctorants' => $doctorants])
-            <div class="col-lg-8 col-xlg-9">
+            {{-- <div class="col-lg-8 col-xlg-9">
                 <div class="card">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs profile-tab" role="tablist">
@@ -21,10 +21,9 @@
                             <div class="card-body">
                                     <div class="sl-item">
                                         <div class="sl-right">
-                                            <div><a href="#" class="link">John Doe</a> <span class="sl-date">5
+                                            <div><span class="sl-date">il y a 5
                                                     minutes ago</span>
-                                                <p class="mt-2"> Lorem ipsum dolor sit amet, consectetur
-                                                    adipiscing elit. </p>
+                                                <p class="mt-2"> Salut. Comment allez-vous ? </p>
                                             </div>
                                         </div>
                                     </div>
@@ -55,7 +54,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 

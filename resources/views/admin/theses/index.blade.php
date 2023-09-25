@@ -29,12 +29,12 @@
                                     <thead>
                                         <tr scope="row">
                                             <th class="border-top-0">#</th>
-                                            <th class="border-top-0">Titre</th>
-                                            <th class="border-top-0">Doctorant assigné</th>
-                                            <th class="border-top-0">Encadreur assigné</th>
-                                            <th class="border-top-0">Deadline</th>
-                                            <th class="border-top-0">Status</th>
-                                            <th class="border-top-0">Opération</th>
+                                            <th class="border-top-0">Intitulé</th>
+                                            {{-- <th class="border-top-0">Doctorant assigné</th>
+                                            <th class="border-top-0">Encadreur assigné</th> --}}
+                                            <th class="border-top-0">Date limite</th>
+                                            <th class="border-top-0">Statut</th>
+                                            <th class="border-top-0">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -42,17 +42,21 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td><a href="{{ route('admin.theses.show', $these->id) }}">{{ $these->title }}</a></td>
-                                            <td>{{ $these->doctorant->user->name }}</td>
+                                            {{-- <td>{{ $these->doctorant->user->name }}</td>
                                             <td>
                                               {{ $these->encadreur->user->name }}
-                                            </td>
+                                            </td> --}}
+                                            @if($these->status == "terminée") 
+                                            <td>---</td>
+                                            @else
                                             <td>{{ $these->deadline }}</td>
+                                            @endif
                                             <td>
                                                 @if($these->status == "open")<span class="badge bg-secondary">{{$these->status}}</span> @endif
-                                                @if($these->status == "completed")<span class="badge bg-success">{{$these->status}}</span> @endif
-                                                @if($these->status == "in progress")<span class="badge bg-primary">{{$these->status}}</span> @endif  
+                                                @if($these->status == "terminée")<span class="badge bg-success">{{$these->status}}</span> @endif
+                                                @if($these->status == "en cours")<span class="badge bg-primary">{{$these->status}}</span> @endif  
                                             <td>
-                                                <a href="{{ route('admin.theses.edit', $these) }}" class="btn btn-warning d-none d-md-inline-block text-white">Edit
+                                                <a href="{{ route('admin.theses.edit', $these) }}" class="btn btn-secondary d-none d-md-inline-block text-white">Plus
                                                 </a>
                                             </td>
                                         </tr>

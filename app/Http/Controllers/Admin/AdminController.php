@@ -127,7 +127,7 @@ class AdminController extends Controller
     }
 
     public function indexTheses(){
-        $theses = These::all();
+        $theses = These::orderByStatus()->get();
         return view('admin.theses.index', compact('theses'));
     }
 

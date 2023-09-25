@@ -3,95 +3,176 @@
 @section('content')
 
 
-   <div class="container-fluid">
+<div class="container-fluid">
         <div class="row">
             <!-- Column -->
-            <div class="col-lg-4 col-xlg-3">
-                
-                <!-- Column -->
-                <div class="card">
-                    <div class="card-body bg-info">
-                        <h4 class="text-white card-title">Mes Messages</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="message-box contact-box">
-                            
-                            <div class="message-widget contact-widget">
-                               
-                                <!-- Message -->
-                                <a href="#" class="d-flex align-items-center">
-                                    <div class="mail-contnet">
-                                        <h5 class="mb-0">{{ $encadreur->user->name }}</h5> <span
-                                            class="mail-desc">{{ $encadreur->user->email }}</span>
-                                    </div>
-                                </a>
-                                <!-- Message -->
-                                <a href="#" class="d-flex align-items-center">
-                                
-                                    <div class="mail-contnet">
-                                        <h5 class="mb-0">Arijit Sinh</h5> <span
-                                            class="mail-desc">cruise1298.fiplip@gmail.com</span>
-                                    </div>
-                                </a>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-8 col-xlg-9">
+            @include('doctorant.users', ['encadreur' => $encadreur])
+            {{-- <div class="col-lg-8 col-xlg-9">
                 <div class="card">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs profile-tab" role="tablist">
                         <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#home"
-                                role="tab">Activity</a>
+                                role="tab">Discussion</a>
                         </li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div class="tab-pane active" id="home" role="tabpanel">
                             <div class="card-body">
-                                <div class="profiletimeline border-start-0">
                                     <div class="sl-item">
-                                        <div class="sl-left"> <img src="../assets/images/users/3.jpg" alt="user"
-                                                class="img-circle"> </div>
                                         <div class="sl-right">
-                                            <div><a href="#" class="link">John Doe</a> <span class="sl-date">5
+                                            <div><span class="sl-date">il y a 5
                                                     minutes ago</span>
-                                                <p class="mt-2"> Lorem ipsum dolor sit amet, consectetur
-                                                    adipiscing elit. Integer nec odio. Praesent libero. Sed
-                                                    cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh
-                                                    elementum imperdiet. Duis sagittis ipsum. Praesent mauris.
-                                                    Fusce nec tellus sed augue semper </p>
+                                                <p class="mt-2"> Salut. Comment allez-vous ? </p>
                                             </div>
-                                            <div class="like-comm mt-3"> <a href="javascript:void(0)"
-                                                    class="link me-2">2
-                                                    comment</a> <a href="javascript:void(0)"
-                                                    class="link me-2"><i class="fa fa-heart text-danger"></i>
-                                                    5 Love</a> </div>
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="sl-item">
-                                        <div class="sl-left"> <img src="../assets/images/users/4.jpg" alt="user"
-                                                class="img-circle"> </div>
                                         <div class="sl-right">
                                             <div><a href="#" class="link">John Doe</a> <span class="sl-date">5
                                                     minutes ago</span>
-                                                <blockquote class="mt-2">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                                                    sed do eiusmod tempor incididunt
-                                                </blockquote>
+                                                <p class="mt-2"> Lorem ipsum dolor sit amet, consectetur
+                                                    adipiscing elit. </p>
                                             </div>
                                         </div>
                                     </div>
+                                    <hr>
+                                    <div class="sl-item">
+                                        <div class="sl-right">
+                                            <div><a href="#" class="link">John Doe</a> <span class="sl-date">5
+                                                    minutes ago</span>
+                                                <textarea class="mt-2">
+                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                                    sed do eiusmod tempor incididunt
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+        </div>
+    </div>
+
+
+
+    {{-- <div class="container">
+        <div class="row clearfix">
+            <div class="col-lg-12">
+                <div class="card chat-app">
+                    <div id="plist" class="people-list">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-search"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Search...">
+                        </div>
+                        <ul class="list-unstyled chat-list mt-2 mb-0">
+                            <li class="clearfix">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                                <div class="about">
+                                    <div class="name">Vincent Porter</div>
+                                    <div class="status"> <i class="fa fa-circle offline"></i> left 7 mins ago </div>                                            
                                 </div>
+                            </li>
+                            <li class="clearfix active">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                                <div class="about">
+                                    <div class="name">Aiden Chavez</div>
+                                    <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
+                                <div class="about">
+                                    <div class="name">Mike Thomas</div>
+                                    <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                                </div>
+                            </li>                                    
+                            <li class="clearfix">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                                <div class="about">
+                                    <div class="name">Christian Kelly</div>
+                                    <div class="status"> <i class="fa fa-circle offline"></i> left 10 hours ago </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar8.png" alt="avatar">
+                                <div class="about">
+                                    <div class="name">Monica Ward</div>
+                                    <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
+                                <div class="about">
+                                    <div class="name">Dean Henry</div>
+                                    <div class="status"> <i class="fa fa-circle offline"></i> offline since Oct 28 </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="chat">
+                        <div class="chat-header clearfix">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                                    </a>
+                                    <div class="chat-about">
+                                        <h6 class="m-b-0">Aiden Chavez</h6>
+                                        <small>Last seen: 2 hours ago</small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 hidden-sm text-right">
+                                    <a href="javascript:void(0);" class="btn btn-outline-secondary"><i class="fa fa-camera"></i></a>
+                                    <a href="javascript:void(0);" class="btn btn-outline-primary"><i class="fa fa-image"></i></a>
+                                    <a href="javascript:void(0);" class="btn btn-outline-info"><i class="fa fa-cogs"></i></a>
+                                    <a href="javascript:void(0);" class="btn btn-outline-warning"><i class="fa fa-question"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-history">
+                            <ul class="m-b-0">
+                                <li class="clearfix">
+                                    <div class="message-data text-right">
+                                        <span class="message-data-time">10:10 AM, Today</span>
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                                    </div>
+                                    <div class="message other-message float-right"> Hi Aiden, how are you? How is the project coming along? </div>
+                                </li>
+                                <li class="clearfix">
+                                    <div class="message-data">
+                                        <span class="message-data-time">10:12 AM, Today</span>
+                                    </div>
+                                    <div class="message my-message">Are we meeting today?</div>                                    
+                                </li>                               
+                                <li class="clearfix">
+                                    <div class="message-data">
+                                        <span class="message-data-time">10:15 AM, Today</span>
+                                    </div>
+                                    <div class="message my-message">Project has been already finished and I have results to show you.</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="chat-message clearfix">
+                            <div class="input-group mb-0">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-send"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Enter text here...">                                    
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
+    
+</div>
 
 @endsection
