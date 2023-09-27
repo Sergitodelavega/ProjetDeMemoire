@@ -79,19 +79,22 @@ if (auth()->check()) {
               <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       @if ($user->role === "admin")
-                      <img src="{{ asset('back/assets/images/users/1.png') }}" alt="user" class="profile-pic me-2">{{ $user->name }}
+                      <img src="{{ asset('storage/'.$user->photo) }}" alt="user" class="profile-pic me-2">{{ $user->name }}
                       @endif
                       @if ($user->role === "encadreur")
-                      <img src="{{ asset('back/assets/images/users/4.jpg') }}" alt="user" class="profile-pic me-2">{{ $user->name }}
+                      <img src="{{ asset('storage/'.$user->photo) }}" alt="user" class="profile-pic me-2">{{ $user->name }}
                       @endif
                       @if ($user->role === "doctorant")
-                      <img src="{{ asset('back/assets/images/users/5.jpg') }}" alt="user" class="profile-pic me-2">{{ $user->name }}
+                      <img src="{{ asset('storage/'.$user->photo) }}" alt="user" class="profile-pic me-2">{{ $user->name }}
                       @endif
                       @if ($user->role === "conseil")
-                      <img src="{{ asset('back/assets/images/users/5.jpg') }}" alt="user" class="profile-pic me-2">{{ $user->name }}
+                      <img src="{{ asset('storage/'.$user->photo) }}" alt="user" class="profile-pic me-2">{{ $user->name }}
                       @endif
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    @if ($user->role === "conseil")
+                    <li class="dropdown-item"><a href="{{ route('conseil.profil') }}">Profil</a></li>
+                    @endif
                     @if ($user->role === "admin")
                     <li class="dropdown-item"><a href="{{ route('admin.profil') }}">Profil</a></li>
                     @endif

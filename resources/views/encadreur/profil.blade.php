@@ -3,87 +3,73 @@
 @section('content')
 
 <?php 
-
 if (auth()->check()) {
     // L'utilisateur est connecté, vous pouvez accéder à sa session
-    $user = auth()->user(); // Récupérer l'objet User de l'utilisateur connecté
+    $userLoger = auth()->user(); // Récupérer l'objet User de l'utilisateur connecté
 }
-
 ?>
-@if($user->role === "encadreur")
-
-            <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
-                <!-- Row -->
-                <div class="row" style="padding-top: 20px">
-                    <!-- Column -->
-                    <div class="col-lg-4 col-xlg-3 col-md-5">
-                        <div class="card">
-                            <div class="card-body profile-card">
-                                <center class="mt-4"> <img src="{{ asset('back/assets/images/users/4.jpg') }}"
-                                        class="rounded-circle" width="150" />
-                                    <h4 class="card-title mt-2">{{ $user->name }}</h4>
-                                    <h6 class="card-subtitle">{{ $user->email }}</h6>
-                                    <h5 class="card-subtitle">{{ $user->encadreur->matricule }}</h5>
-                                    <h5 class="card-subtitle">{{ $user->encadreur->grade }}</h5>
-                                    <h5 class="card-subtitle">{{ $user->encadreur->specialite }}</h5>
-                                </center>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
-                    <!-- Column -->
-                    <div class="col-lg-8 col-xlg-9 col-md-7">
-                        <div class="card">
-                            <div class="card-body">
-                                <form class="form-horizontal form-material mx-2">
-                                    <div class="form-group">
-                                        <label for="example-email" class="col-md-12">Email</label>
-                                        <div class="col-md-12">
-                                            <input type="email" value="{{ $user->email }}"
-                                                class="form-control ps-0 form-control-line" name="example-email"
-                                                id="example-email">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-12 d-flex">
-                                            <button class="btn btn-success mx-auto mx-md-0 text-white">Modifier</button>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12 mb-0">Ancien mot de passe</label>
-                                        <div class="col-md-12">
-                                            <input type="password" value="password"
-                                                class="form-control ps-0 form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12 mb-0">Nouveau mot de passe</label>
-                                        <div class="col-md-12">
-                                            <input type="password" value="password"
-                                                class="form-control ps-0 form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12 mb-0">Confirmer mot de passe</label>
-                                        <div class="col-md-12">
-                                            <input type="password" value="password"
-                                                class="form-control ps-0 form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-12 d-flex">
-                                            <button class="btn btn-success mx-auto mx-md-0 text-white">Changer mot de passe</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column -->
+<div class="container-fluid">
+    <div class="row" style="padding-top:20px;">
+        <!-- Column -->
+        <div class="col-lg-4 col-xlg-3 col-md-5">
+            <div class="card">
+                <div class="card-body profile-card">
+                    <center class="mt-4"> 
+                        <img src="{{ asset('storage/'.$userLoger->photo) }}" class="rounded-circle" width="150" />
+                        <h4 class="card-title mt-2">{{ $userLoger->name }}</h4>
+                        <h6 class="card-subtitle">{{ $userLoger->email }}</h6>   
+                        <h5 class="card-subtitle">{{ $userLoger->encadreur->matricule }}</h5>
+                        <h5 class="card-subtitle">{{ $userLoger->encadreur->grade }}</h5>
+                        <h5 class="card-subtitle">{{ $userLoger->encadreur->specialite }}</h5>
+                    </center>
                 </div>
             </div>
-@endif
+        </div>
+        <div class="col-lg-8 col-xlg-9 col-md-7">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-horizontal form-material mx-2">
+                        {{-- <form action="{{ route('update_email', $userLoger->id) }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('put')
+                            <div class="form-group">
+                                <label for="email" class="col-md-12">Email</label>
+                                <input type="email" value="{{ $userLoger->email }}" class="form-control ps-0 form-control-line" name="email" id="email">
+                                <span class="text-danger">@error('email'){{$message}}@enderror</span> 
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-success mx-auto mx-md-0 text-white">Modifier</button>
+                            </div>
+                        </form> --}}
+
+                        <form action="{{ route('update_password', $userLoger->id) }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            @method('put')
+                            <div class="form-group">
+                                <label class="col-md-12 mb-0">Ancien mot de passe</label>
+                                <input type="password" class="form-control ps-0 form-control-line" name="old" required>
+                                <span class="text-danger">@error('old'){{$message}}@enderror</span>       
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12 mb-0">Nouveau mot de passe</label>
+                                <input type="password" class="form-control ps-0 form-control-line" name="password" required>
+                                <span class="text-danger">@error('password'){{$message}}@enderror</span>       
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-12 mb-0">Confirmer mot de passe</label>
+                                <input type="password" class="form-control ps-0 form-control-line" name="confirm" required>
+                                <span class="text-danger">@error('confirm'){{$message}}@enderror</span>       
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-success mx-auto mx-md-0 text-white">Changer mot de passe</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @endsection

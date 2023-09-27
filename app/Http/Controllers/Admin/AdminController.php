@@ -180,14 +180,19 @@ class AdminController extends Controller
             'email' => 'required|email|unique:users,email',
             'matricule' => 'required|string',
             'specialite' => 'required|string',
+            'photo' => 'required|image|max:1024',
             'encadreur_id' => 'required|exists:encadreurs,id'
         ]);
+
+        // On upload l'image dans "/storage/app/public/posts"
+        $chemin_image = $request->photo->store("users");
 
         // Créer un nouvel utilisateur (Doctorant)
 
         $user = new User([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
+            'photo' => $chemin_image,
         ]);
         $user->role ="doctorant";
         $password = bin2hex(random_bytes(4));

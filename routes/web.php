@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     BackController, HomeController, DashboardController, 
-    EncadreurController, DoctorantController, ActivityController, ConseilController, MessagesController
+    EncadreurController, DoctorantController, ActivityController, ConseilController, MessagesController,
+    UserController
 };
 use App\Http\Controllers\Admin\{
     AdminController
@@ -31,6 +32,9 @@ Route::get('/theses/{id}', [HomeController::class, 'showTheses'])->name('theses.
 Route::post('/newsletter', [HomeController::class, 'newsletter'])->name('newsletter');
 
 Route::middleware('auth')->group(function() {
+
+    Route::put('/email/update/{id}', [UserController::class, 'update_email'])->name('update_email');
+    Route::put('/password/update/{id}', [UserController::class, 'update_password'])->name('update_password');
 
     // Routes pour l'administrateur de l'école doctorale
     Route::prefix('admin')->group(function() {
