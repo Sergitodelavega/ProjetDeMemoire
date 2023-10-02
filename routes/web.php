@@ -8,7 +8,7 @@ use App\Http\Controllers\{
     UserController
 };
 use App\Http\Controllers\Admin\{
-    AdminController
+    AdminController, PostController
 };
 use App\Models\Doctorant;
 use App\Models\Encadreur;
@@ -27,6 +27,8 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/posts', [HomeController::class, 'posts'])->name('posts');
+Route::get('/posts/{id}', [HomeController::class, 'showPost'])->name('post.show');
 Route::get('/theses', [HomeController::class, 'theses'])->name('theses');
 Route::get('/theses/{id}', [HomeController::class, 'showTheses'])->name('theses.show');
 Route::post('/newsletter', [HomeController::class, 'newsletter'])->name('newsletter');
@@ -65,6 +67,9 @@ Route::middleware('auth')->group(function() {
         Route::get('/theses/{id}/edit', [AdminController::class, 'editThese'])->name('admin.theses.edit');
         Route::put('/theses/{id}', [AdminController::class, 'updateThese'])->name('admin.theses.update');
         Route::delete('/theses/{id}', [AdminController::class, 'destroyThese'])->name('admin.theses.delete');
+
+        //Gestion des posts
+        Route::resource("posts", PostController::class);
     });
 
     // Routes pour l'espace encadreur
@@ -101,7 +106,7 @@ Route::middleware('auth')->group(function() {
     // Routes pour l'espace conseil scientifique 
     Route::prefix('conseil')->group(function() {
         Route::get('/index', [ConseilController::class, 'home'])->name('conseil.index');
-        Route::get('/ecoles', [ConseilController::class, 'home'])->name('conseil.ecoles');
+        Route::get('/ecoles', [ConseilController::class, 'ecoles'])->name('conseil.ecoles');
         Route::get('/doctorants', [ConseilController::class, 'doctorants'])->name('conseil.doctorant');
         Route::get('/encadreurs', [ConseilController::class, 'encadreurs'])->name('conseil.encadreur');
         Route::get('/profil', [ConseilController::class, 'profil'])->name('conseil.profil');

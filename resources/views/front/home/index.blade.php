@@ -1,19 +1,27 @@
 @extends('front.app')
 @section('content')
+
+<?php
+
+use Illuminate\Support\Str;
+
+?>
   <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active" data-bs-interval="10000">
-        <img src="{{ asset('front/img/eres0.6b045dcd.jpg') }}" class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h1 style="color:black; font-size:50px;">Plateforme Numérique Doctorale </h1>
-          </div>
-      </div>
-      <div class="carousel-item" data-bs-interval="10000">
         <img src="{{ asset('front/img/accueil.jpg') }}" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <h1 style="color:black; font-size:50px;">Plateforme Numérique Doctorale </h1>
           </div>
       </div>
+
+      <div class="carousel-item" data-bs-interval="10000">
+        <img src="{{ asset('front/img/eres0.6b045dcd.jpg') }}" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h1 style="color:black; font-size:50px;">Plateforme Numérique Doctorale </h1>
+          </div>
+      </div>
+      
       <div class="carousel-item" data-bs-interval="10000">
         <img src="{{ asset('front/img/personnes-diplomees-diplomes-close-up1.jpg') }}" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
@@ -39,48 +47,26 @@
         <h2>Actualités et Évènements</h2>
         <p>Découvrez toutes les actualités et évènements.</p>
       </div>
-
-            <div class="row">
+        <div class="row">
+          @foreach($posts as $post)
               <div class="col-lg-4 col-md-3 col-sm-6">
                 <!-- Première card -->
                 <div class="card">
-                  <img src="{{ asset('front/img/uac-2.jpg') }}" class="card-img-top" alt="card-img-top">
+                  <img src="{{ asset('storage/'.$post->picture) }}" class="card-img-top" alt="card-img-top">
                   <div class="card-body">
-                    <h5 class="card-title">Formations scientifiques pour un impact sur le développement</h5>
-                    <p class="card-text">Les Centres d’Excellence d’Afrique pour l’Impact sur le développement...</p>
-                    <p class="card-text"><small class="text-muted">Publié il y a 3 min</small></p>
-                    <a href="#" class="btn btn-danger" style="font-size: 13px;">Lire la suite</a>
+                    <h5 class="card-title">{{ $post->title }}</h5>
+                    <p class="card-text">{{ Str::limit($post->content, $limit = 100, $end = '...') }}</p>
+                    <p class="card-text"><small class="text-muted">Publié {{ $post->created_at->diffForHumans() }}</small></p>
+                    <a href="{{ route('post.show', $post)}}" class="btn btn-danger" style="font-size: 13px;">Lire la suite</a>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-3 col-sm-6">
-                <!-- Première card -->
-                <div class="card">
-                  <img src="{{ asset('front/img/jeunes-etudiants-frequentant-classe-universitaire.jpg') }}" class="card-img-top" alt="card-img-top">
-                  <div class="card-body">
-                    <h5 class="card-title">Formations à l'Ecole Doctorale des Sciences Agronomiques et de l’Eau</h5>
-                    <p class="card-text">De nouvelles offres de formation peuvent être ajoutées conformément...</p>
-                    <p class="card-text"><small class="text-muted">Publié il y a 20 min</small></p>
-                    <a href="#" class="btn btn-danger" style="font-size: 13px;">Lire la suite</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-3 col-sm-6">
-                <!-- Première card -->
-                <div class="card">
-                  <img src="{{ asset('front/img/Patrice-net-1.jpg') }}" class="card-img-top" alt="card-img-top">
-                  <div class="card-body">
-                    <h5 class="card-title">Enseignement supérieur : Talon réorganise la création des écoles doctorales.</h5>
-                    <p class="card-text">Le Chef de l'État a pris trois décrets pour réorganiser les écoles doctorales...</p>
-                    <p class="card-text"><small class="text-muted">Publié il y a 1 heure</small></p>
-                    <a href="#" class="btn btn-danger" style="font-size: 13px;">Lire la suite</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+          @endforeach
+        </div>
+      
 
         <div style="text-align: center; margin-top : 50px; ">
-          <a href="#" class="btn btn-danger" style="font-size:20px;">Voir tous les évènements</a>
+          <a href="{{ route('posts') }}" class="btn btn-danger" style="font-size:20px;">Voir tous les évènements</a>
         </div>
 
     </div>

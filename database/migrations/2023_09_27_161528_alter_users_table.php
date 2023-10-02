@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function(Blueprint $table){
             $table->string('photo');
+            $table->foreignId('ecole_id');
         });
     }
 
@@ -23,6 +24,7 @@ return new class extends Migration
     {
         Schema::table('users', function(Blueprint $table){
             $table->dropColumn(['photo']);
+            $table->dropColumn(['ecole_id']);
         }); 
     }
 };

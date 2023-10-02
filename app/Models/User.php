@@ -65,4 +65,8 @@ class User extends Authenticatable
     {
         return $this->attributes['role'] = $role;
     }
+
+    public function ecole(){
+        return $this->belongsTo(Ecole::class);
+    }
 }
