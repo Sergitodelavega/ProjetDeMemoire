@@ -23,64 +23,40 @@
                         @csrf
                         <div class="form-group">
                             <label for="name" class="col-md-12 mb-0">Nom et Prénoms</label>
-                            <div class="col-md-12">
-                                <input type="text" name="name" id="name" value="{{ old('name') }}" placeholder="Johnathan Doe"
+                            <input type="text" name="name" id="name" value="{{ old('name') }}" placeholder="Johnathan Doe"
                                     class="form-control ps-0 form-control-line">
-                            </div>
-                            <!-- Le message d'erreur pour "name" -->
-                            @error("name")
-                            <span class="alert-danger">{{ $message }}</span>
-                            @enderror
+                            <span class="alert-danger">@error("name"){{ $message }}@enderror</span>
                         </div>
 
                         <div class="form-group">
                             <label for="email" class="col-md-12">Email</label>
-                            <div class="col-md-12">
-                                <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="johnathan@admin.com"
+                            <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="johnathan@admin.com"
                                     class="form-control ps-0 form-control-line">
-                                    
-                            </div>
-                            <!-- Le message d'erreur pour "email" -->
-                            @error("email")
-                            <span class="alert-danger">{{ $message }}</span>
-                            @enderror
+                            <span class="alert-danger">@error("email"){{ $message }}@enderror</span>
                         </div>
-
                         <div class="form-group">
                             <label for="matricule" class="col-md-12">Matricule</label>
-                            <div class="col-md-12">
-                                <input type="text" name="matricule" id="matricule" value="{{ old('matricule') }}" placeholder="12345678"
+                            <input type="text" name="matricule" id="matricule" value="{{ old('matricule') }}" placeholder="12345678"
                                     class="form-control ps-0 form-control-line">
-                                    
-                            </div>
-                            <!-- Le message d'erreur pour "name" -->
-                            @error("matricule")
-                            <span class="alert-danger">{{ $message }}</span>
-                            @enderror
+                            <span class="alert-danger">@error("matricule"){{ $message }}@enderror</span>
                         </div>
-
                         <div class="form-group">
                             <label for="grade" class="col-md-12 mb-0">Grade</label>
-                            <div class="col-md-12">
-                                <input type="text" name="grade" id="grade" value="{{ old('grade') }}" placeholder="Directeur de recherche"
+                            <input type="text" name="grade" id="grade" value="{{ old('grade') }}" placeholder="Directeur de recherche"
                                     class="form-control ps-0 form-control-line">
-                            </div>
-                            <!-- Le message d'erreur pour "grade" -->
-                            @error("grade")
-                            <span class="alert-danger">{{ $message }}</span>
-                            @enderror
+                            <span class="alert-danger">@error("grade"){{ $message }}@enderror</span>
                         </div>
-
                         <div class="form-group">
                             <label for="specialite" class="col-md-12 mb-0">Spécialité</label>
-                            <div class="col-md-12">
-                                <input type="text" name="specialite" id="specialite" value="{{ old('specialite') }}" placeholder="Informatique"
+                            <input type="text" name="specialite" id="specialite" value="{{ old('specialite') }}" placeholder="Informatique"
                                     class="form-control ps-0 form-control-line">
-                            </div>
-                            <!-- Le message d'erreur pour "specialite" -->
-                            @error("specialite")
-                            <span class="alert-danger">{{ $message }}</span>
-                            @enderror
+                            <span class="alert-danger">@error("specialite"){{ $message }}@enderror</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="photo" class="col-md-12 mb-0">Photo de profil</label>
+                            <input type="file" name="photo" id="photo" value="{{ old('photo') }}" 
+                                    class="form-control ps-0 form-control-line" required>
+                            <span class="alert-danger">@error("photo"){{ $message }}@enderror</span>
                         </div>
                         <button type="submit" class="btn btn-primary mx-auto mx-md-0 text-white">Créer le compte</button>
                     </form>

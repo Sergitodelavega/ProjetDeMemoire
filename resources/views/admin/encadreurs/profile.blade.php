@@ -12,8 +12,7 @@
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
                             <div class="card-body profile-card">
-                                <center class="mt-4"> <img src="{{ asset('back/assets/images/users/5.jpg') }}"
-                                        class="rounded-circle" width="150" />
+                                <center class="mt-4"> <img src="{{ asset('storage/'.$encadreur->user->photo) }}" class="rounded-circle" width="150" />
                                     <h4 class="card-title mt-2">{{ $encadreur->user->name }}</h4>
                                     <h6 class="card-subtitle">{{ $encadreur->user->email }}</h6>
                                     <h5 class="card-subtitle">{{ $encadreur->specialite }}</h5>

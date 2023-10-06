@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use App\Mail\MessageDoctorant;
 use App\Mail\MessageEncadreur;
 use App\Http\Controllers\Controller;
+use App\Models\Ecole;
+use App\Models\Laboratoire;
 use Database\Seeders\ActivitySeeder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -137,17 +139,31 @@ class AdminController extends Controller
     
     public function doctorants()
     {
-        $doctorants = Doctorant::latest()->get();
+        $adminUser = Auth::user();
+        if($adminUser->role == "admin")
+        {
+            $doctorants = Doctorant::with('user')
+            ->whereHas('user', function ($query) use ($adminUser){
+                $query->where('ecole_id', $adminUser->ecole_id);
+            })
+            ->get();
 
-        return view('admin.doctorants.index', compact("doctorants"));
+            return view('admin.doctorants.index', compact("doctorants"));
+        }
     }
 
     public function encadreurs(){
+        $adminUser = Auth::user();
+        if($adminUser->role == "admin")
+        {
+            $encadreurs = Encadreur::with('user')
+            ->whereHas('user', function ($query) use ($adminUser){
+                $query->where('ecole_id', $adminUser->ecole_id);
+            })
+            ->get();
 
-        // $encadreurs = User::where('role', 'encadreur')->get();
-        $encadreurs = Encadreur::latest()->get();
-
-        return view('admin.encadreurs.index', compact("encadreurs"));
+            return view('admin.encadreurs.index', compact("encadreurs"));
+        }
     }
 
     public function profilAdmin(){
@@ -167,64 +183,91 @@ class AdminController extends Controller
     }
 
     public function createDoctorant()
-    {
-        $encadreurs = Encadreur::latest()->get();
-        return view('admin.doctorants.create', compact('encadreurs'));
+    {    
+        $adminUser = Auth::user();
+        if($adminUser->role == "admin")
+        {
+            $ecole = Ecole::find($adminUser->ecole_id);
+            $laboratoires = $ecole->laboratoires;
+
+            $encadreurs = Encadreur::with('user')
+            ->whereHas('user', function ($query) use ($adminUser){
+                $query->where('ecole_id', $adminUser->ecole_id);
+            })
+            ->get();
+
+            return view('admin.doctorants.create', compact('encadreurs', 'laboratoires'));
+        }
     }
 
     public function storeDoctorant(Request $request)
     {
-        // Validation des données du formulaire
-        $request->validate([
+        if (auth()->check()) {
+            // L'utilisateur est connecté, vous pouvez accéder à sa session
+            $userLoged = auth()->user(); // Récupérer l'objet User de l'utilisateur connecté
+            if($userLoged->role === "admin"){
+                // Validation des données du formulaire
+            $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'matricule' => 'required|string',
             'specialite' => 'required|string',
-            'photo' => 'required|image|max:1024',
+            'laboratoire_id' => 'required|exists:laboratoires,id',
+            'photo' => 'required|image',
             'encadreur_id' => 'required|exists:encadreurs,id'
-        ]);
+            ]);
 
-        // On upload l'image dans "/storage/app/public/posts"
-        $chemin_image = $request->photo->store("users");
+            // On upload l'image dans "/storage/app/public/posts"
+            $chemin_image = $request->photo->store("users");
+            $ecole_id = $userLoged->ecole_id;
+            // Créer un nouvel utilisateur (Doctorant)
 
-        // Créer un nouvel utilisateur (Doctorant)
+           
 
-        $user = new User([
+            $user = new User([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'photo' => $chemin_image,
-        ]);
-        $user->role ="doctorant";
-        $password = bin2hex(random_bytes(4));
-        $user->password = $password;
-        $user->save();
+            ]);
 
-        $doctorant = new Doctorant([
+            $user->role ="doctorant";
+            $password = bin2hex(random_bytes(4));
+            $user->password = $password;
+            $user->ecole_id = $ecole_id;
+            $user->save();
+
+            $laboratoire_id = $request->input('laboratoire_id');
+            $laboratoire = Laboratoire::find($laboratoire_id)->name;
+
+            $doctorant = new Doctorant([
             'matricule' => $request->input('matricule'),
             'specialite' => $request->input('specialite'),
             'encadreur_id' => $request->input('encadreur_id'),
-        ]);
-        $doctorant->user()->associate($user);
+            ]);
+            $doctorant->user()->associate($user);
+            $doctorant->laboratoire = $laboratoire;
         // Assigner l'encadreur au doctorant s'il est spécifié
-        $encadreurId = $request->input('encadreur_id');
+            $encadreurId = $request->input('encadreur_id');
         
-        if($encadreurId){
+            if($encadreurId){
             $doctorant->encadreur()->associate($encadreurId);
-        }
+            }
+            
+            $doctorant->save();
 
-        $doctorant->save();
+            // $activitySeeder = new ActivitySeeder();
+            // $activitySeeder->run();
 
-        // $activitySeeder = new ActivitySeeder();
-        // $activitySeeder->run();
+            $link = asset(route('index'));
 
-        $link = asset(route('index'));
-
-        Mail::to($doctorant->user->email)->send(new MessageDoctorant($doctorant, $link, $password));
+            Mail::to($doctorant->user->email)->send(new MessageDoctorant($doctorant, $link, $password));
        
-        // Ajoutez le message flash pour la création du compte doctorant
-        $request->session()->flash('success', 'Doctorant créé avec succès !');
+            // Ajoutez le message flash pour la création du compte doctorant
+            $request->session()->flash('success', 'Doctorant créé avec succès !');
 
-        return redirect()->route('admin.doctorant');
+            return redirect()->route('admin.doctorant');
+            }
+        }
     }
 
     public function createEncadreur()
@@ -234,23 +277,32 @@ class AdminController extends Controller
 
     public function storeEncadreur(Request $request)
     {
-         // Validation des données du formulaire
+        if(Auth::check() && Auth::user()->role === 'admin'){
+            $userLoged = auth()->user();
+              // Validation des données du formulaire
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'matricule' => 'required|string',
             'grade' => 'required|string',
-            'specialite' => 'required|string'
+            'specialite' => 'required|string',
+            'photo' => 'required|image',
         ]);
 
+        // On upload l'image dans "/storage/app/public/posts"
+        $chemin_image = $request->photo->store("users");
+        $ecole_id = $userLoged->ecole_id;
+        
          // Créer un nouvel utilisateur (Encadreur)
          $user = new User([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
+            'photo' => $chemin_image,
         ]);
         $user->role ="encadreur";
         $password = bin2hex(random_bytes(4));
         $user->password = $password;
+        $user->ecole_id = $ecole_id;
         $user->save();
 
          // Créer un enregistrement dans la table "encadreurs" avec les informations spécifiques
@@ -270,6 +322,7 @@ class AdminController extends Controller
         $request->session()->flash('success', 'Encadreur créé avec succès !');
 
             return redirect()->route('admin.encadreur');
+        }
     }
 
     public function manageUsers(){

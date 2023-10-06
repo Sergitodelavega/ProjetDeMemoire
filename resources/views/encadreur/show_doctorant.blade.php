@@ -15,12 +15,7 @@
                   </nav> --}}
               </div>
           </div>
-          <div class="col-md-6 col-4 align-self-center">
-              <div class="text-end upgrade-btn">
-                  <a href="https://www.wrappixel.com/templates/materialpro/"
-                      class="btn btn-danger d-none d-md-inline-block text-white">Publier</a>
-              </div>
-          </div>
+          
       </div>
   </div>
   <!-- ============================================================== -->
@@ -40,7 +35,7 @@
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
                             <div class="card-body profile-card">
-                                <center class="mt-4"> <img src="{{ asset('back/assets/images/users/5.jpg') }}"
+                                <center class="mt-4"> <img src="{{ asset('storage/'.$doctorant->user->photo) }}"
                                         class="rounded-circle" width="150" />
                                     <h4 class="card-title mt-2">{{ $doctorant->user->name }}</h4>
                                     <h6 class="card-subtitle">{{ $doctorant->user->email }}</h6>

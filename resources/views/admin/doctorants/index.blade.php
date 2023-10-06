@@ -44,7 +44,7 @@
                                               {{ $doctorant->specialite }}
                                             </td>
                                             <td>
-                                              {{ $doctorant->user->created_at }}
+                                              {{ $doctorant->created_at }}
                                             </td>
                                             <td>
                                                 <a href="{{ route('admin.doctorant.profil', $doctorant->id) }}" class="btn btn-info d-none d-md-inline-block text-white">Voir profil

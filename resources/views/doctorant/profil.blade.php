@@ -20,8 +20,8 @@ if (auth()->check()) {
                         <h6 class="card-subtitle">{{ $userLoger->email }}</h6>   
                         <h5 class="card-subtitle text-dark">{{ $userLoger->doctorant->matricule }}</h5>
                         <h5 class="card-subtitle text-dark">{{ $userLoger->doctorant->specialite }}</h5>
-                        <h5 class="card-subtitle text-dark">Laboratoire de Chimie Organique Physique et de Synthèse (LRCOPS)</h5>
-                        <h5 class="card-subtitle text-dark">École doctorale Chimie Application</h5>
+                        <h5 class="card-subtitle text-dark">{{ $userLoger->doctorant->laboratoire }}</h5>
+                        <h5 class="card-subtitle text-dark">{{ $userLoger->ecole->name }}</h5>
                     </center>
                 </div>
             </div>

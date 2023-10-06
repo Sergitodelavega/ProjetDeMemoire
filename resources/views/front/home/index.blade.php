@@ -49,12 +49,12 @@ use Illuminate\Support\Str;
       </div>
         <div class="row">
           @foreach($posts as $post)
-              <div class="col-lg-4 col-md-3 col-sm-6">
+              <div class="col-lg-4 col-md-6 col-sm-6">
                 <!-- Première card -->
                 <div class="card">
                   <img src="{{ asset('storage/'.$post->picture) }}" class="card-img-top" alt="card-img-top">
                   <div class="card-body">
-                    <h5 class="card-title">{{ $post->title }}</h5>
+                    <h5 class="card-title"><a class="text-black" href="{{ route('post.show', $post)}}">{{ $post->title }}</a></h5>
                     <p class="card-text">{{ Str::limit($post->content, $limit = 100, $end = '...') }}</p>
                     <p class="card-text"><small class="text-muted">Publié {{ $post->created_at->diffForHumans() }}</small></p>
                     <a href="{{ route('post.show', $post)}}" class="btn btn-danger" style="font-size: 13px;">Lire la suite</a>
@@ -130,7 +130,20 @@ use Illuminate\Support\Str;
               <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">Comment postuler aux appels d'offres sur la plateforme ?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
                 <p>
-                  XXX
+       
+
+    1- Rendez-vous sur la page d'accueil de la plateforme numérique doctorale. <br>
+    
+    2- Naviguez vers la section "Appels d'offres" ou "Offres de thèse".  <br>
+
+    3- Parcourez la liste des appels d'offres disponibles. <br>
+    4- Sélectionnez une offre de thèse. <br>
+5- Lire les détails de l'appel d'offres : <br>
+
+6- Postuler à l'appel d'offres :
+    Si vous êtes intéressé par l'appel d'offres, recherchez le bouton ou le lien "Postuler" ou "Candidater" sur la page de l'appel d'offres.
+    Cliquez sur ce bouton pour accéder au formulaire de candidature.
+
                 </p>
               </div>
             </li>
@@ -139,7 +152,12 @@ use Illuminate\Support\Str;
               <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Comment consulter et s'inscrire aux évènements des écoles doctorales ? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
                 <p>
-                  XXX
+Recherchez la section "Événements". <br>
+Parcourez la liste des événements disponibles. <br>
+Cliquez sur le titre de l'événement qui vous intéresse pour obtenir plus de détails. <br>
+Lisez les informations fournies sur l'événement, y compris la date, l'heure, le lieu, les objectifs, les intervenants, etc. <br>
+Cliquez sur le bouton "S'inscrire" pour accéder au formulaire d'inscription. <br>
+Remplissez le formulaire d'inscription en fournissant toutes les informations demandées. <br>
                 </p>
               </div>
             </li>
@@ -148,7 +166,12 @@ use Illuminate\Support\Str;
               <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">Comment accéder à mon espace membre ? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
                 <p>
-                  XXX
+                  Trouvez le lien de connexion <br>
+                  Entrez vos informations de connexion <br>
+                  Cliquez sur le bouton de connexion <br>
+                  Accès à votre espace membre <br>
+                  Naviguez dans votre espace membre <br>
+                  Déconnexion
                 </p>
               </div>
             </li>

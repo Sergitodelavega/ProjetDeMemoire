@@ -41,6 +41,16 @@
                             <span class="alert-danger">@error("specialite"){{ $message }}@enderror</span>
                         </div>
                         <div class="form-group">
+                            <label for="laboratoire_id" class="col-md-12">Laboratoire </label>
+                                <select name="laboratoire_id" id="laboratoire_id" class="form-control ps-0 form-control-line" required>
+                                    @foreach($laboratoires as $laboratoire)
+                                    <option
+                                        value="{{ $laboratoire->id }}" {{ old('laboratoire->id') == $laboratoire->id ? 'selected' : '' }}>{{ $laboratoire->name }}</option>
+                                    @endforeach
+                                </select>    
+                            <span class="alert-danger">@error("laboratoire_id"){{ $message }}@enderror</span>
+                        </div>
+                        <div class="form-group">
                             <label for="photo" class="col-md-12 mb-0">Photo de profil</label>
                             <input type="file" name="photo" id="photo" value="{{ old('photo') }}" 
                                     class="form-control ps-0 form-control-line" required>

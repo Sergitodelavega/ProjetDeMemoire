@@ -88,7 +88,7 @@ if (auth()->check()) {
                       <img src="{{ asset('storage/'.$user->photo) }}" alt="user" class="profile-pic me-2">{{ $user->name }}
                       @endif
                       @if ($user->role === "conseil")
-                      <img src="{{ asset('storage/'.$user->photo) }}" alt="user" class="profile-pic me-2">{{ $user->name }}
+                      <img src="{{ asset('storage/'.$user->photo) }}" class="profile-pic me-2">{{ $user->name }}
                       @endif
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">

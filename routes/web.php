@@ -107,6 +107,7 @@ Route::middleware('auth')->group(function() {
     Route::prefix('conseil')->group(function() {
         Route::get('/index', [ConseilController::class, 'home'])->name('conseil.index');
         Route::get('/ecoles', [ConseilController::class, 'ecoles'])->name('conseil.ecoles');
+        Route::get('/ecoles/{id}', [ConseilController::class, 'showEcoles'])->name('ecoles.show');
         Route::get('/doctorants', [ConseilController::class, 'doctorants'])->name('conseil.doctorant');
         Route::get('/encadreurs', [ConseilController::class, 'encadreurs'])->name('conseil.encadreur');
         Route::get('/profil', [ConseilController::class, 'profil'])->name('conseil.profil');

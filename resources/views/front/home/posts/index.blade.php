@@ -21,10 +21,10 @@ use Illuminate\Support\Str;
                 <div class="card">
                   <img src="{{ asset('storage/'.$post->picture) }}" class="card-img-top" alt="card-img-top">
                   <div class="card-body">
-                    <h5 class="card-title">{{ $post->title }}</h5>
+                    <h5 class="card-title"><a class="text-black" href="{{ route('post.show', $post)}}">{{ $post->title }}</a></h5>
                     <p class="card-text">{{ Str::limit($post->content, $limit = 100, $end = '...') }}</p>
                     <p class="card-text"><small class="text-muted">Publié {{ $post->created_at->diffForHumans() }}</small></p>
-                    <a href="#" class="btn btn-danger" style="font-size: 13px;">Lire la suite</a>
+                    <a href="{{ route('post.show', $post)}}" class="btn btn-danger" style="font-size: 13px;">Lire la suite</a>
                   </div>
                 </div>
                 <br>

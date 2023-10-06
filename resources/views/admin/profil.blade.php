@@ -7,7 +7,8 @@ if (auth()->check()) {
     // L'utilisateur est connecté, vous pouvez accéder à sa session
     $userLoger = auth()->user(); // Récupérer l'objet User de l'utilisateur connecté
 }
-?><div class="container-fluid">
+?>
+<div class="container-fluid">
     <div class="row" style="padding-top:20px;">
         <!-- Column -->
         <div class="col-lg-4 col-xlg-3 col-md-5">
@@ -16,7 +17,8 @@ if (auth()->check()) {
                     <center class="mt-4"> 
                         <img src="{{ asset('storage/'.$userLoger->photo) }}" class="rounded-circle" width="150" />
                         <h4 class="card-title mt-2">{{ $userLoger->name }}</h4>
-                        <h6 class="card-subtitle">{{ $userLoger->email }}</h6>   
+                        <h6 class="card-subtitle">{{ $userLoger->email }}</h6>  
+                        <h4 class="card-title mt-2">{{ $userLoger->ecole->name }}</h4> 
                     </center>
                 </div>
             </div>
