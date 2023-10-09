@@ -5,10 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     BackController, HomeController, DashboardController, 
     EncadreurController, DoctorantController, ActivityController, ConseilController, MessagesController,
-    UserController
+    UserController, 
 };
 use App\Http\Controllers\Admin\{
-    AdminController, PostController
+    AdminController, PostController, OfferController
 };
 use App\Models\Doctorant;
 use App\Models\Encadreur;
@@ -70,6 +70,8 @@ Route::middleware('auth')->group(function() {
 
         //Gestion des posts
         Route::resource("posts", PostController::class);
+        //Gestion des offres
+        Route::resource("offers", OfferController::class);
     });
 
     // Routes pour l'espace encadreur

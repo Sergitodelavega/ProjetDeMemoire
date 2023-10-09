@@ -82,32 +82,15 @@ use Illuminate\Support\Str;
         </div>
 
         <div class="row">
-          <div class="col-md-6 d-flex align-items-stretch">
-            <div class="icon-box">
-              <h4><a href="#">Appel à candidature pour le Doctorat au titre de l’année académique 2023-2024</a></h4>
-              <p>Dans le cadre de ses activités académiques, le CoE-EIE lance un appel à candidature pour la bourse de thèse de doctorat pour le compte de l'année universitaire 2023-2024...</p>
+          @foreach ($offers as $offer)
+            <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+              <div class="icon-box">
+                <h4><a href="#">{{ $offer->name }}</a></h4>
+                <p>{{ Str::limit($offer->details, $limit = 200, $end = '...')  }}</p>
+                <p class="text-muted">{{ $offer->ecole->name }}</p>
+              </div>
             </div>
-          </div>
-          <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-            <div class="icon-box">
-              <h4><a href="#">Doctorales des centres d’excellence du Bénin</a></h4>
-              <p>Les Centres d’Excellence d’Afrique pour l’Impact sur le développement de l’Université d’Abomey-Calavi organisent, en collaboration avec les entités qui hébergent ces centres (IMSP, INE, EPAC) et les entités partenaires (IFRI, FAST, LABEF, ASE)...</p>
-            </div>
-          </div>
-          <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-            <div class="icon-box">
-              <h4><a href="#">Proposition de projet de thèse en sciences de l’éducation.</a></h4>
-              <p>L'éducation est un pilier essentiel du développement d'une société, mais de nombreux élèves issus de milieux socio-économiques défavorisés sont confrontés à des obstacles qui entravent leur réussite scolaire...</p>
-            </div>
-          </div>
-          <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-            <div class="icon-box">
-              <h4><a href="#">Apprentissage en ligne utilisant Experience Replay destiné aux systèmes embarqués.</a></h4>
-              <p>Les systèmes embarqués sont omniprésents dans la technologie moderne, des
-                appareils IoT aux systèmes automobiles, et ils sont tenus de gérer diverses
-                tâches...</p>
-            </div>
-          </div>
+          @endforeach
         </div>
 
       </div>

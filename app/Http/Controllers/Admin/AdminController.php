@@ -25,6 +25,15 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
+    public function indexTheses(){
+        $adminUser = Auth::user();
+        if($adminUser->role == "admin")
+        {
+            $theses = These::where('ecole_id', $adminUser->ecole_id)->get();
+        }
+        return view('admin.theses.index', compact('theses'));
+    }
+
     public function showThese($id){
         $these = These::find($id);
         // $these->load('doctorant', 'encadreur');
@@ -32,18 +41,9 @@ class AdminController extends Controller
     }
 
     public function createThese(){
-        // $doctorants = Doctorant::with('user')->get();
-        // $doctorantNames = $doctorants->mapWithKeys(function ($doctorant) {
-        //     return [$doctorant->id => $doctorant->user->name];
-        // });
-
         $doctorants = Doctorant::latest()->get();
         $encadreurs = Encadreur::latest()->get();
 
-        // $encadreurs = Encadreur::with('user')->get();
-        // $encadreurNames = $encadreurs->mapWithKeys(function ($encadreur) {
-        //     return [$encadreur->id => $encadreur->user->name];
-        // });
         return view('admin.theses.create', compact("doctorants", "encadreurs"));
     }
 
@@ -78,20 +78,15 @@ class AdminController extends Controller
         
         $these->save();
         return redirect()->route('admin.theses');
-
     }
 
-    public function deleteFormation($id){
-        Formation::where('id', $id)->delete();
-
-        // Ajoutez le message flash pour la suppression de la formation 
-        session()->flash('success', 'Formation supprimée avec succès !');
-
-        return redirect()->route('admin.formations');
-    }
 
     public function formations(){
-        $formations = Formation::latest()->get();
+        $adminUser = Auth::user();
+        if($adminUser->role == "admin")
+        {
+            $formations = Formation::where('ecole_id', $adminUser->ecole_id)->get();
+        }
         return view('admin.formations.index', compact('formations'));
     }
 
@@ -100,7 +95,9 @@ class AdminController extends Controller
     }
 
     public function storeFormation(Request $request){
-        // Validation des données du formulaire
+        $adminUser = Auth::user();
+        if($adminUser->role == "admin"){
+            // Validation des données du formulaire
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'bail|required',
@@ -113,7 +110,7 @@ class AdminController extends Controller
         $chemin_image = $request->image->store("formations");
 
         // On enregistre les informations du Formation
-        Formation::create([
+        $formation = new Formation([
             'title' => $request->title,
             'description' => $request->description,
             'date_heure' => $request->date_heure,
@@ -121,16 +118,25 @@ class AdminController extends Controller
             'image' => $chemin_image,
         ]);
 
+        $ecole = Ecole::find($adminUser->ecole_id);
+        $formation->ecole_id = $ecole->id;
+        $formation->save();
+
         // Ajoutez le message flash pour la création de la formation 
         $request->session()->flash('success', 'Formation créé avec succès !');
 
         return redirect()->route('admin.formations');
+        }
 
     }
 
-    public function indexTheses(){
-        $theses = These::orderByStatus()->get();
-        return view('admin.theses.index', compact('theses'));
+    public function deleteFormation($id){
+        Formation::where('id', $id)->delete();
+
+        // Ajoutez le message flash pour la suppression de la formation 
+        session()->flash('success', 'Formation supprimée avec succès !');
+
+        return redirect()->route('admin.formations');
     }
 
     public function index(){

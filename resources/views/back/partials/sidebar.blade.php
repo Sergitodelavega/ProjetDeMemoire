@@ -41,8 +41,8 @@ if (auth()->check()) {
                           class="hide-menu">Thèses</span></a>
               </li>
               <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                href="{{ route('admin.users') }}" aria-expanded="false"><i class="mdi me-2 mdi-earth"></i><span
-                    class="hide-menu">Gestion</span></a>
+                href="{{ route('offers.index') }}" aria-expanded="false"><i class="mdi me-2 mdi-table"></i><span
+                    class="hide-menu">Offres</span></a>
               </li>
               <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                 href="{{ route('posts.index') }}" aria-expanded="false"><i class="mdi me-2 mdi-table"></i><span

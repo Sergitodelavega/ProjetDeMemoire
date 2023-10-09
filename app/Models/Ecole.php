@@ -15,4 +15,8 @@ class Ecole extends Model
     public function laboratoires(){
         return $this->hasMany(Laboratoire::class);
     }
+
+    public function offers(){
+        return $this->hasMany(Offer::class);
+    }
 }

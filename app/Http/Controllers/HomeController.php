@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doctorant;
+use App\Models\Offer;
 use App\Models\Post;
 use App\Models\These;
 use Illuminate\Http\Request;
@@ -11,7 +12,8 @@ class HomeController extends Controller
 {
     public function index(){
         $posts = Post::all()->take(3);
-        return view('front.home.index', compact('posts'));
+        $offers = Offer::all()->take(2);
+        return view('front.home.index', compact('posts', 'offers'));
     }
 
     public function posts(){
