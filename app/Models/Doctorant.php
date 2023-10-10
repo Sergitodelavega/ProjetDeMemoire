@@ -11,7 +11,7 @@ class Doctorant extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id, matricule', 'specialite', 'matricule', 'encadreur_id',
+        'user_id, matricule', 'specialite', 'matricule', 'encadreur_id', 'year'
     ];
 
     public function user() {
@@ -28,5 +28,9 @@ class Doctorant extends Model
 
     public function activities(){
         return $this->hasMany(Activity::class);
+    }
+
+    public function year() {
+        return $this->belongsTo(Year::class);
     }
 }       

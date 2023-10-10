@@ -41,16 +41,8 @@ class ConseilController extends Controller
             ->get();
         $laboratoires = Laboratoire::where('ecole_id', $id)->get();
 
-        $theses = These::all();
+        $theses = These::where('ecole_id', $id)->get();
         
         return view('conseil.show', compact('ecoles', 'ecole', 'doctorants', 'encadreurs', 'laboratoires', 'theses'));
-    }
-    public function doctorants(){
-        $doctorants = Doctorant::all();
-        return view('conseil.doctorants', compact('doctorants'));
-    }
-
-    public function encadreurs(){
-        
     }
 }

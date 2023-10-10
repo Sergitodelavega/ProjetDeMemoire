@@ -17,7 +17,11 @@ return new class extends Migration
             $table->text('description');
             $table->enum('status', ['non soumis', 'en attente', 'validée', 'rejetée']);
             $table->text('comment')->nullable();
+            $table->string('semestre')->nullable();
+            $table->integer('delai');
+            $table->date('deadline')->nullable();
             $table->foreignId('doctorant_id');
+            $table->foreignId('year_id');
             $table->timestamps();
         });
     }

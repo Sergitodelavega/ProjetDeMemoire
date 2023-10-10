@@ -41,6 +41,16 @@
                             <span class="alert-danger">@error("specialite"){{ $message }}@enderror</span>
                         </div>
                         <div class="form-group">
+                            <label for="year_id" class="col-md-12">Année de thèse </label>
+                                <select name="year_id" id="year_id" class="form-control ps-0 form-control-line" required>
+                                    @foreach($years as $year)
+                                    <option
+                                        value="{{ $year->id }}" {{ old('year_id') == $year->id ? 'selected' : '' }}>{{ $year->year }}</option>
+                                    @endforeach
+                                </select>    
+                            <span class="alert-danger">@error("year_id"){{ $message }}@enderror</span>
+                        </div>
+                        <div class="form-group">
                             <label for="laboratoire_id" class="col-md-12">Laboratoire </label>
                                 <select name="laboratoire_id" id="laboratoire_id" class="form-control ps-0 form-control-line" required>
                                     @foreach($laboratoires as $laboratoire)

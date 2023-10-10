@@ -38,7 +38,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($activities as $activity)
-                                        <?php $joursR = $activity->joursRestants(); ?>
+                                        <?php $daysTime = $activity->remainingTime(); ?>
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $activity->semestre }}</td>
@@ -46,7 +46,7 @@
                                             @if ($activity->status == "validée")
                                                 <td>---</td>
                                             @else
-                                                <td>{{ $joursR }} jours<br/>{{ $activity->deadline }}</td>
+                                                <td>{{ $daysTime }}<br/>{{ $activity->calculateDeadline() }}</td>
                                             @endif
                                             <td>
                                                 @if($activity->status == "en attente")<span class="badge bg-primary">{{$activity->status}}</span> @endif

@@ -17,7 +17,8 @@ if (auth()->check()) {
                     <center class="mt-4"> 
                         <img src="{{ asset('storage/'.$userLoger->photo) }}" class="rounded-circle" width="150" />
                         <h4 class="card-title mt-2">{{ $userLoger->name }}</h4>
-                        <h6 class="card-subtitle">{{ $userLoger->email }}</h6>   
+                        <h6 class="card-subtitle">{{ $userLoger->email }}</h6> 
+                        <h5 class="card-subtitle text-dark">{{ $userLoger->doctorant->year }}</h5>  
                         <h5 class="card-subtitle text-dark">{{ $userLoger->doctorant->matricule }}</h5>
                         <h5 class="card-subtitle text-dark">{{ $userLoger->doctorant->specialite }}</h5>
                         <h5 class="card-subtitle text-dark">{{ $userLoger->doctorant->laboratoire }}</h5>
@@ -30,19 +31,6 @@ if (auth()->check()) {
             <div class="card">
                 <div class="card-body">
                     <div class="form-horizontal form-material mx-2">
-                        {{-- <form action="{{ route('update_email', $userLoger->id) }}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            @method('put')
-                            <div class="form-group">
-                                <label for="email" class="col-md-12">Email</label>
-                                <input type="email" value="{{ $userLoger->email }}" class="form-control ps-0 form-control-line" name="email" id="email">
-                                <span class="text-danger">@error('email'){{$message}}@enderror</span> 
-                            </div>
-                            <div class="form-group">
-                                <button class="btn btn-success mx-auto mx-md-0 text-white">Modifier</button>
-                            </div>
-                        </form> --}}
-
                         <form action="{{ route('update_password', $userLoger->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('put')

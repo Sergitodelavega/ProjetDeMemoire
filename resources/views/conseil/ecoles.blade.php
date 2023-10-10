@@ -19,7 +19,6 @@
                                 <a href="{{ route('ecoles.show', $ecole->id) }}">{{ $ecole->name }}
                                 </a>
                             </td>
-                           
                         </tr>
                         @endforeach
                     </tbody>

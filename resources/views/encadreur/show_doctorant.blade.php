@@ -45,14 +45,10 @@
                         </div>
                     </div>
                     <!-- Column -->
-                    <!-- Column -->
-                </div>
-                <div class="row">
-                    <!-- column -->
-                    <div class="col-sm-12">
+                    <div class="col-lg-8 col-xlg-3 col-md-5">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Ses activités et leur évolution</h4>
+                                <h4 class="card-title">Activités en attente</h4>
                                 {{-- <h6 class="card-subtitle">Add class <code>.table</code></h6> --}}
                                 <div class="table-responsive">
                                     <table class="table user-table">
@@ -61,7 +57,6 @@
                                                 <th class="border-top-0">#</th>
                                                 <th class="border-top-0">Titre</th>
                                                 <th class="border-top-0">Semestre</th>
-                                                <th class="border-top-0">Status</th>
                                                 <th class="border-top-0">Opération</th>
                                             </tr>
                                         </thead>
@@ -72,16 +67,62 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $activity->title }}</td>
                                                 <td>{{ $activity->semestre}}</td>
-                                                  <td>
-                                                    @if($activity->status == "en attente")<span class="badge bg-primary">{{$activity->status}}</span> @endif
-                                                    @if($activity->status == "validée")<span class="badge bg-success">{{$activity->status}}</span> @endif 
-                                                </td>
                                                 <td>
                                                     <a href="{{ route('encadreur.show_activity', $activity) }}" class="btn btn-info d-none d-md-inline-block text-white">Voir plus
                                                     </a>
                                                 </td>
                                             </tr>
                                             @endif
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Activités et évolution</h4>
+                                {{-- <h6 class="card-subtitle">Add class <code>.table</code></h6> --}}
+                                <div class="table-responsive">
+                                    <table class="table user-table">
+                                        <thead>
+                                            <tr scope="row">
+                                                <th class="border-top-0">#</th>
+                                                <th class="border-top-0">Titre</th>
+                                                <th class="border-top-0">Semestre</th>
+                                                <th class="border-top-0">Date limite</th>
+                                                <th class="border-top-0">Status</th>
+                                                <th class="border-top-0">Opération</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($activities as $activity)  
+                                            <?php $days = $activity->remainingTime(); ?>
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $activity->title }}</td>
+                                                <td>{{ $activity->semestre}}</td>
+                                                @if ($activity->status == "validée")
+                                                    <td>---</td>
+                                                @else
+                                                    <td>{{ $days }}<br/>{{ $activity->deadline }}</td>
+                                                @endif
+                                                <td>
+                                                    @if($activity->status == "en attente")<span class="badge bg-primary">{{$activity->status}}</span> @endif
+                                                    @if($activity->status == "validée")<span class="badge bg-success">{{$activity->status}}</span> @endif 
+                                                    @if($activity->status == "non soumis")<span class="badge bg-secondary">{{$activity->status}}</span> @endif 
+
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('encadreur.show_activity', $activity) }}" class="btn btn-info d-none d-md-inline-block text-white">Voir plus
+                                                    </a>
+                                                </td>
+                                            </tr>
                                             @endforeach
                                         </tbody>
                                     </table>

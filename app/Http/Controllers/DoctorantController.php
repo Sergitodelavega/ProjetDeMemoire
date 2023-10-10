@@ -5,13 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Doctorant;
 use App\Models\Formation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DoctorantController extends Controller
 {
-    public function home(){
-        return view('doctorant.index');
-    }
-
     public function profilDoctorant(){
         return view('doctorant.profil');
     }
@@ -21,8 +18,12 @@ class DoctorantController extends Controller
     }
 
     public function formation(){
-        $formations = Formation::latest()->get();
-        return view('doctorant.formation', compact('formations'));
+        $doctorantUser = Auth::user();
+        if($doctorantUser->role == "doctorant")
+        {
+            $formations = Formation::where('ecole_id', $doctorantUser->ecole_id)->get();
+        }
+        return view('admin.formations.index', compact('formations'));
     }
 
 }

@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('theses', function (Blueprint $table) {
+        Schema::create('doctorants', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description');
-            $table->date('deadline');
-            $table->string('status');
-            $table->foreignId('doctorant_id')->constrained();
-            $table->foreignId('encadreur_id')->constrained();
+            $table->string('matricule');
+            $table->string('specialite');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('encadreur_id');
+            $table->string('laboratoire');
+            $table->string('year');
             $table->timestamps();
         });
     }
@@ -28,7 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('theses');
+        Schema::dropIfExists('doctorants');
     }
 };
-

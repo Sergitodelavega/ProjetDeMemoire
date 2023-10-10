@@ -15,6 +15,7 @@ use App\Mail\MessageEncadreur;
 use App\Http\Controllers\Controller;
 use App\Models\Ecole;
 use App\Models\Laboratoire;
+use App\Models\Year;
 use Database\Seeders\ActivitySeeder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -36,19 +37,36 @@ class AdminController extends Controller
 
     public function showThese($id){
         $these = These::find($id);
-        // $these->load('doctorant', 'encadreur');
         return view('admin.theses.show', compact('these'));
     }
 
     public function createThese(){
-        $doctorants = Doctorant::latest()->get();
-        $encadreurs = Encadreur::latest()->get();
+         
+        $adminUser = Auth::user();
+        if($adminUser->role == "admin")
+        {
+            $ecole = Ecole::find($adminUser->ecole_id);
 
-        return view('admin.theses.create', compact("doctorants", "encadreurs"));
+            $encadreurs = Encadreur::with('user')
+            ->whereHas('user', function ($query) use ($adminUser){
+                $query->where('ecole_id', $adminUser->ecole_id);
+            })
+            ->get();
+
+            $doctorants = Doctorant::with('user')
+            ->whereHas('user', function ($query) use ($adminUser){
+                $query->where('ecole_id', $adminUser->ecole_id);
+            })
+            ->get();
+
+            return view('admin.theses.create', compact("doctorants", "encadreurs"));
+        }
     }
 
     public function storeThese(Request $request){
-        // Validation des données du formulaire
+        $adminUser = Auth::user();
+        if($adminUser->role == "admin"){
+            // Validation des données du formulaire
         $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
@@ -67,7 +85,10 @@ class AdminController extends Controller
             'doctorant_id' => $request->input('doctorant_id'),
             'encadreur_id' => $request->input('encadreur_id'),
         ]);
-       
+
+        $ecole = Ecole::find($adminUser->ecole_id);
+        $these->ecole_id = $ecole->id;
+
         $doctorantId = $request->input('doctorant_id');
         $encadreurId = $request->input('encadreur_id');
         
@@ -78,6 +99,7 @@ class AdminController extends Controller
         
         $these->save();
         return redirect()->route('admin.theses');
+        }
     }
 
 
@@ -196,13 +218,15 @@ class AdminController extends Controller
             $ecole = Ecole::find($adminUser->ecole_id);
             $laboratoires = $ecole->laboratoires;
 
+            $years = Year::all();
+
             $encadreurs = Encadreur::with('user')
             ->whereHas('user', function ($query) use ($adminUser){
                 $query->where('ecole_id', $adminUser->ecole_id);
             })
             ->get();
 
-            return view('admin.doctorants.create', compact('encadreurs', 'laboratoires'));
+            return view('admin.doctorants.create', compact('encadreurs', 'laboratoires', 'years'));
         }
     }
 
@@ -220,16 +244,14 @@ class AdminController extends Controller
             'specialite' => 'required|string',
             'laboratoire_id' => 'required|exists:laboratoires,id',
             'photo' => 'required|image',
+            'year_id' => 'required|exists:years,id',
             'encadreur_id' => 'required|exists:encadreurs,id'
             ]);
 
             // On upload l'image dans "/storage/app/public/posts"
             $chemin_image = $request->photo->store("users");
             $ecole_id = $userLoged->ecole_id;
-            // Créer un nouvel utilisateur (Doctorant)
-
-           
-
+        
             $user = new User([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
@@ -245,6 +267,9 @@ class AdminController extends Controller
             $laboratoire_id = $request->input('laboratoire_id');
             $laboratoire = Laboratoire::find($laboratoire_id)->name;
 
+            $year_id = $request->input('year_id');
+            $year = Year::find($year_id);
+
             $doctorant = new Doctorant([
             'matricule' => $request->input('matricule'),
             'specialite' => $request->input('specialite'),
@@ -252,6 +277,7 @@ class AdminController extends Controller
             ]);
             $doctorant->user()->associate($user);
             $doctorant->laboratoire = $laboratoire;
+            $doctorant->year = $year->year;
         // Assigner l'encadreur au doctorant s'il est spécifié
             $encadreurId = $request->input('encadreur_id');
         
@@ -260,9 +286,11 @@ class AdminController extends Controller
             }
             
             $doctorant->save();
+            $year->doctorant_id = $doctorant->id;
+            $year->save();
 
-            // $activitySeeder = new ActivitySeeder();
-            // $activitySeeder->run();
+            $activitySeeder = new ActivitySeeder($doctorant->id, $year->id);
+            $activitySeeder->run();
 
             $link = asset(route('index'));
 

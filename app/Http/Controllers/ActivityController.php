@@ -54,9 +54,7 @@ public function store(Request $request, Activity $activity)
 }
 
 public function index()
-{
-    // Récupérez toutes les activités soumises
-    
+{   
     if (auth()->check()) {
         // L'utilisateur est connecté, vous pouvez accéder à sa session
         $user = auth()->user(); // Récupérer l'objet User de l'utilisateur connecté
