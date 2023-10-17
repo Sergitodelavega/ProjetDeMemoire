@@ -18,13 +18,17 @@
       </nav><!-- .navbar -->
       <div class="cta d-none d-md-block">
         @guest
-        {{-- <a href="{{ route('register') }}" class="scrollto" id="btn-i">S'inscrire</a> --}}
         <a href="{{ route('login') }}" class="scrollto"><i class="bi bi-person-fill"></i>Se connecter</a>
         @else
-        <form id="logout" action="{{ route('logout') }}" method="POST">
-          <a role="button" onclick="document.getElementById('logout').submit();" class="nav-link active">Déconnexion</a>
-          @csrf
-        </form>
+        <?php $role = Auth::user()->role; ?>
+        @if ($role == "admin")
+        <a href="{{ route('admin.profil') }}" class="scrollto" id="btn-i">Dashboard</a>
+        @elseif ($role == "doctorant")
+        <a href="{{ route('doctorant.profil') }}" class="scrollto" id="btn-i">Dashboard</a>
+        @else 
+        <a href="{{ route('encadreur.profil') }}" class="scrollto" id="btn-i">Dashboard</a>
+        @endif
+        
         @endguest
       </div>
     </div>

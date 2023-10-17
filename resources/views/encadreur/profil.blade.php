@@ -9,7 +9,7 @@ if (auth()->check()) {
 }
 ?>
 <div class="container-fluid">
-    <div class="row" style="padding-top:20px;">
+    <div class="row">
         <!-- Column -->
         <div class="col-lg-4 col-xlg-3 col-md-5">
             <div class="card">
@@ -17,15 +17,16 @@ if (auth()->check()) {
                     <center class="mt-4"> 
                         <img src="{{ asset('storage/'.$userLoger->photo) }}" class="rounded-circle" width="150" />
                         <h4 class="card-title mt-2">{{ $userLoger->name }}</h4>
-                        <h6 class="card-subtitle">{{ $userLoger->email }}</h6>   
-                        <h5 class="card-subtitle">{{ $userLoger->encadreur->matricule }}</h5>
-                        <h5 class="card-subtitle">{{ $userLoger->encadreur->grade }}</h5>
-                        <h5 class="card-subtitle">{{ $userLoger->encadreur->specialite }}</h5>
+                        <h6 class="card-subtitle text-dark">{{ $userLoger->email }}</h6>   
+                        <h5 class="card-subtitle text-dark">{{ $userLoger->encadreur->matricule }}</h5>
+                        <h5 class="card-subtitle text-dark">{{ $userLoger->encadreur->grade }}</h5>
+                        <h5 class="card-subtitle text-dark">{{ $userLoger->encadreur->specialite }}</h5>
+                        <h5 class="card-subtitle text-dark">{{ $userLoger->ecole->name }}</h5>
                     </center>
                 </div>
             </div>
         </div>
-        <div class="col-lg-8 col-xlg-9 col-md-7">
+        <div class="col-lg-6 col-xlg-9 col-md-7">
             <div class="card">
                 <div class="card-body">
                     <div class="form-horizontal form-material mx-2">

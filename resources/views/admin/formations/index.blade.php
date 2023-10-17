@@ -27,12 +27,12 @@
                             <h4 class="card-title">{{ $formation->title }}</h4>
                             <p class="card-text h4"><small class="text-muted">{{ $formation->date_heure }}</small></p>
                             <div class="d-flex justify-content-end">
-                                <a href="#" class="btn btn-warning">Modifier</a>
+                                <a href="#" class="btn btn-warning"><i class="mdi mdi-pencil"></i></a>
 
                                 <form action="{{ route('admin.delete.formation', $formation->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger text-white" style="margin-left: 10px">Supprimer</button>
+                                    <button type="submit" class="btn btn-danger text-white" style="margin-left: 10px"><i class="mdi mdi-delete"></i></button>
                                 </form>
                             </div>
                         </div>

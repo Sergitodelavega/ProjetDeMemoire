@@ -49,11 +49,14 @@
       <!-- Page wrapper  -->
     <div class="page-wrapper">
       @if(session()->has('success'))
-        <div style="margin: 0 200px 0 200px" class="alert alert-success alert-dismissible fade show text-center" role="alert">
+        <div style="margin: 0 100px 0 700px" class="alert alert-success alert-dismissible fade show text-center" role="alert">
             {{ session('success') }}
-            {{-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button> --}}
+        </div>
+      @endif
+
+      @if(session()->has('fail'))
+        <div style="margin: 0 200px 0 200px" class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+            {{ session('fail') }}
         </div>
       @endif
 

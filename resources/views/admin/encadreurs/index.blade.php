@@ -2,7 +2,7 @@
 @section('content')
     <br>
     <div class="container" style="margin-left: 50px">
-        <h1>Tous les encadreurs</h1><br>
+        <h1>Encadreurs</h1><br>
         <p>
         <!-- Lien pour créer un nouveau doctorant : "posts.create" -->
         <a href="{{ route('admin.create.encadreur') }}" title="Créer un encadreur"  class="btn btn-primary">Créer un nouveau encadreur</a>
@@ -38,7 +38,7 @@
                                         @foreach ($encadreurs as $encadreur)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $encadreur->user->name }}</td>
+                                            <td><a href="{{ route('admin.encadreur.profil', $encadreur->id) }}">{{ $encadreur->user->name }}</a></td>
                                             <td>{{ $encadreur->user->email }}</td>
                                             <td>
                                               {{ $encadreur->specialite }}
@@ -47,7 +47,7 @@
                                               {{ $encadreur->grade }}
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.encadreur.profil', $encadreur->id) }}" class="btn btn-info d-none d-md-inline-block text-white">Voir profil
+                                                <a href="{{ route('admin.encadreur.edit', $encadreur->id) }}" class="btn btn-warning d-none d-md-inline-block text-white"><i class="mdi mdi-pencil"></i>
                                                 </a>
                                             </td>
                                         </tr>

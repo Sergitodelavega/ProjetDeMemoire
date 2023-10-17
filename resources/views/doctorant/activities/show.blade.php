@@ -20,13 +20,14 @@
             <div class="card">
                 <div class="card-header"><h3>{{ $activity->title }}</h3></div>
                 <div class="card-body">
+                    <?php $daysTime = $activity->remainingTime(); ?>
                         <div class="form-group">
-                            <label for="title" class="col-md-12 mb-0">Description : </label>
-                            <p>{{ $activity->description }}</p>
+                            <label for="title" class="col-md-12 mb-0 lead">Description : {{ $activity->description }} </label>
+                            
                         </div>
                         <div class="form-group">
-                            <label for="title" class="col-md-12 mb-0">Semestre : </label>
-                            <p>{{ $activity->semestre }}</p>
+                            <label for="title" class="col-md-12 mb-0 lead">Semestre : {{ $activity->semestre }} </label>
+                            <p></p>
                         </div>
                         @if ($activity->status == "validée")
                             <div class="form-group">
@@ -35,13 +36,14 @@
                             </div>
                         @else
                         <div class="form-group">
-                            <label for="title" class="col-md-12 mb-0">Deadline : </label>
-                            <p>{{ $activity->deadline }}</p>
+                            <label for="title" class="col-md-12 mb-0 lead">Date limite : {{ $daysTime}} - {{ $activity->calculateDeadline() }}
+                            </label>
+                            
                         </div>
                         @endif
                         <div class="form-group">
-                            <label for="title" class="col-md-12 mb-0">Commentaire : </label>
-                            <p>{{ $activity->comment }}</p>
+                            <label for="title" class="col-md-12 mb-0 lead">Commentaire : </label>
+                            <p class="lead">{{ $activity->comment }}</p>
                         </div>
                         @if ($activity->status == "validée")
                             <div class="form-group">

@@ -16,6 +16,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Ecole;
 use App\Models\Laboratoire;
 use App\Models\Year;
+use Carbon\Carbon;
 use Database\Seeders\ActivitySeeder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -40,7 +41,7 @@ class AdminController extends Controller
         return view('admin.theses.show', compact('these'));
     }
 
-    public function createThese(){
+    public function createThese($id){
          
         $adminUser = Auth::user();
         if($adminUser->role == "admin")
@@ -58,46 +59,42 @@ class AdminController extends Controller
                 $query->where('ecole_id', $adminUser->ecole_id);
             })
             ->get();
+            $doctorant = Doctorant::find($id);
 
-            return view('admin.theses.create', compact("doctorants", "encadreurs"));
+            return view('admin.theses.create', compact("doctorants", "encadreurs", "doctorant"));
         }
     }
 
-    public function storeThese(Request $request){
+    public function storeThese(Request $request, $id){
         $adminUser = Auth::user();
         if($adminUser->role == "admin"){
             // Validation des données du formulaire
         $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
-            'deadline' => 'required|date',
-            'doctorant_id' => 'required|exists:doctorants,id',
-            'encadreur_id' => 'required|exists:encadreurs,id',
-            'status' => 'required',
         ]);
        
         // Créer un nouvel projet
         $these = new These([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'deadline' => $request->input('deadline'),
-            'status' => $request->input('status'),
-            'doctorant_id' => $request->input('doctorant_id'),
-            'encadreur_id' => $request->input('encadreur_id'),
         ]);
+        $these->deadline = Carbon::now();
+        $these->status = "en cours";
+        $doctorant = Doctorant::find($id);
+        $doctorantId = Doctorant::find($id)->id;
+        $encadreurId = $doctorant->encadreur->id;
 
         $ecole = Ecole::find($adminUser->ecole_id);
         $these->ecole_id = $ecole->id;
-
-        $doctorantId = $request->input('doctorant_id');
-        $encadreurId = $request->input('encadreur_id');
         
         if($doctorantId && $encadreurId){
             $these->doctorant()->associate($doctorantId);
             $these->encadreur()->associate($encadreurId);
         }
-        
         $these->save();
+         // Ajoutez le message flash pour la création de la formation 
+         $request->session()->flash('success', 'Thèse définie avec succès !');
         return redirect()->route('admin.theses');
         }
     }
@@ -229,14 +226,13 @@ class AdminController extends Controller
             return view('admin.doctorants.create', compact('encadreurs', 'laboratoires', 'years'));
         }
     }
-
     public function storeDoctorant(Request $request)
     {
         if (auth()->check()) {
             // L'utilisateur est connecté, vous pouvez accéder à sa session
             $userLoged = auth()->user(); // Récupérer l'objet User de l'utilisateur connecté
             if($userLoged->role === "admin"){
-                // Validation des données du formulaire
+               
             $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
@@ -295,13 +291,86 @@ class AdminController extends Controller
             $link = asset(route('index'));
 
             Mail::to($doctorant->user->email)->send(new MessageDoctorant($doctorant, $link, $password));
-       
-            // Ajoutez le message flash pour la création du compte doctorant
+    
             $request->session()->flash('success', 'Doctorant créé avec succès !');
 
             return redirect()->route('admin.doctorant');
             }
         }
+    }
+
+    public function editDoctorant($id){
+        $adminUser = Auth::user();
+        if($adminUser->role == "admin"){
+            $doctorant = Doctorant::find($id);
+
+            $ecole = Ecole::find($adminUser->ecole_id);
+            $laboratoires = $ecole->laboratoires;
+
+            $years = Year::all();
+
+            $encadreurs = Encadreur::with('user')
+            ->whereHas('user', function ($query) use ($adminUser){
+                $query->where('ecole_id', $adminUser->ecole_id);
+            })
+            ->get();
+        }
+        return view('admin.doctorants.create', compact('doctorant', 'laboratoires', 'years', 'encadreurs'));
+    }
+
+    public function updateDoctorant(Request $request, $id){
+        $doctorant = Doctorant::find($id);
+        $user = $doctorant->user;
+        $rules = [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|string',
+            'matricule' => 'required|string',
+            'specialite' => 'required|string',
+            'laboratoire_id' => 'required|exists:laboratoires,id',
+            'year_id' => 'required|exists:years,id',
+            'encadreur_id' => 'required|exists:encadreurs,id'
+        ];
+
+        if ($request->has("photo")) {
+            $rules["photo"] = 'bail|required|image';
+        }
+        $this->validate($request, $rules);
+
+        if ($request->has("photo")) {
+            Storage::delete($doctorant->user->photo);
+            $chemin_image = $request->photo->store("users");
+        }
+
+        $laboratoire_id = $request->input('laboratoire_id');
+        $laboratoire = Laboratoire::find($laboratoire_id)->name;
+
+        $year_id = $request->input('year_id');
+        $yearN = Year::find($year_id)->year;
+        $year = Year::find($year_id);
+
+        $encadreurId = $request->input('encadreur_id');
+
+        $user->update([
+            "name" => $request->name,
+            "email" => $request->email,
+            "photo" => isset($chemin_image) ? $chemin_image : $doctorant->user->photo,
+        ]);
+
+        $doctorant->update([
+            "matricule" => $request->matricule,
+            "specialite" => $request->specialite,
+            'year' => $yearN,
+            'encadreur_id' => $encadreurId,
+        ]);
+        $doctorant->laboratoire = $laboratoire;
+        $doctorant->save();
+
+        $activitySeeder = new ActivitySeeder($doctorant->id, $year->id);
+        $activitySeeder->run();
+
+        $request->session()->flash('success', 'Doctorant mis à jour avec succès !');
+        
+        return redirect(route("admin.doctorant.profil", $doctorant->id));
     }
 
     public function createEncadreur()
@@ -357,6 +426,14 @@ class AdminController extends Controller
 
             return redirect()->route('admin.encadreur');
         }
+    }
+
+    public function editEncadreur(Encadreur $encadreur){
+        return view('admin.encadreurs.create', compact('encadreur'));
+    }
+
+    public function updateEncadreur(Request $request, Encadreur $encadreur){
+
     }
 
     public function manageUsers(){

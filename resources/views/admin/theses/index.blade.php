@@ -4,11 +4,7 @@
 
     <br>
     <div class="container" style="margin-left: 50px">
-        <h1>Thèses</h1><br>
-        <p>
-        <!-- Lien pour créer un nouveau doctorant : "posts.create" -->
-        <a href="{{ route('admin.create.these') }}" title="Ajouter une thèse"  class="btn btn-primary">Ajouter une thèse</a>
-        </p>
+        <h1>Thèses</h1>
     </div>
 
         <!-- Le tableau pour lister les doctorants -->
@@ -30,9 +26,7 @@
                                         <tr scope="row">
                                             <th class="border-top-0">#</th>
                                             <th class="border-top-0">Intitulé</th>
-                                            {{-- <th class="border-top-0">Doctorant assigné</th>
-                                            <th class="border-top-0">Encadreur assigné</th> --}}
-                                            <th class="border-top-0">Date limite</th>
+                                            <th class="border-top-0">Doctorant assigné</th>
                                             <th class="border-top-0">Statut</th>
                                             <th class="border-top-0">Action</th>
                                         </tr>
@@ -42,21 +36,13 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td><a href="{{ route('admin.theses.show', $these->id) }}">{{ $these->title }}</a></td>
-                                            {{-- <td>{{ $these->doctorant->user->name }}</td>
-                                            <td>
-                                              {{ $these->encadreur->user->name }}
-                                            </td> --}}
-                                            @if($these->status == "terminée") 
-                                            <td>---</td>
-                                            @else
-                                            <td>{{ $these->deadline }}</td>
-                                            @endif
+                                            <td>{{ $these->doctorant->user->name }}</td>
                                             <td>
                                                 @if($these->status == "open")<span class="badge bg-secondary">{{$these->status}}</span> @endif
                                                 @if($these->status == "terminée")<span class="badge bg-success">{{$these->status}}</span> @endif
                                                 @if($these->status == "en cours")<span class="badge bg-primary">{{$these->status}}</span> @endif  
                                             <td>
-                                                <a href="{{ route('admin.theses.edit', $these) }}" class="btn btn-secondary d-none d-md-inline-block text-white">Plus
+                                                <a href="{{ route('admin.theses.edit', $these) }}" class="btn btn-warning d-none d-md-inline-block text-white"><i class="mdi mdi-pencil"></i>
                                                 </a>
                                             </td>
                                         </tr>

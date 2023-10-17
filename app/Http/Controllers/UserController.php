@@ -13,9 +13,9 @@ class UserController extends Controller
         $user->email=$request->email;
         $user->save();
 
-        // $request->session()->flash('success', 'Formation créé avec succès !');
+        $request->session()->flash('success', 'Email mis à jour avec succès !');
 
-        return back()->with('success',"Email modifié avec succès!");
+        return back();
     }
 
     public function update_password(Request $request, $id){
@@ -29,9 +29,9 @@ class UserController extends Controller
         if(Hash::check($request->old,$user->password)){
             $user->password=Hash::make($request->password);
             $user->save();
+            $request->session()->flash('success', 'Mot de passe mis à jour avec succès !');
         }else
-            dd('Mauvais mot de passe');
-            
+            $request->session()->flash('fail', 'Mauvais mot de passe !'); 
         return back()->with('success',"Mot de passe modifié avec succès!");
     }
 }

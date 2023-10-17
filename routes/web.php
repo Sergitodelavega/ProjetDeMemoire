@@ -44,8 +44,13 @@ Route::middleware('auth')->group(function() {
         Route::get('/doctorants', [AdminController::class, 'doctorants'])->name('admin.doctorant');
         Route::get('/encadreurs', [AdminController::class, 'encadreurs'])->name('admin.encadreur');
         Route::get('/profil', [AdminController::class, 'profilAdmin'])->name('admin.profil');
-        Route::get('/doctorant/{doctorantId}', [AdminController::class, 'profilDoctorant'])->name('admin.doctorant.profil');
-        Route::get('/encadreur/{encadreurId}', [AdminController::class, 'profilEncadreur'])->name('admin.encadreur.profil');
+        Route::get('/doctorant/{id}', [AdminController::class, 'profilDoctorant'])->name('admin.doctorant.profil');
+        Route::get('/doctorant/{id}/edit', [AdminController::class, 'editDoctorant'])->name('admin.doctorant.edit');
+        Route::put('/doctorant/{id}', [AdminController::class, 'updateDoctorant'])->name('admin.doctorant.update');
+        Route::get('/enc9adreur/{id}', [AdminController::class, 'profilEncadreur'])->name('admin.encadreur.profil');
+        Route::get('/encadreur/{id}/edit', [AdminController::class, 'editEncadreur'])->name('admin.encadreur.edit');
+        Route::put('/encadreur/{id}', [AdminController::class, 'updateEncadreur'])->name('admin.encadreur.update');
+
         Route::get('/create-doctorant', [AdminController::class, 'createDoctorant'])->name('admin.create.doctorant');
         Route::post('/store-doctorant', [AdminController::class, 'storeDoctorant'])->name('admin.store.doctorant');
         Route::get('/create-encadreur', [AdminController::class, 'createEncadreur'])->name('admin.create.encadreur');
@@ -60,8 +65,8 @@ Route::middleware('auth')->group(function() {
         Route::get('formations/{id}', [AdminController::class, 'showFormation'])->name('admin.formation');
 
         // Gestion des thèses
-        Route::get('/create-these', [AdminController::class, 'createThese'])->name('admin.create.these');
-        Route::post('/store-these', [AdminController::class, 'storeThese'])->name('admin.store.these');
+        Route::get('/create-these/{id}', [AdminController::class, 'createThese'])->name('admin.create.these');
+        Route::post('/store-these/{id}}', [AdminController::class, 'storeThese'])->name('admin.store.these');
         Route::get('/theses', [AdminController::class, 'indexTheses'])->name('admin.theses');
         Route::get('theses/{id}', [AdminController::class, 'showThese'])->name('admin.theses.show');
         Route::get('/theses/{id}/edit', [AdminController::class, 'editThese'])->name('admin.theses.edit');
@@ -83,7 +88,7 @@ Route::middleware('auth')->group(function() {
         Route::get('/publications', [EncadreurController::class, 'publications'])->name('encadreur.publications');
         Route::get('/publish', [EncadreurController::class, 'publish'])->name('encadreur.publish');
         Route::get('/activity/{id}', [EncadreurController::class, 'showActivity'])->name('encadreur.show_activity');
-        Route::post('/validate/activity/{id}', [ActivityController::class, 'validate_activity'])->name('encadreur.validate_activity');
+        Route::post('/validate/activity/{id}/{doctorant}', [ActivityController::class, 'validate_activity'])->name('encadreur.validate_activity');
         Route::post('/reject/activity/{id}', [ActivityController::class, 'reject_activity'])->name('encadreur.reject_activity');
         Route::get('/messages', [MessagesController::class, 'index'])->name('encadreur.messages');
         Route::get('/messages/{id}', [MessagesController::class, 'show'])->name('encadreur.messages.show');
@@ -92,15 +97,15 @@ Route::middleware('auth')->group(function() {
     // Routes pour l'espace doctorant 
     Route::prefix('doctorant')->group(function() {
         Route::get('/index', [DoctorantController::class, 'home'])->name('doctorant.index');
-        Route::get('/activity', [DoctorantController::class, 'activity'])->name('doctorant.activity');
         Route::get('/profil', [DoctorantController::class, 'profilDoctorant'])->name('doctorant.profil');
         Route::get('/formation', [DoctorantController::class, 'formation'])->name('doctorant.formation');
         Route::get('activities', [ActivityController::class, 'index'])->name('doctorant.activity.index');
         Route::get('activity/{id}', [ActivityController::class, 'show'])->name('doctorant.activity.show');
         Route::post('activity/store', [ActivityController::class, 'store'])->name('doctorant.activity.store');
+        Route::get('encadreur/{id}', [DoctorantController::class, 'showEncadreur'])->name('doctorant.encadreur');
 
         Route::get('/activity/submit/{id}', [ActivityController::class, 'activity_submit'])->name('doctorant.activity_submit');
-        Route::get('/activity/submitted/{id}', [ActivityController::class, 'submit'])->name('doctorant.submitted_activity');
+        Route::post('/activity/submitted/{id}', [ActivityController::class, 'submit'])->name('doctorant.submitted_activity');
         Route::get('/messages', [MessagesController::class, 'index'])->name('doctorant.messages');
         Route::get('/messages/{id}', [MessagesController::class, 'show'])->name('doctorant.messages.show');
     });

@@ -69,5 +69,6 @@ class Activity extends Model
         return null;
     }
 
+
 }
 

@@ -36,7 +36,7 @@
                             <label for="title" class="col-md-12 mb-0">Commentaire : </label>
                             <p>{{ $activity->comment }}</p>
                         </div>
-                        <form method="POST" action="{{ route('encadreur.validate_activity', $activity->id ) }}" class="form-horizontal form-material mx-2" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('encadreur.validate_activity', [$activity->id, $doctorant->id] ) }}" class="form-horizontal form-material mx-2" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="comment" class="col-md-12 mb-0">Mon Commentaire</label>

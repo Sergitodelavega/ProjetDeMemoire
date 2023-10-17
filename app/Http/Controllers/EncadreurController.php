@@ -31,7 +31,6 @@ class EncadreurController extends Controller
                 $encadreur = Encadreur::where('user_id', $id)->first();
                 $doctorants = $encadreur->doctorants;
             }
-            
         }
 
         return view('encadreur.doctorant', compact('doctorants'));
@@ -49,8 +48,9 @@ class EncadreurController extends Controller
     }
 
     public function showActivity($id){
-        $activity = Activity::find($id);
         
-        return view('encadreur.show_activity', compact('activity'));
+        $activity = Activity::find($id);
+        $doctorant = $activity->doctorant;
+        return view('encadreur.show_activity', compact('activity', 'doctorant'));
     }
 }

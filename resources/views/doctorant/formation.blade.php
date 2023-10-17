@@ -2,17 +2,6 @@
 @section('title', 'Formations')
 @section('content')
 
-
-<div class="page-breadcrumb">
-    <div class="row align-items-center">
-        <div class="col-md-6 col-8 align-self-center">
-            <h3 class="page-title mb-0 p-0">Formations</h3>
-            <div class="d-flex align-items-center">
-            </div>
-        </div>
-    </div>
-</div>
-
         <div class="container-fluid">
             <!-- ============================================================== -->
             <!-- Start Page Content -->

@@ -28,8 +28,7 @@
                                 <table class="table user-table">
                                     <thead>
                                         <tr scope="row">
-                                            <th class="border-top-0">#</th>
-                                            <th class="border-top-0">Semestre</th>
+                                            <th class="border-top-0">Se</th>
                                             <th class="border-top-0">Intitulé</th>
                                             <th class="border-top-0">Date limite</th>
                                             <th class="border-top-0">Statut</th>
@@ -38,32 +37,83 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($activities as $activity)
-                                        <?php $daysTime = $activity->remainingTime(); ?>
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $activity->semestre }}</td>
-                                            <td><a href="{{ route('doctorant.activity.show', $activity->id) }}">{{ $activity->title }}</a></td>
-                                            @if ($activity->status == "validée")
-                                                <td>---</td>
-                                            @else
-                                                <td>{{ $daysTime }}<br/>{{ $activity->calculateDeadline() }}</td>
-                                            @endif
-                                            <td>
-                                                @if($activity->status == "en attente")<span class="badge bg-primary">{{$activity->status}}</span> @endif
-                                                @if($activity->status == "validée")<span class="badge bg-success">{{$activity->status}}</span> @endif
-                                                @if($activity->status == "non soumis")<span class="badge bg-secondary">{{$activity->status}}</span> @endif  
-                                            </td>
-                                            <td>
-                                                @if ($activity->status == "validée" || $activity->status == "en attente")
-                                                <a href="{{ route('doctorant.activity.show', $activity) }}" class="btn btn-secondary d-none d-md-inline-block text-white">Details
-                                                </a>
-                                                @else 
-                                                <a href="{{ route('doctorant.activity_submit', $activity) }}" class="btn btn-info d-none d-md-inline-block text-white">Soumettre
+                                        @if ($doctorant->year =="1re année" && $activity->year_id == 1)
+                                            <?php $daysTime = $activity->remainingTime(); ?>
+                                            <tr>
+                                                <td>{{ $activity->semestre }}</td>
+                                                <td><a href="{{ route('doctorant.activity.show', $activity->id) }}">{{ $activity->title }}</a></td>
+                                                @if ($activity->status == "validée")
+                                                    <td>---</td>
+                                                @else
+                                                    <td>{{ $daysTime }}<br/>{{ $activity->calculateDeadline() }}</td>
                                                 @endif
-                                                
-                                                </a>
-                                            </td>
-                                        </tr>
+                                                <td>
+                                                    @if($activity->status == "en attente")<span class="badge bg-primary"><i class="mdi mdi-clock"></i></span> @endif
+                                                    @if($activity->status == "validée")<span class="badge bg-success"><i class="mdi mdi-check-circle"></i></span> @endif
+                                                    @if($activity->status == "non soumis")<span class="badge bg-secondary"><i class="mdi mdi-checkbox-blank-circle-outline"></i></span> @endif  
+                                                </td>
+                                                <td>
+                                                    @if ($activity->status == "validée" || $activity->status == "en attente")
+                                                    <a href="{{ route('doctorant.activity.show', $activity) }}" class="btn btn-secondary d-none d-md-inline-block text-white">Details
+                                                    </a>
+                                                    @else 
+                                                    <a href="{{ route('doctorant.activity_submit', $activity) }}" class="btn btn-info d-none d-md-inline-block text-white">Soumettre
+                                                    @endif
+                                                    
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @elseif ($doctorant->year =="2e année" && $activity->year_id == 2)
+                                            <?php $daysTime = $activity->remainingTime(); ?>
+                                            <tr>
+                                                <td>{{ $activity->semestre }}</td>
+                                                <td><a href="{{ route('doctorant.activity.show', $activity->id) }}">{{ $activity->title }}</a></td>
+                                                @if ($activity->status == "validée")
+                                                    <td>---</td>
+                                                @else
+                                                    <td>{{ $daysTime }}<br/>{{ $activity->calculateDeadline() }}</td>
+                                                @endif
+                                                <td>
+                                                    @if($activity->status == "en attente")<span class="badge bg-primary">{{$activity->status}}</span> @endif
+                                                    @if($activity->status == "validée")<span class="badge bg-success">{{$activity->status}}</span> @endif
+                                                    @if($activity->status == "non soumis")<span class="badge bg-secondary">{{$activity->status}}</span> @endif  
+                                                </td>
+                                                <td>
+                                                    @if ($activity->status == "validée" || $activity->status == "en attente")
+                                                    <a href="{{ route('doctorant.activity.show', $activity) }}" class="btn btn-secondary d-none d-md-inline-block text-white">Details
+                                                    </a>
+                                                    @else 
+                                                    <a href="{{ route('doctorant.activity_submit', $activity) }}" class="btn btn-info d-none d-md-inline-block text-white">Soumettre
+                                                    @endif
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @elseif ($doctorant->year =="3e année" && $activity->year_id == 3)
+                                        <?php $daysTime = $activity->remainingTime(); ?>
+                                            <tr>
+                                                <td>{{ $activity->semestre }}</td>
+                                                <td><a href="{{ route('doctorant.activity.show', $activity->id) }}">{{ $activity->title }}</a></td>
+                                                @if ($activity->status == "validée")
+                                                    <td>---</td>
+                                                @else
+                                                    <td>{{ $daysTime }}<br/>{{ $activity->calculateDeadline() }}</td>
+                                                @endif
+                                                <td>
+                                                    @if($activity->status == "en attente")<span class="badge bg-primary">{{$activity->status}}</span> @endif
+                                                    @if($activity->status == "validée")<span class="badge bg-success">{{$activity->status}}</span> @endif
+                                                    @if($activity->status == "non soumis")<span class="badge bg-secondary">{{$activity->status}}</span> @endif  
+                                                </td>
+                                                <td>
+                                                    @if ($activity->status == "validée" || $activity->status == "en attente")
+                                                    <a href="{{ route('doctorant.activity.show', $activity) }}" class="btn btn-secondary d-none d-md-inline-block text-white">Details
+                                                    </a>
+                                                    @else 
+                                                    <a href="{{ route('doctorant.activity_submit', $activity) }}" class="btn btn-info d-none d-md-inline-block text-white">Soumettre
+                                                    @endif
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endif
                                         @endforeach
                                     </tbody>
                                 </table>

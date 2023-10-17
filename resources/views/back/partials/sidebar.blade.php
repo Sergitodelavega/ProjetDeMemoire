@@ -7,8 +7,6 @@ if (auth()->check()) {
     // L'utilisateur est connecté, vous pouvez accéder à sa session
     $user = auth()->user(); // Récupérer l'objet User de l'utilisateur connecté
 }
-
-
 ?>
 
 <aside class="left-sidebar" data-sidebarbg="skin6">
@@ -19,8 +17,6 @@ if (auth()->check()) {
           <ul id="sidebarnav">
 
             @if($user->role === "admin")
-              <!-- User Profile-->
-
               <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                       href="{{ route('admin.formations') }}" aria-expanded="false">
                       <i class="mdi me-2 mdi-table"></i><span class="hide-menu">Formations</span></a>
@@ -60,10 +56,6 @@ if (auth()->check()) {
                 class="mdi me-2 mdi-book-open-variant"></i><span
                     class="hide-menu">Messages</span></a>
               </li>
-              {{-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                href="{{ route('encadreur.publications') }}" aria-expanded="false"><i
-                    class="mdi me-2 mdi-book-open-variant"></i><span class="hide-menu">Publications</span></a>
-              </li> --}}
             @endif
 
             @if($user->role === "doctorant")
@@ -93,6 +85,10 @@ if (auth()->check()) {
             </li>
             @endif
             
+            <li class="text-center p-20 upgrade-btn">
+              <a href="{{ route('index') }}"
+                  class="btn btn-info text-white mt-4">Accueil</a>
+          </li>
           
           </ul>
 
