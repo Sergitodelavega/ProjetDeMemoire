@@ -1,17 +1,8 @@
 @extends('back.appback')
 @section('title', 'ProfilDoctorant')
 @section('content')
-  <!-- ============================================================== -->
-  <!-- End Bread crumb and right sidebar toggle -->
-  <!-- ============================================================== -->
-   <!-- ============================================================== -->
-    <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
-            <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
+
+<div class="container-fluid">
                 <!-- Row -->
                 <div class="row">
                     <!-- Column -->
@@ -20,10 +11,10 @@
                             <div class="card-body profile-card">
                                 <center class=""> <img src="{{ asset('storage/'.$doctorant->user->photo) }}" class="rounded-circle" width="150" />
                                     <h4 class="card-title mt-2">{{ $doctorant->user->name }}</h4>
-                                    <h6 class="card-subtitle text-black">{{ $doctorant->user->email }}</h6>
-                                    <h5 class="card-subtitle text-black">{{ $doctorant->matricule }}</h5>
-                                    <h5 class="card-subtitle text-black">{{ $doctorant->year }}</h5>
-                                    <h5 class="card-subtitle text-black">{{ $doctorant->specialite }}</h5>
+                                    <h6 class="card-subtitle" style="color: black;">{{ $doctorant->user->email }}</h6>
+                                    <h5 class="card-subtitle" style="color: black;">{{ $doctorant->matricule }}</h5>
+                                    <h5 class="card-subtitle" style="color: black;">{{ $doctorant->year }}</h5>
+                                    <h5 class="card-subtitle" style="color: black;">{{ $doctorant->specialite }}</h5>
                                     {{-- <h5 class="card-subtitle text-black">{{ $doctorant->laboratoire }}</h5> --}}
                                     @if ($doctorant->encadreur)
                                     Encadreur
@@ -37,7 +28,7 @@
                                     </a>
                                     @else
                                     <p>Sujet de thèse</p>
-                                    <h5 class="card-subtitle text-black">{{ $doctorant->these->title }}</h5>
+                                    <h5 class="card-subtitle" style="color: black;">{{ $doctorant->these->title }}</h5>
                                     @endif
                                 </center>
                             </div>

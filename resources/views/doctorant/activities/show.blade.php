@@ -51,8 +51,6 @@
                                 <p>{{ $comments->comment }}</p>
                             </div>  
                         @endif
-                        
-                      
                 </div>
             </div>
         </div>

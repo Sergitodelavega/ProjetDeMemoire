@@ -7,7 +7,7 @@
         <h1>Offres de thèse</h1><br>
         <p>
         <!-- Lien pour créer un nouveau doctorant : "posts.create" -->
-        <a href="{{ route('offers.create') }}" title="Ajouter une offre"  class="btn btn-primary">Ajouter une offre</a>
+        <a href="{{ route('offers.create') }}" title="Ajouter une offre"  class="btn btn-info" style="color: white;">Ajouter une offre</a>
         </p>
     </div>
 
@@ -38,15 +38,14 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td><a href="{{ route('offers.show', $offer) }}">{{ $offer->name }}</a></td>
-                                            <td><a class="btn btn-info mx-auto mx-md-0 text-white" href="{{ route('offers.edit', $offer) }}">Modifier</a></td>
+                                            <td><a class="btn btn-warning mx-auto mx-md-0 text-white" href="{{ route('offers.edit', $offer) }}"><i class="mdi mdi-pencil"></i></a></td>
                                             <td>
-                                                <!-- Formulaire pour supprimer un Post : "posts.destroy" -->
                                                 <form method="POST" action="{{ route('offers.destroy', $offer) }}" >
                                                     <!-- CSRF token -->
                                                     @csrf
-                                                    <!-- <input type="hidden" name="_method" value="DELETE"> -->
+
                                                     @method("DELETE")
-                                                    <input  class="btn btn-danger mx-auto mx-md-0 text-white" type="submit" value="Supprimer" >
+                                                    <button class="btn btn-danger mx-auto mx-md-0 text-white" type="submit"><i class="mdi mdi-delete"></i></button>
                                                 </form>
                                             </td>
                                             

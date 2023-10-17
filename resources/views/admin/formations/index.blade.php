@@ -7,7 +7,7 @@
         <h1>Formations</h1><br>
         <p>
         <!-- Lien pour créer un nouveau doctorant : "posts.create" -->
-        <a href="{{ route('admin.create.formation') }}" title="Ajouter une formation"  class="btn btn-primary">Ajouter une formation</a>
+        <a href="{{ route('admin.create.formation') }}" title="Ajouter une formation"  class="btn btn-info" style="color: white;">Ajouter une formation</a>
         </p>
     </div>
 

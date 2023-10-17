@@ -4,8 +4,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 if (auth()->check()) {
-    // L'utilisateur est connecté, vous pouvez accéder à sa session
-    $user = auth()->user(); // Récupérer l'objet User de l'utilisateur connecté
+   $user = auth()->user(); 
 }
 ?>
 

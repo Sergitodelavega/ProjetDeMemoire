@@ -15,11 +15,12 @@ if (auth()->check()) {
       <!-- Sidebar navigation-->
       <nav class="sidebar-nav"><br>
           <ul id="sidebarnav">
-
             @if($user->role === "admin")
-              <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+              <li class="sidebar-item"> 
+                <a class="sidebar-link waves-effect waves-dark sidebar-link"
                       href="{{ route('admin.formations') }}" aria-expanded="false">
-                      <i class="mdi me-2 mdi-table"></i><span class="hide-menu">Formations</span></a>
+                      <i class="mdi me-2 mdi-table"></i><span class="hide-menu">Formations</span>
+                </a>
               </li>
               <li class="sidebar-item"> 
                 <a class="sidebar-link waves-effect waves-dark sidebar-link"

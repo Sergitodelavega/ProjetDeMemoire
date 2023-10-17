@@ -11,10 +11,10 @@
                     <center class="mt-4"> 
                         <img src="{{ asset('storage/'.$user->photo) }}" class="rounded-circle" width="150" />
                         <h4 class="card-title mt-2">{{ $user->name }}</h4>
-                        <h6 class="card-subtitle">{{ $user->email }}</h6>   
-                        <h5 class="card-subtitle">{{ $user->encadreur->matricule }}</h5>
-                        <h5 class="card-subtitle">{{ $user->encadreur->grade }}</h5>
-                        <h5 class="card-subtitle">{{ $user->encadreur->specialite }}</h5>
+                        <h6 class="card-subtitle" style="color: black;">{{ $user->email }}</h6>   
+                        <h5 class="card-subtitle" style="color: black;">{{ $user->encadreur->matricule }}</h5>
+                        <h5 class="card-subtitle" style="color: black;">{{ $user->encadreur->grade }}</h5>
+                        <h5 class="card-subtitle" style="color: black;">{{ $user->encadreur->specialite }}</h5>
                     </center>
                 </div>
             </div>

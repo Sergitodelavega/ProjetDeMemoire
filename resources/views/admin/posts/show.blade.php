@@ -12,7 +12,7 @@
 	<div><p>
         {{ $post->content }}</p></div>
 
-	<p><a class="btn btn-primary mx-auto mx-md-0 text-white" href="{{ route('posts.index') }}" title="Retourner aux articles" >Retourner aux posts</a></p>
+	<p><a class="btn btn-info mx-auto mx-md-0 text-white" href="{{ route('posts.index') }}" title="Retourner aux articles" >Retourner aux posts</a></p>
     </div>
 
 

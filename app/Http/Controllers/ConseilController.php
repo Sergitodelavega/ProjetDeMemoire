@@ -33,14 +33,16 @@ class ConseilController extends Controller
     public function showEcoles($id){
         $ecoles = Ecole::all();
         $ecole = Ecole::find($id);
+
         $doctorants = User::where('ecole_id', $id)
             ->where('role', 'doctorant')
             ->get();
+
         $encadreurs = User::where('ecole_id', $id)
             ->where('role', 'encadreur')
             ->get();
-        $laboratoires = Laboratoire::where('ecole_id', $id)->get();
 
+        $laboratoires = Laboratoire::where('ecole_id', $id)->get();
         $theses = These::where('ecole_id', $id)->get();
         
         return view('conseil.show', compact('ecoles', 'ecole', 'doctorants', 'encadreurs', 'laboratoires', 'theses'));

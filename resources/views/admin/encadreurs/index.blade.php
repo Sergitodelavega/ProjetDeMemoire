@@ -5,7 +5,7 @@
         <h1>Encadreurs</h1><br>
         <p>
         <!-- Lien pour créer un nouveau doctorant : "posts.create" -->
-        <a href="{{ route('admin.create.encadreur') }}" title="Créer un encadreur"  class="btn btn-primary">Créer un nouveau encadreur</a>
+        <a href="{{ route('admin.create.encadreur') }}" title="Créer un encadreur"  class="btn btn-info" style="color: white;">Créer un nouveau encadreur</a>
         </p>
     </div>
 

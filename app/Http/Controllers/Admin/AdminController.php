@@ -1,5 +1,4 @@
 <?php
-    
 namespace App\Http\Controllers\Admin;
 
 use session;
@@ -24,7 +23,6 @@ use Illuminate\Support\Facades\Mail;
 use Database\Factories\ActivityFactory;
 use Illuminate\Support\Facades\Storage;
 
-
 class AdminController extends Controller
 {
     public function indexTheses(){
@@ -42,7 +40,6 @@ class AdminController extends Controller
     }
 
     public function createThese($id){
-         
         $adminUser = Auth::user();
         if($adminUser->role == "admin")
         {
@@ -68,7 +65,7 @@ class AdminController extends Controller
     public function storeThese(Request $request, $id){
         $adminUser = Auth::user();
         if($adminUser->role == "admin"){
-            // Validation des données du formulaire
+        // Validation des données du formulaire
         $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
@@ -93,12 +90,11 @@ class AdminController extends Controller
             $these->encadreur()->associate($encadreurId);
         }
         $these->save();
-         // Ajoutez le message flash pour la création de la formation 
+     
          $request->session()->flash('success', 'Thèse définie avec succès !');
         return redirect()->route('admin.theses');
         }
     }
-
 
     public function formations(){
         $adminUser = Auth::user();
@@ -125,10 +121,9 @@ class AdminController extends Controller
             'image' => 'bail|required|image',
         ]);
 
-        // On upload l'image dans "/storage/app/public/posts"
+        // On upload l'image dans "/storage/app/public/formations"
         $chemin_image = $request->image->store("formations");
 
-        // On enregistre les informations du Formation
         $formation = new Formation([
             'title' => $request->title,
             'description' => $request->description,
@@ -143,7 +138,6 @@ class AdminController extends Controller
 
         // Ajoutez le message flash pour la création de la formation 
         $request->session()->flash('success', 'Formation créé avec succès !');
-
         return redirect()->route('admin.formations');
         }
 
@@ -151,10 +145,7 @@ class AdminController extends Controller
 
     public function deleteFormation($id){
         Formation::where('id', $id)->delete();
-
-        // Ajoutez le message flash pour la suppression de la formation 
         session()->flash('success', 'Formation supprimée avec succès !');
-
         return redirect()->route('admin.formations');
     }
 
@@ -226,11 +217,11 @@ class AdminController extends Controller
             return view('admin.doctorants.create', compact('encadreurs', 'laboratoires', 'years'));
         }
     }
+
     public function storeDoctorant(Request $request)
     {
         if (auth()->check()) {
-            // L'utilisateur est connecté, vous pouvez accéder à sa session
-            $userLoged = auth()->user(); // Récupérer l'objet User de l'utilisateur connecté
+            $userLoged = auth()->user();
             if($userLoged->role === "admin"){
                
             $request->validate([
@@ -244,7 +235,7 @@ class AdminController extends Controller
             'encadreur_id' => 'required|exists:encadreurs,id'
             ]);
 
-            // On upload l'image dans "/storage/app/public/posts"
+            // On upload l'image dans "/storage/app/public/users"
             $chemin_image = $request->photo->store("users");
             $ecole_id = $userLoged->ecole_id;
         
@@ -274,7 +265,7 @@ class AdminController extends Controller
             $doctorant->user()->associate($user);
             $doctorant->laboratoire = $laboratoire;
             $doctorant->year = $year->year;
-        // Assigner l'encadreur au doctorant s'il est spécifié
+            // Assigner l'encadreur au doctorant s'il est spécifié
             $encadreurId = $request->input('encadreur_id');
         
             if($encadreurId){
@@ -289,11 +280,9 @@ class AdminController extends Controller
             $activitySeeder->run();
 
             $link = asset(route('index'));
-
             Mail::to($doctorant->user->email)->send(new MessageDoctorant($doctorant, $link, $password));
     
             $request->session()->flash('success', 'Doctorant créé avec succès !');
-
             return redirect()->route('admin.doctorant');
             }
         }
@@ -369,7 +358,6 @@ class AdminController extends Controller
         $activitySeeder->run();
 
         $request->session()->flash('success', 'Doctorant mis à jour avec succès !');
-        
         return redirect(route("admin.doctorant.profil", $doctorant->id));
     }
 
@@ -392,7 +380,6 @@ class AdminController extends Controller
             'photo' => 'required|image',
         ]);
 
-        // On upload l'image dans "/storage/app/public/posts"
         $chemin_image = $request->photo->store("users");
         $ecole_id = $userLoged->ecole_id;
         
@@ -418,13 +405,10 @@ class AdminController extends Controller
         $encadreur->save();
 
         $link = asset(route('login'));
-
         Mail::to($encadreur->user->email)->send(new MessageEncadreur($encadreur, $link, $password));
 
-        // Ajoutez le message flash pour la création du compte encadreur
         $request->session()->flash('success', 'Encadreur créé avec succès !');
-
-            return redirect()->route('admin.encadreur');
+        return redirect()->route('admin.encadreur');
         }
     }
 

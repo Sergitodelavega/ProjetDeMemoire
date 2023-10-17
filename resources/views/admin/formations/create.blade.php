@@ -23,67 +23,40 @@
                         @csrf
                         <div class="form-group">
                             <label for="title" class="col-md-12 mb-0">Titre</label>
-                            <div class="col-md-12">
-                                <input type="text" name="title" id="title" value="{{ old('title') }}" placeholder=""
+                            <input type="text" name="title" id="title" value="{{ old('title') }}" placeholder=""
                                     class="form-control ps-0 form-control-line">
-                            </div>
-                            <!-- Le message d'erreur pour "name" -->
-                            @error("title")
-                            <div>{{ $message }}</div>
-                            @enderror
+                            <span class="alert-danger">@error("title"){{ $message }}@enderror</span>
                         </div>
 
                         <div class="form-group">
                             <label for="date_heure" class="col-md-12">Date et Heure</label>
-                            <div class="col-md-12">
-                                <input type="datetime-local" name="date_heure" id="date_heure" value="{{ old('date_heure') }}" placeholder=""
+                            <input type="datetime-local" name="date_heure" id="date_heure" value="{{ old('date_heure') }}" placeholder=""
                                     class="form-control ps-0 form-control-line">
-                                    
-                            </div>
-                            <!-- Le message d'erreur pour "name" -->
-                            @error("date_heure")
-                            <div>{{ $message }}</div>
-                            @enderror
+                            <span class="alert-danger">@error("date_heure"){{ $message }}@enderror</span>
                         </div>
 
                         <div class="form-group">
                             <label for="location" class="col-md-12">Lieu</label>
-                            <div class="col-md-12">
-                                <input type="text" name="location" id="location" value="{{ old('location') }}" placeholder=""
+                            <input type="text" name="location" id="location" value="{{ old('location') }}" placeholder=""
                                     class="form-control ps-0 form-control-line">
-                                    
-                            </div>
-                            <!-- Le message d'erreur pour "name" -->
-                            @error("location")
-                            <div>{{ $message }}</div>
-                            @enderror
+                            <span class="alert-danger">@error("location"){{ $message }}@enderror</span>
                         </div>
 
                         <div class="form-group">
                             <label for="description" class="col-md-12 mb-0">Description</label>
-                            <div class="col-md-12">
-                                <textarea name="description" id="description" value="{{ old('description') }}" required rows="8"
+                            <textarea name="description" id="description" value="{{ old('description') }}" required rows="8"
                                     class="form-control ps-0 form-control-line"></textarea>
-                            </div>
-                            <!-- Le message d'erreur pour "name" -->
-                            @error("description")
-                            <div>{{ $message }}</div>
-                            @enderror
+                            <span class="alert-danger">@error("description"){{ $message }}@enderror</span>
                         </div>
 
                         <div class="form-group">
                             <label for="image" class="col-md-12">Image</label>
-                            <div class="col-md-12">
-                                <input type="file" name="image"
-                                    class="form-control ps-0 form-control-line">
-                                    
-                            </div>
-                            <!-- Le message d'erreur pour "name" -->
-                            @error("image")
-                            <div>{{ $message }}</div>
-                            @enderror
+                            <input type="file" name="image"
+                                    class="form-control ps-0 form-control-line">    
+                            <span   span class="alert-danger">@error("image"){{ $message }}@enderror</span>
                         </div>
-                        <button type="submit" class="btn btn-primary mx-auto mx-md-0 text-white">Ajouter</button>
+                        
+                        <button type="submit" class="btn btn-info mx-auto mx-md-0 text-white">Ajouter</button>
                     </form>
                 </div>
             </div>

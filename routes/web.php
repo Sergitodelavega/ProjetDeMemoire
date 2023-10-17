@@ -12,7 +12,6 @@ use App\Http\Controllers\Admin\{
 };
 use App\Models\Doctorant;
 use App\Models\Encadreur;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 
 /*
@@ -85,7 +84,6 @@ Route::middleware('auth')->group(function() {
         Route::get('/profil', [EncadreurController::class, 'profilEncadreur'])->name('encadreur.profil');
         Route::get('/doctorant', [EncadreurController::class, 'indexDoctorant'])->name('encadreur.doctorant.index');
         Route::get('/doctorant/{id}', [EncadreurController::class, 'showDoctorant'])->name('encadreur.doctorant.show');
-        Route::get('/publications', [EncadreurController::class, 'publications'])->name('encadreur.publications');
         Route::get('/publish', [EncadreurController::class, 'publish'])->name('encadreur.publish');
         Route::get('/activity/{id}', [EncadreurController::class, 'showActivity'])->name('encadreur.show_activity');
         Route::post('/validate/activity/{id}/{doctorant}', [ActivityController::class, 'validate_activity'])->name('encadreur.validate_activity');

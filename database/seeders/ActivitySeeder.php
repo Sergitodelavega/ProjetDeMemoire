@@ -26,47 +26,47 @@ class ActivitySeeder extends Seeder
                 'status' => 'non soumis',
                 'comment' => null,
                 'semestre' => 'S1',
-        ]);
-        $activity->delai = 12;
-        $activity->doctorant_id = $this->doctorantId;
-        $activity->year_id = $this->year;
-        $activity->save();
+            ]);
+            $activity->delai = 12;
+            $activity->doctorant_id = $this->doctorantId;
+            $activity->year_id = $this->year;
+            $activity->save();
 
-        $activity = new Activity([
-            'title' => 'Préparation du plan de recherche initial',
-            'description' => 'Élaborer un plan de recherche initial avec des objectifs et une méthodologie',
-            'status' => 'non soumis',
-            'comment' => null,
-            'semestre' => 'S1',
-        ]);
-        $activity->delai = 30;
-        $activity->doctorant_id = $this->doctorantId;
-        $activity->year_id = $this->year;
-        $activity->save();
+            $activity = new Activity([
+                'title' => 'Préparation du plan de recherche initial',
+                'description' => 'Élaborer un plan de recherche initial avec des objectifs et une méthodologie',
+                'status' => 'non soumis',
+                'comment' => null,
+                'semestre' => 'S1',
+            ]);
+            $activity->delai = 30;
+            $activity->doctorant_id = $this->doctorantId;
+            $activity->year_id = $this->year;
+            $activity->save();
 
-        $activity = new Activity([
-            'title' => 'Inscription aux cours de formation',
-            'description' => 'S\'\inscrire aux cours de formation requis pour la thèse',
-            'status' => 'non soumis',
-            'comment' => null,
-            'semestre' => 'S2',
-        ]);
-        $activity->delai = 60;
-        $activity->doctorant_id = $this->doctorantId;
-        $activity->year_id = $this->year;
-        $activity->save();
+            $activity = new Activity([
+                'title' => 'Inscription aux cours de formation',
+                'description' => 'S\'\inscrire aux cours de formation requis pour la thèse',
+                'status' => 'non soumis',
+                'comment' => null,
+                'semestre' => 'S2',
+            ]);
+            $activity->delai = 60;
+            $activity->doctorant_id = $this->doctorantId;
+            $activity->year_id = $this->year;
+            $activity->save();
 
-        $activity = new Activity([
-            'title' => "Rapport annuel d'avancement (1re année)",
-            'description' => "Soumettre un rapport annuel d'avancement des travaux de recherche de la première année",
-            'status' => 'non soumis',
-            'comment' => null,
-            'semestre' => 'S2',
-        ]);
-        $activity->delai = 90;
-        $activity->doctorant_id = $this->doctorantId;
-        $activity->year_id = $this->year;
-        $activity->save();
+            $activity = new Activity([
+                'title' => "Rapport annuel d'avancement (1re année)",
+                'description' => "Soumettre un rapport annuel d'avancement des travaux de recherche de la première année",
+                'status' => 'non soumis',
+                'comment' => null,
+                'semestre' => 'S2',
+            ]);
+            $activity->delai = 90;
+            $activity->doctorant_id = $this->doctorantId;
+            $activity->year_id = $this->year;
+            $activity->save();
         } 
         elseif($this->year == 2){
             $activity = new Activity([

@@ -38,7 +38,6 @@
                                     <table class="table user-table">
                                         <thead>
                                             <tr scope="row">
-                                                <th class="border-top-0">#</th>
                                                 <th class="border-top-0">Semestre</th>
                                                 <th class="border-top-0">Titre</th>
                                                 <th class="border-top-0">Opération</th>
@@ -48,7 +47,6 @@
                                             @foreach ($activities as $activity)
                                             @if($activity->status == "en attente")    
                                             <tr>
-                                                <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $activity->semestre}}</td>
                                                 <td>{{ $activity->title }}</td>
                                                 <td>
@@ -104,7 +102,7 @@
 
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('encadreur.show_activity', $activity) }}" class="btn btn-info d-none d-md-inline-block text-white">Voir plus
+                                                    <a href="{{ route('encadreur.show_activity', $activity) }}" class="btn btn-secondary d-none d-md-inline-block text-white">Details
                                                     </a>
                                                 </td>
                                             </tr>

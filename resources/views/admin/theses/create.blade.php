@@ -85,7 +85,7 @@
                             <div>{{ $message }}</div>
                             @enderror
                         </div> --}}
-                        <button type="submit" class="btn btn-primary mx-auto mx-md-0 text-white">Ajouter</button>
+                        <button type="submit" class="btn btn-info mx-auto mx-md-0 text-white">Ajouter</button>
                     </form>
                 </div>
             </div>

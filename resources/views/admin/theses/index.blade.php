@@ -38,9 +38,9 @@
                                             <td><a href="{{ route('admin.theses.show', $these->id) }}">{{ $these->title }}</a></td>
                                             <td>{{ $these->doctorant->user->name }}</td>
                                             <td>
-                                                @if($these->status == "open")<span class="badge bg-secondary">{{$these->status}}</span> @endif
-                                                @if($these->status == "terminée")<span class="badge bg-success">{{$these->status}}</span> @endif
-                                                @if($these->status == "en cours")<span class="badge bg-primary">{{$these->status}}</span> @endif  
+                                                @if($these->status == "inscrit")<span class="badge bg-secondary"><i class="mdi mdi-checkbox-blank-circle-outline"></i></span> @endif
+                                                @if($these->status == "terminée")<span class="badge bg-success"><i class="mdi mdi-check-circle"></i></span> @endif
+                                                @if($these->status == "en cours")<span class="badge bg-primary"><i class="mdi mdi-clock"></i></span> @endif  
                                             <td>
                                                 <a href="{{ route('admin.theses.edit', $these) }}" class="btn btn-warning d-none d-md-inline-block text-white"><i class="mdi mdi-pencil"></i>
                                                 </a>

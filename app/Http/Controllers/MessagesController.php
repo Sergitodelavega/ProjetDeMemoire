@@ -10,8 +10,7 @@ class MessagesController extends Controller
 {
     public function index(){
         if (auth()->check()) {
-            // L'utilisateur est connecté, vous pouvez accéder à sa session
-            $user = auth()->user(); // Récupérer l'objet User de l'utilisateur connecté
+            $user = auth()->user();
             if($user->role === "doctorant"){
                 $id = $user->id;
                 $doctorant = Doctorant::where('user_id', $id)->first();
@@ -35,8 +34,7 @@ class MessagesController extends Controller
 
     public function show($ids){
         if (auth()->check()) {
-            // L'utilisateur est connecté, vous pouvez accéder à sa session
-            $user = auth()->user(); // Récupérer l'objet User de l'utilisateur connecté
+            $user = auth()->user(); 
             if($user->role === "doctorant"){
                 $id = $user->id;
                 $doctorant = Doctorant::where('user_id', $id)->first();

@@ -11,7 +11,8 @@ class Activity extends Model
 {
     use HasFactory;
     public const STATUS = ['non soumis', 'en attente', 'validée', 'rejetée'];
-    protected $fillable = [
+    protected $fillable = 
+    [
         'title', 'description', 'status', 'doctorant_id,', 'semestre', 'deadline', 'delai', 
     ];
 
@@ -68,7 +69,6 @@ class Activity extends Model
         }
         return null;
     }
-
 
 }
 

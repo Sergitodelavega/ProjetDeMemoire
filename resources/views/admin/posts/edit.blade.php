@@ -70,7 +70,7 @@
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-primary mx-auto mx-md-0 text-white">Valider</button>
+                        <button type="submit" class="btn btn-info mx-auto mx-md-0 text-white">Valider</button>
                     </form>
                 </div>
             </div>

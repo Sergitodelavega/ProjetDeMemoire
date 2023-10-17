@@ -9,6 +9,7 @@
         </div>
     </div>
 </div>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-8 col-xlg-9 col-md-7">

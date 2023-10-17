@@ -7,7 +7,7 @@
         <h1>Publications</h1><br>
         <p>
         <!-- Lien pour créer un nouveau doctorant : "posts.create" -->
-        <a href="{{ route('posts.create') }}" title="Ajouter un post"  class="btn btn-primary">Ajouter une publication</a>
+        <a href="{{ route('posts.create') }}" title="Ajouter un post"  class="btn btn-info" style="color: white;">Ajouter une publication</a>
         </p>
     </div>
 
@@ -38,7 +38,7 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td><a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a></td>
-                                            <td><a class="btn btn-info mx-auto mx-md-0 text-white" href="{{ route('posts.edit', $post) }}">Modifier</a></td>
+                                            <td><a class="btn btn-warning mx-auto mx-md-0 text-white" href="{{ route('posts.edit', $post) }}"><i class="mdi mdi-pencil"></i></a></td>
                                             <td>
                                                 <!-- Formulaire pour supprimer un Post : "posts.destroy" -->
                                                 <form method="POST" action="{{ route('posts.destroy', $post) }}" >
@@ -46,7 +46,7 @@
                                                     @csrf
                                                     <!-- <input type="hidden" name="_method" value="DELETE"> -->
                                                     @method("DELETE")
-                                                    <input  class="btn btn-danger mx-auto mx-md-0 text-white" type="submit" value="Supprimer" >
+                                                    <button  class="btn btn-danger mx-auto mx-md-0 text-white" type="submit"><i class="mdi mdi-delete"></i></button>
                                                 </form>
                                             </td>
                                             

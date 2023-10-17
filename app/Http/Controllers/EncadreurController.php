@@ -9,11 +9,6 @@ use Illuminate\Http\Request;
 
 class EncadreurController extends Controller
 {
-
-    public function index(){
-        return view('back.home.index');
-    }
-
     public function home(){
         return view('encadreur.index');
     }
@@ -24,8 +19,7 @@ class EncadreurController extends Controller
 
     public function indexDoctorant(){
         if (auth()->check()) {
-            // L'utilisateur est connecté, vous pouvez accéder à sa session
-            $user = auth()->user(); // Récupérer l'objet User de l'utilisateur connecté
+            $user = auth()->user();
             if($user->role === "encadreur"){
                 $id = $user->id;
                 $encadreur = Encadreur::where('user_id', $id)->first();
@@ -44,11 +38,9 @@ class EncadreurController extends Controller
 
     public function publications(){
         return view('encadreur.publications');
-        // abort('404', message:"User not found");
     }
 
     public function showActivity($id){
-        
         $activity = Activity::find($id);
         $doctorant = $activity->doctorant;
         return view('encadreur.show_activity', compact('activity', 'doctorant'));

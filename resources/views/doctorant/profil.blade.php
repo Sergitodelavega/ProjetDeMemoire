@@ -40,21 +40,22 @@ if (auth()->check()) {
                             @method('put')
                             <div class="form-group">
                                 <label class="col-md-12 mb-0">Ancien mot de passe</label>
-                                <input type="password" class="form-control ps-0 form-control-line" name="old" required>
+                                <input type="password" class="form-control ps-0 form-control-line" name="old" required value="{{ old('old') }}">
                                 <span class="text-danger">@error('old'){{$message}}@enderror</span>       
                             </div>
                             <div class="form-group">
                                 <label class="col-md-12 mb-0">Nouveau mot de passe</label>
-                                <input type="password" class="form-control ps-0 form-control-line" name="password" required>
+                                <input type="password" class="form-control ps-0 form-control-line" name="password" required value="{{ old('password')}}" >
                                 <span class="text-danger">@error('password'){{$message}}@enderror</span>       
                             </div>
+
                             <div class="form-group">
                                 <label class="col-md-12 mb-0">Confirmer mot de passe</label>
-                                <input type="password" class="form-control ps-0 form-control-line" name="confirm" required>
+                                <input type="password" class="form-control ps-0 form-control-line" name="confirm" required value="{{ old('confirm')}}" >
                                 <span class="text-danger">@error('confirm'){{$message}}@enderror</span>       
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-success mx-auto mx-md-0 text-white">Changer mot de passe</button>
+                                <button class="btn btn-info  mx-auto mx-md-0 text-white">Changer mot de passe</button>
                             </div>
                         </form>
                     </div>

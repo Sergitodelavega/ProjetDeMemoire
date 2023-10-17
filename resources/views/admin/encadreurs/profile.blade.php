@@ -3,9 +3,6 @@
 @section('content')
   
 <div class="container-fluid"> 
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
                 <!-- Row -->
                 <div class="row">
                     <!-- Column -->
@@ -14,9 +11,9 @@
                             <div class="card-body profile-card">
                                 <center class="mt-4"> <img src="{{ asset('storage/'.$encadreur->user->photo) }}" class="rounded-circle" width="150" />
                                     <h4 class="card-title mt-2">{{ $encadreur->user->name }}</h4>
-                                    <h6 class="card-subtitle text-black">{{ $encadreur->user->email }}</h6>
-                                    <h5 class="card-subtitle text-black">{{ $encadreur->specialite }}</h5>
-                                    <h5 class="card-subtitle text-black">{{ $encadreur->grade }}</h5>
+                                    <h6 class="card-subtitle" style="color: black;">{{ $encadreur->user->email }}</h6>
+                                    <h5 class="card-subtitle" style="color: black;">{{ $encadreur->specialite }}</h5>
+                                    <h5 class="card-subtitle" style="color: black;">{{ $encadreur->grade }}</h5>
                                 </center>
                             </div>
                         </div>

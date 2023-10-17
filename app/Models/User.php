@@ -55,7 +55,6 @@ class User extends Authenticatable
         return $this->hasOne(Encadreur::class, 'user_id');
     }
 
-
     public function getRole()
     {
         return $this->attributes['role'];
