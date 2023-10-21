@@ -11,9 +11,7 @@ if (auth()->check()) {
 <header class="topbar" data-navbarbg="skin6">
   <nav class="navbar top-navbar navbar-expand-md navbar-dark">
       <div class="navbar-header" data-logobg="skin6">
-          <!-- ============================================================== -->
           <!-- Logo -->
-          <!-- ============================================================== -->
           <a class="navbar-brand ms-4" href="{{ route('index') }}">
               <!-- Logo icon -->
               <b class="logo-icon">
@@ -92,18 +90,18 @@ if (auth()->check()) {
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     @if ($user->role === "conseil")
-                    <li class="dropdown-item"><a href="{{ route('conseil.profil') }}"><i style="margin-right: 5px;" class="mdi mdi-account"></i> Profil</a></li>
+                      <li class="dropdown-item"><a href="{{ route('conseil.profil') }}"><i style="margin-right: 5px;" class="mdi mdi-account"></i> Profil</a></li>
                     @endif
                     @if ($user->role === "admin")
-                    <li class="dropdown-item"><a href="{{ route('admin.profil') }}"><i style="margin-right: 5px;"  class="mdi mdi-account"></i>Profil</a></li>
+                      <li class="dropdown-item"><a href="{{ route('admin.profil') }}"><i style="margin-right: 5px;"  class="mdi mdi-account"></i>Profil</a></li>
                     @endif
                     @if ($user->role === "encadreur")
-                    <li class="dropdown-item"><a href="{{ route('encadreur.profil') }}"><i style="margin-right: 5px;" class="mdi mdi-account"></i>Profil</a></li>
+                      <li class="dropdown-item"><a href="{{ route('encadreur.profil') }}"><i style="margin-right: 5px;" class="mdi mdi-account"></i>Profil</a></li>
                     @endif
                     @if ($user->role === "doctorant")
-                    <li class="dropdown-item"><a href="{{ route('doctorant.profil') }}"><i style="margin-right: 5px;" class="mdi mdi-account"></i>Profil</a></li>
+                      <li class="dropdown-item"><a href="{{ route('doctorant.profil') }}"><i style="margin-right: 5px;" class="mdi mdi-account"></i>Profil</a></li>
                     @endif
-                    <li class="dropdown-item">
+                      <li class="dropdown-item">
                       @auth
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf

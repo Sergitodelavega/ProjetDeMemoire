@@ -20,26 +20,27 @@
             <div class="card">
                 <div class="card-header"><h3>{{ $activity->title }}</h3></div>
                 <div class="card-body">
+                    <?php $days = $activity->remainingTime(); ?>
                         <div class="form-group">
-                            <label for="title" class="col-md-12 mb-0">Description : </label>
-                            <p>{{ $activity->description }}</p>
+                            <label for="title" class="col-md-12 mb-0 lead">Description : {{ $activity->description }} </label>
+                            
                         </div>
                         <div class="form-group">
-                            <label for="title" class="col-md-12 mb-0">Semestre : </label>
-                            <p>{{ $activity->semestre }}</p>
+                            <label for="title" class="col-md-12 mb-0 lead">Semestre : {{ $activity->semestre }}</label>
+                            
                         </div>
                         <div class="form-group">
-                            <label for="title" class="col-md-12 mb-0">Deadline : </label>
-                            <p>{{ $activity->deadline }}</p>
+                            <label for="title" class="col-md-12 mb-0 lead">Deadline : {{ $days }}  -  {{ $activity->calculateDeadline() }}</label>
+                            
                         </div>
                         <div class="form-group">
-                            <label for="title" class="col-md-12 mb-0">Commentaire : </label>
-                            <p>{{ $activity->comment }}</p>
+                            <label for="title" class="col-md-12 mb-0 lead">Commentaire : </label>
+                            <p class="lead">{{ $activity->comment }}</p>
                         </div>
                         <form method="POST" action="{{ route('encadreur.validate_activity', [$activity->id, $doctorant->id] ) }}" class="form-horizontal form-material mx-2" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="comment" class="col-md-12 mb-0">Mon Commentaire</label>
+                                <label for="comment" class="col-md-12 mb-0 lead">Mon Commentaire</label>
                                 <div class="col-md-12">
                                     <textarea name="comment" id="comment" required rows="4"
                                         class="form-control ps-0 form-control-line" placeholder="Votre commentaire"></textarea>

@@ -31,14 +31,12 @@
                         </div>
                         @if ($activity->status == "validée")
                             <div class="form-group">
-                                <label for="title" class="col-md-12 mb-0">Deadline : </label>
-                                <p>---</p>
+                                <label for="title" class="col-md-12 mb-0 lead">Deadline : --- </label>
                             </div>
                         @else
                         <div class="form-group">
                             <label for="title" class="col-md-12 mb-0 lead">Date limite : {{ $daysTime}} - {{ $activity->calculateDeadline() }}
                             </label>
-                            
                         </div>
                         @endif
                         <div class="form-group">
@@ -47,10 +45,12 @@
                         </div>
                         @if ($activity->status == "validée")
                             <div class="form-group">
-                                <label for="title" class="col-md-12 mb-0">Commentaire de l'encadreur: </label>
-                                <p>{{ $comments->comment }}</p>
+                                <label for="title" class="col-md-12 mb-0 lead">Commentaire de l'encadreur: </label>
+                                <p class="lead">{{ $comments->comment }}</p>
                             </div>  
                         @endif
+
+                        <div id="fileList"></div>
                 </div>
             </div>
         </div>

@@ -21,7 +21,7 @@
                             <div class="card-body profile-card">
                                 <center class=""> <img src="{{ asset('storage/'.$doctorant->user->photo) }}"
                                         class="rounded-circle" width="150" />
-                                    <h4 class="card-title mt-2">{{ $doctorant->user->name }}</h4>
+                                    <h4 class="card-title mt-2"><a class="card-title mt-2" href="{{ route('doctorant.histo', $doctorant->id) }}">{{ $doctorant->user->name }}</a></h4>
                                     <h6 class="card-subtitle text-dark">{{ $doctorant->user->email }}</h6>
                                     <h5 class="card-subtitle text-dark">{{ $doctorant->laboratoire }}</h5>
                                 </center>
@@ -45,16 +45,40 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($activities as $activity)
-                                            @if($activity->status == "en attente")    
-                                            <tr>
-                                                <td>{{ $activity->semestre}}</td>
-                                                <td>{{ $activity->title }}</td>
-                                                <td>
-                                                    <a href="{{ route('encadreur.show_activity', $activity) }}" class="btn btn-info d-none d-md-inline-block text-white">Voir plus
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            @endif
+                                                @if ($doctorant->year == "1re année" && $activity->year_id == 1)
+                                                    @if($activity->status == "en attente")    
+                                                        <tr>
+                                                            <td>{{ $activity->semestre}}</td>
+                                                            <td>{{ $activity->title }}</td>
+                                                            <td>
+                                                                <a href="{{ route('encadreur.show_activity', $activity) }}" class="btn btn-info d-none d-md-inline-block text-white">Voir plus
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    @endif   
+                                                @elseif ($doctorant->year == "2e année" && $activity->year_id == 2)
+                                                    @if($activity->status == "en attente")    
+                                                        <tr>
+                                                            <td>{{ $activity->semestre}}</td>
+                                                            <td>{{ $activity->title }}</td>
+                                                            <td>
+                                                                <a href="{{ route('encadreur.show_activity', $activity) }}" class="btn btn-info d-none d-md-inline-block text-white">Voir plus
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    @endif   
+                                                @elseif ($doctorant->year == "3e année" && $activity->year_id == 3)
+                                                    @if($activity->status == "en attente")    
+                                                        <tr>
+                                                            <td>{{ $activity->semestre}}</td>
+                                                            <td>{{ $activity->title }}</td>
+                                                            <td>
+                                                                <a href="{{ route('encadreur.show_activity', $activity) }}" class="btn btn-info d-none d-md-inline-block text-white">Voir plus
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    @endif   
+                                                @endif
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -74,39 +98,92 @@
                                     <table class="table user-table">
                                         <thead>
                                             <tr scope="row">
-                                                <th class="border-top-0">#</th>
+                                                {{-- <th class="border-top-0">#</th> --}}
                                                 <th class="border-top-0">Semestre</th>
                                                 <th class="border-top-0">Titre</th>
                                                 <th class="border-top-0">Date limite</th>
                                                 <th class="border-top-0">Status</th>
-                                                <th class="border-top-0">Opération</th>
+                                                {{-- <th class="border-top-0">Opération</th> --}}
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($activities as $activity)  
-                                            @if($activity->status !== "en attente")    
-                                            <?php $days = $activity->remainingTime(); ?>
-                                            <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $activity->semestre}}</td>
-                                                <td>{{ $activity->title }}</td>
-                                                @if ($activity->status == "validée")
-                                                    <td>---</td>
-                                                @else
-                                                    <td>{{ $days }}<br/>{{ $activity->deadline }}</td>
-                                                @endif
-                                                <td>
-                                                    @if($activity->status == "en attente")<span class="badge bg-primary"><i class="mdi mdi-clock"></i></span> @endif
-                                                    @if($activity->status == "validée")<span class="badge bg-success"><i class="mdi mdi-check-circle"></i></span> @endif 
-                                                    @if($activity->status == "non soumis")<span class="badge bg-secondary"><i class="mdi mdi-checkbox-blank-circle-outline"></i></span> @endif 
+                                            @foreach ($activities as $activity)
+                                                @if ($doctorant->year == "1re année" && $activity->year_id == 1)
+                                                    @if($activity->status !== "en attente")    
+                                                        <?php $days = $activity->remainingTime(); ?>
+                                                        <tr>
+                                                            <td>{{ $loop->iteration }}</td>
+                                                            <td>{{ $activity->semestre}}</td>
+                                                            <td>{{ $activity->title }}</td>
+                                                            @if ($activity->status == "validée")
+                                                                <td>---</td>
+                                                            @else
+                                                                <td>{{ $days }}<br/>{{ $activity->deadline }}</td>
+                                                            @endif
+                                                            <td>
+                                                                @if($activity->status == "en attente")<span class="badge bg-primary"><i class="mdi mdi-clock"></i></span> @endif
+                                                                @if($activity->status == "validée")<span class="badge bg-success"><i class="mdi mdi-check-circle"></i></span> @endif 
+                                                                @if($activity->status == "non soumis")<span class="badge bg-secondary"><i class="mdi mdi-checkbox-blank-circle-outline"></i></span> @endif 
 
-                                                </td>
-                                                <td>
-                                                    <a href="{{ route('encadreur.show_activity', $activity) }}" class="btn btn-secondary d-none d-md-inline-block text-white">Details
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            @endif
+                                                            </td>
+                                                            <td>
+                                                                <a href="{{ route('encadreur.show_activity', $activity) }}" class="btn btn-secondary d-none d-md-inline-block text-white">Details
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    @endif
+
+                                                @elseif ($doctorant->year == "2e année" && $activity->year_id == 2)
+                                                    @if($activity->status !== "en attente")    
+                                                        <?php $days = $activity->remainingTime(); ?>
+                                                        <tr>
+                                                            {{-- <td>{{ $loop->iteration }}</td> --}}
+                                                            <td>{{ $activity->semestre}}</td>
+                                                            <td>{{ $activity->title }}</td>
+                                                            @if ($activity->status == "validée")
+                                                                <td>---</td>
+                                                            @else
+                                                                <td>{{ $days }}<br/>{{ $activity->deadline }}</td>
+                                                            @endif
+                                                            <td>
+                                                                @if($activity->status == "en attente")<span class="badge bg-primary"><i class="mdi mdi-clock"></i></span> @endif
+                                                                @if($activity->status == "validée")<span class="badge bg-success"><i class="mdi mdi-check-circle"></i></span> @endif 
+                                                                @if($activity->status == "non soumis")<span class="badge bg-secondary"><i class="mdi mdi-checkbox-blank-circle-outline"></i></span> @endif 
+
+                                                            </td>
+                                                            <td>
+                                                                <a href="{{ route('encadreur.show_activity', $activity) }}" class="btn btn-secondary d-none d-md-inline-block text-white">Details
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    @endif
+
+                                                @elseif ($doctorant->year == "3e année" && $activity->year_id == 3)
+                                                    @if($activity->status !== "en attente")    
+                                                        <?php $days = $activity->remainingTime(); ?>
+                                                        <tr>
+                                                            <td>{{ $activity->semestre}}</td>
+                                                            <td>{{ $activity->title }}</td>
+                                                            @if ($activity->status == "validée")
+                                                                <td>---</td>
+                                                            @else
+                                                                <td>{{ $days }}<br/>{{ $activity->deadline }}</td>
+                                                            @endif
+                                                            <td>
+                                                                @if($activity->status == "en attente")<span class="badge bg-primary"><i class="mdi mdi-clock"></i></span> @endif
+                                                                @if($activity->status == "validée")<span class="badge bg-success"><i class="mdi mdi-check-circle"></i></span> @endif 
+                                                                @if($activity->status == "non soumis")<span class="badge bg-secondary"><i class="mdi mdi-checkbox-blank-circle-outline"></i></span> @endif 
+
+                                                            </td>
+                                                            <td>
+                                                                <a href="{{ route('encadreur.show_activity', $activity) }}" class="btn btn-secondary d-none d-md-inline-block text-white">Details
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    @endif
+                                                @else
+
+                                                @endif
                                             @endforeach
                                         </tbody>
                                     </table>

@@ -75,6 +75,18 @@ class ActivityController extends Controller
         return view('doctorant.activities.index', compact('activities', 'doctorant'));
     }
 
+    public function historiques(){
+        if (auth()->check()) {
+            $user = auth()->user();
+            if($user->role === "doctorant"){
+                $id = $user->id;
+                $doctorant = Doctorant::where('user_id', $id)->first();
+                $activities = $doctorant->activities;
+            }
+        }
+        return view('doctorant.activities.historiques', compact('activities', 'doctorant'));
+    }
+
     public function validate_activity(Request $request, $id, $doctorant){
         $doctorant = Doctorant::find($doctorant);
 
@@ -92,6 +104,13 @@ class ActivityController extends Controller
         $activity->save();
 
         return redirect()->route('encadreur.doctorant.show', $doctorant->id)->with('success',"Activité validée avec succès!");
+    }
+
+    public function histo($doctorant){
+        $doctorant = Doctorant::find($doctorant);
+        $activities = $doctorant->activities;
+
+        return view('back.historiques', compact('doctorant', 'activities'));
     }
 
     public function reject_activity(Request $request, $id){

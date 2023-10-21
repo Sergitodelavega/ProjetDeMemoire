@@ -25,24 +25,24 @@
                                     <th class="border-top-0">Email</th>
                                     <th class="border-top-0">Année</th>
                                     <th class="border-top-0">Spécialité</th>
-                                    <th class="border-top-0">Opérations</th>
+                                    {{-- <th class="border-top-0">Opérations</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($doctorants as $doctorant)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $doctorant->user->name }}</td>
+                                            <td><a href="{{ route('encadreur.doctorant.show', $doctorant->id) }}">{{ $doctorant->user->name }}</a></td>
                                             <td>{{ $doctorant->user->email }}</td>
                                             <td>{{ $doctorant->year }}</td>
                                             <td>
                                               {{ $doctorant->specialite }}
                                             </td>
                                             
-                                            <td>
+                                            {{-- <td>
                                                 <a href="{{ route('encadreur.doctorant.show', $doctorant->id) }}" class="btn btn-info d-none d-md-inline-block text-white">Voir profil
                                                 </a>
-                                            </td>
+                                            </td> --}}
                                         </tr>
                                         @endforeach
                             </tbody>

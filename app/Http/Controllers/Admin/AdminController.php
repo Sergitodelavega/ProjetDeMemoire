@@ -25,6 +25,12 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
+    public function parcours($doctorant){
+        $doctorant = Doctorant::find($doctorant);
+        $activities = $doctorant->activities;
+
+        return view('admin.theses.historiques', compact('doctorant', 'activities'));
+    }
     public function indexTheses(){
         $adminUser = Auth::user();
         if($adminUser->role == "admin")

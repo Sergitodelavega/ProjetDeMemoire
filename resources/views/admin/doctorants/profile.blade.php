@@ -10,7 +10,7 @@
                         <div class="card">
                             <div class="card-body profile-card">
                                 <center class=""> <img src="{{ asset('storage/'.$doctorant->user->photo) }}" class="rounded-circle" width="150" />
-                                    <h4 class="card-title mt-2">{{ $doctorant->user->name }}</h4>
+                                    <h4 class="card-title mt-2"><a class="card-title mt-2" href="{{ route('doctorant.histo', $doctorant->id) }}">{{ $doctorant->user->name }}</a></h4>
                                     <h6 class="card-subtitle" style="color: black;">{{ $doctorant->user->email }}</h6>
                                     <h5 class="card-subtitle" style="color: black;">{{ $doctorant->matricule }}</h5>
                                     <h5 class="card-subtitle" style="color: black;">{{ $doctorant->year }}</h5>
@@ -78,9 +78,9 @@
                                                         <td>{{ $daysTime }}<br/>{{ $activity->calculateDeadline() }}</td>
                                                     @endif
                                                     <td>
-                                                        @if($activity->status == "en attente")<span class="badge bg-primary">{{$activity->status}}</span> @endif
-                                                        @if($activity->status == "validée")<span class="badge bg-success">{{$activity->status}}</span> @endif
-                                                        @if($activity->status == "non soumis")<span class="badge bg-secondary">{{$activity->status}}</span> @endif  
+                                                        @if($activity->status == "en attente")<span class="badge bg-primary"><i class="mdi mdi-clock"></i></span> @endif
+                                                        @if($activity->status == "validée")<span class="badge bg-success"><i class="mdi mdi-check-circle"></i></span> @endif
+                                                        @if($activity->status == "non soumis")<span class="badge bg-secondary"><i class="mdi mdi-checkbox-blank-circle-outline"></i></span> @endif  
                                                     </td>
                                                 </tr>
                                                 @elseif($doctorant->year =="3e année" && $activity->year_id == 3)
@@ -94,9 +94,9 @@
                                                         <td>{{ $daysTime }}<br/>{{ $activity->calculateDeadline() }}</td>
                                                     @endif
                                                     <td>
-                                                        @if($activity->status == "en attente")<span class="badge bg-primary">{{$activity->status}}</span> @endif
-                                                        @if($activity->status == "validée")<span class="badge bg-success">{{$activity->status}}</span> @endif
-                                                        @if($activity->status == "non soumis")<span class="badge bg-secondary">{{$activity->status}}</span> @endif  
+                                                        @if($activity->status == "en attente")<span class="badge bg-primary"><i class="mdi mdi-clock"></i></span> @endif
+                                                        @if($activity->status == "validée")<span class="badge bg-success"><i class="mdi mdi-check-circle"></i></span> @endif
+                                                        @if($activity->status == "non soumis")<span class="badge bg-secondary"><i class="mdi mdi-checkbox-blank-circle-outline"></i></span> @endif  
                                                     </td>
                                                 </tr>
                                                 @endif

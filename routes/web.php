@@ -71,6 +71,7 @@ Route::middleware('auth')->group(function() {
         Route::get('/theses/{id}/edit', [AdminController::class, 'editThese'])->name('admin.theses.edit');
         Route::put('/theses/{id}', [AdminController::class, 'updateThese'])->name('admin.theses.update');
         Route::delete('/theses/{id}', [AdminController::class, 'destroyThese'])->name('admin.theses.delete');
+        Route::get('theses/parcours/{id}', [AdminController::class, 'parcours'])->name('admin.theses.parcours');
 
         //Gestion des posts
         Route::resource("posts", PostController::class);
@@ -98,6 +99,8 @@ Route::middleware('auth')->group(function() {
         Route::get('/profil', [DoctorantController::class, 'profilDoctorant'])->name('doctorant.profil');
         Route::get('/formation', [DoctorantController::class, 'formation'])->name('doctorant.formation');
         Route::get('activities', [ActivityController::class, 'index'])->name('doctorant.activity.index');
+        Route::get('historiques', [ActivityController::class, 'historiques'])->name('doctorant.his');
+        Route::get('historiques/{id}', [ActivityController::class, 'histo'])->name('doctorant.histo');
         Route::get('activity/{id}', [ActivityController::class, 'show'])->name('doctorant.activity.show');
         Route::post('activity/store', [ActivityController::class, 'store'])->name('doctorant.activity.store');
         Route::get('encadreur/{id}', [DoctorantController::class, 'showEncadreur'])->name('doctorant.encadreur');

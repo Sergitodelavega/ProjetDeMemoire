@@ -36,7 +36,7 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td><a href="{{ route('admin.theses.show', $these->id) }}">{{ $these->title }}</a></td>
-                                            <td>{{ $these->doctorant->user->name }}</td>
+                                            <td><a href="{{ route('admin.theses.parcours', $these->doctorant->id) }}">{{ $these->doctorant->user->name }}</a></td>
                                             <td>
                                                 @if($these->status == "inscrit")<span class="badge bg-secondary"><i class="mdi mdi-checkbox-blank-circle-outline"></i></span> @endif
                                                 @if($these->status == "terminée")<span class="badge bg-success"><i class="mdi mdi-check-circle"></i></span> @endif
