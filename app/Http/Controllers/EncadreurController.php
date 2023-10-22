@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Activity;
 use App\Models\Doctorant;
 use App\Models\Encadreur;
@@ -43,6 +44,7 @@ class EncadreurController extends Controller
     public function showActivity($id){
         $activity = Activity::find($id);
         $doctorant = $activity->doctorant;
-        return view('encadreur.show_activity', compact('activity', 'doctorant'));
+        $comments = Comment::where('activity_id', $id)->first();
+        return view('encadreur.show_activity', compact('activity', 'doctorant','comments'));
     }
 }

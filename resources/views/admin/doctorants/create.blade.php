@@ -94,7 +94,11 @@
                                 </select>    
                             <span class="alert-danger">@error("encadreur_id"){{ $message }}@enderror</span>
                         </div>
-                        <button type="submit" class="btn btn-info mx-auto mx-md-0 text-white">Créer le compte</button>
+                        @if (isset($doctorant))
+                            <button type="submit" class="btn btn-info mx-auto mx-md-0 text-white">Mettre à jour</button>
+                        @else
+                            <button type="submit" class="btn btn-info mx-auto mx-md-0 text-white">Créer le compte</button>
+                        @endif
                     </form>
                 </div>
             </div>

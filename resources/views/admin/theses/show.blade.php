@@ -25,6 +25,16 @@
                             <p class="card-title"><span class="badge bg-secondary">{{ $these->status }}</span></p>
                         </div>
                     </div>
+                    <div class="card">
+                        <div class="card-header h4">Fichiers</div>
+                        <div class="card-body">
+                        @foreach ($these->doctorant->activities as $activity)
+                            @foreach ($activity->fichiers as $file)
+                                <p class="lead">{{ $activity->semestre }} - {{ $file->link }}</p>
+                            @endforeach
+                        @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

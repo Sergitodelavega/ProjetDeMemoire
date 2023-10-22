@@ -418,12 +418,50 @@ class AdminController extends Controller
         }
     }
 
-    public function editEncadreur(Encadreur $encadreur){
+    public function editEncadreur($id){
+        $adminUser = Auth::user();
+        if($adminUser->role == "admin"){
+            $encadreur = Encadreur::find($id);
+        }
         return view('admin.encadreurs.create', compact('encadreur'));
     }
 
-    public function updateEncadreur(Request $request, Encadreur $encadreur){
+    public function updateEncadreur(Request $request, $id){
+        $encadreur = Encadreur::find($id);
+        $user = $encadreur->user;
+        $rules = [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|string',
+            'matricule' => 'required|string',
+            'specialite' => 'required|string',
+            'grade' => 'required|string',
+        ];
 
+        if ($request->has("photo")) {
+            $rules["photo"] = 'bail|required|image';
+        }
+        $this->validate($request, $rules);
+
+        if ($request->has("photo")) {
+            Storage::delete($encadreur->user->photo);
+            $chemin_image = $request->photo->store("users");
+        }
+
+        $user->update([
+            "name" => $request->name,
+            "email" => $request->email,
+            "photo" => isset($chemin_image) ? $chemin_image : $encadreur->user->photo,
+        ]);
+
+        $encadreur->update([
+            "matricule" => $request->matricule,
+            "specialite" => $request->specialite,
+            "grade" => $request->grade,        
+        ]);
+        $encadreur->save();
+
+        $request->session()->flash('success', 'Encadreur mis à jour avec succès !');
+        return redirect(route("admin.encadreur.profil", $encadreur->id));
     }
 
     public function manageUsers(){

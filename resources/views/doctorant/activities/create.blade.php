@@ -43,8 +43,8 @@
 
                         <div class="form-group">
                             <label style="font-size: 20px;" for="comment" class="col-md-12 mb-0 lead">Commentaire</label>
-                            <textarea name="comment" id="comment" required rows="4" required
-                                    class="form-control ps-0 form-control-line" placeholder="Votre commentaire">{{ isset($activity->comment) ? $activity->comment : old('comment') }}
+                            <textarea style="font-size: 20px;" name="comment" id="comment" required rows="4" required
+                                    class="form-control ps-0 form-control-line">{{ isset($activity->comment) ? $activity->comment : old('comment') }}
                             </textarea>
                             <span  class="alert-danger">@error("comment"){{ $message }}@enderror</span>
                         </div>

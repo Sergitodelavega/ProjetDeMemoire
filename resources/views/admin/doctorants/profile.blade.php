@@ -54,7 +54,7 @@
                                                 <?php $daysTime = $activity->remainingTime(); ?>
                                                 <tr>
                                                     <td>{{ $activity->semestre }}</td>
-                                                    <td><a href="{{ route('doctorant.activity.show', $activity->id) }}">{{ $activity->title }}</a></td>
+                                                    <td><a href="{{ route('encadreur.show_activity', $activity->id) }}">{{ $activity->title }}</a></td>
                                                     @if ($activity->status == "validée")
                                                         <td>---</td>
                                                     @else
@@ -71,7 +71,7 @@
                                                 <tr>
                                                    
                                                     <td>{{ $activity->semestre }}</td>
-                                                    <td><a href="{{ route('doctorant.activity.show', $activity->id) }}">{{ $activity->title }}</a></td>
+                                                    <td><a href="{{ route('encadreur.show_activity', $activity->id) }}">{{ $activity->title }}</a></td>
                                                     @if ($activity->status == "validée")
                                                         <td>---</td>
                                                     @else
@@ -87,7 +87,7 @@
                                                 <?php $daysTime = $activity->remainingTime(); ?>
                                                 <tr>
                                                     <td>{{ $activity->semestre }}</td>
-                                                    <td><a href="{{ route('doctorant.activity.show', $activity->id) }}">{{ $activity->title }}</a></td>
+                                                    <td><a href="{{ route('encadreur.show_activity', $activity->id) }}">{{ $activity->title }}</a></td>
                                                     @if ($activity->status == "validée")
                                                         <td>---</td>
                                                     @else

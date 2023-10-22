@@ -40,7 +40,7 @@
                         </div>
                         @endif
                         <div class="form-group">
-                            <label for="title" class="col-md-12 mb-0 lead">Commentaire : </label>
+                            <label for="title" class="col-md-12 mb-0 lead">Commentaire du doctorant : </label>
                             <p class="lead">{{ $activity->comment }}</p>
                         </div>
                         @if ($activity->status == "validée")
@@ -49,8 +49,11 @@
                                 <p class="lead">{{ $comments->comment }}</p>
                             </div>  
                         @endif
-
-                        <div id="fileList"></div>
+                        @foreach ($activity->fichiers as $file)
+                            <div id="fileList">
+                                <iframe src="{{asset('upload/files/'.$file->link)}}" width="400" height="400"></iframe>
+                            </div>
+                        @endforeach
                 </div>
             </div>
         </div>
