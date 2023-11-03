@@ -43,7 +43,7 @@
                             <label for="title" class="col-md-12 mb-0 lead">Commentaire du doctorant : </label>
                             <p class="lead">{{ $activity->comment }}</p>
                         </div>
-                        @if ($activity->status == "validée")
+                        @if ($activity->status == "validée" || $activity->status == "rejetée")
                             <div class="form-group">
                                 <label for="title" class="col-md-12 mb-0 lead">Commentaire de l'encadreur: </label>
                                 <p class="lead">{{ $comments->comment }}</p>

@@ -124,6 +124,7 @@
                                                                 @if($activity->status == "en attente")<span class="badge bg-primary"><i class="mdi mdi-clock"></i></span> @endif
                                                                 @if($activity->status == "validée")<span class="badge bg-success"><i class="mdi mdi-check-circle"></i></span> @endif 
                                                                 @if($activity->status == "non soumis")<span class="badge bg-secondary"><i class="mdi mdi-checkbox-blank-circle-outline"></i></span> @endif 
+                                                                @if($activity->status == "rejetée")<span class="badge bg-danger"><i class="mdi mdi-close-circle-outline"></i></span> @endif  
 
                                                             </td>
                                                             <td>
@@ -149,6 +150,7 @@
                                                                 @if($activity->status == "en attente")<span class="badge bg-primary"><i class="mdi mdi-clock"></i></span> @endif
                                                                 @if($activity->status == "validée")<span class="badge bg-success"><i class="mdi mdi-check-circle"></i></span> @endif 
                                                                 @if($activity->status == "non soumis")<span class="badge bg-secondary"><i class="mdi mdi-checkbox-blank-circle-outline"></i></span> @endif 
+                                                                @if($activity->status == "rejetée")<span class="badge bg-danger"><i class="mdi mdi-close-circle-outline"></i></span> @endif  
 
                                                             </td>
                                                             <td>
@@ -173,6 +175,7 @@
                                                                 @if($activity->status == "en attente")<span class="badge bg-primary"><i class="mdi mdi-clock"></i></span> @endif
                                                                 @if($activity->status == "validée")<span class="badge bg-success"><i class="mdi mdi-check-circle"></i></span> @endif 
                                                                 @if($activity->status == "non soumis")<span class="badge bg-secondary"><i class="mdi mdi-checkbox-blank-circle-outline"></i></span> @endif 
+                                                                @if($activity->status == "rejetée")<span class="badge bg-danger"><i class="mdi mdi-close-circle-outline"></i></span> @endif  
 
                                                             </td>
                                                             <td>

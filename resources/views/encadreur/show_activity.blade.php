@@ -39,7 +39,7 @@
                             </div>
                         @else
                         <div class="form-group">
-                            <label for="title" class="col-md-12 mb-0 lead">Date limite : {{ $daysTime}} - {{ $activity->calculateDeadline() }}
+                            <label for="title" class="col-md-12 mb-0 lead">Date limite : {{ $days}} - {{ $activity->calculateDeadline() }}
                             </label>
                         </div>
                         @endif
@@ -72,7 +72,9 @@
                                         </textarea>
                                     <span class="alert-danger">@error("comment"){{ $message }}@enderror</span>   
                                 </div>
-                                <button type="submit" class="btn btn-info mx-auto mx-md-0 text-white">Valider</button>
+                                <button type="submit" name="action" value="valider" class="btn btn-info mx-auto mx-md-0 text-white">Valider</button>
+                                <button type="submit" name="action" value="rejeter" class="btn btn-danger mx-auto mx-md-0 text-white">Rejeter</button>
+
                             </form>
                         @endif
                       

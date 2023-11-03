@@ -177,6 +177,18 @@ class ActivitySeeder extends Seeder
             $activity->doctorant_id = $this->doctorantId;
             $activity->year_id = $this->year;
             $activity->save();
+
+            $activity = new Activity([
+                'title' => "Version corrigée et finale de la thèse",
+                'description' => "Déposer la version corrigée et finale de la thèse",
+                'status' => 'non soumis',
+                'comment' => null,
+                'semestre' => 'S6',
+            ]);
+            $activity->delai = 330;
+            $activity->doctorant_id = $this->doctorantId;
+            $activity->year_id = $this->year;
+            $activity->save();
         } 
         else{
             echo "Pas d'activités crées";

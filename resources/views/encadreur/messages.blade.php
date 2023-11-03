@@ -6,7 +6,7 @@
 <div class="container-fluid">
         <div class="row">
             <!-- Column -->
-            @include('encadreur.users', ['doctorants' => $doctorants])
+            @include('encadreur.users', ['users' => $users])
             {{-- <div class="col-lg-8 col-xlg-9">
                 <div class="card">
                     <!-- Nav tabs -->

@@ -6,53 +6,37 @@
 <div class="container-fluid">
         <div class="row">
             <!-- Column -->
-            @include('encadreur.users', ['doctorants' => $doctorants])
+            @include('encadreur.users', ['users' => $users])
             <div class="col-lg-8 col-xlg-9">
                 <div class="card">
-                    <!-- Nav tabs -->
                     <ul class="nav nav-tabs profile-tab" role="tablist">
-                        <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#home"
-                                role="tab">{{ $doctorant->user->name }}</a>
+                        <li class="nav-item"> 
+                            <a class="nav-link active" data-bs-toggle="tab" href="#home"
+                                role="tab">{{ $user->name }}</a>
                         </li>
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div class="tab-pane active" id="home" role="tabpanel">
-                            <div class="card-body">
-                                    <div class="sl-item">
-                                        <div class="sl-right">
-                                       
-                                            <p class="mt-2" style="background-color: #F2F4F8"> Salut monsieur. Comment allez-vous ? </p>
+                            <div class="card-body conversations">
+                                @foreach ($messages as $message)
+                                    <div class="row">
+                                        <div class="col-md-10 {{ $message->from->id !== $user->id ? 'offset-md-2 text-end' : '' }}">
+                                            {{-- <strong>{{ $message->from->name }}</strong><br> --}}
+                                            <p>{{ $message->content }}</p>
                                         </div>
                                     </div>
-                                    <hr>
-                                    <div class="sl-item">
-                                        <div class="sl-right">
-                                          
-                                            <p class="mt-2"> Ça va, merci et vous ? Vous avez jeté un coup d'oeil à la conférence que je vous ai proposé ?</p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="sl-item">
-                                        <div class="sl-right">
-                                         
-                                            <p class="mt-2" style="background-color: #F2F4F8"> Oui, c'est interessant. </p>
-                                        </div>
-                                    </div>
-                                    <hr>
+                                @endforeach
+                                <form action="" method="POST">
+                                    @csrf
                                     <div class="form-group">
-                                        <div class="col-md-12">
-                                            <textarea name="description" id="description" required rows="3" cols="10"
-                                                class="form-control ps-0 form-control-line">Message</textarea>
-                                        </div>
-                                        <!-- Le message d'erreur pour "name" -->
-                                        @error("description")
-                                        <div>{{ $message }}</div>
-                                        @enderror
+                                        <textarea name="content" id="description" required rows="3" cols="10"
+                                                class="form-control ps-0 form-control-line" placeholder="Ecrivez votre message"></textarea>
+                                        <div class="alert-danger">@error("description"){{ $message }}@enderror</div>
+                                        
                                     </div>
-                                    <button class="btn btn-info mx-auto mx-md-0 text-white">Envoyer</button>
-
-                               
+                                    <button type="submit" class="btn btn-info mx-auto mx-md-0 text-white">Envoyer</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -66,3 +50,25 @@
 </div>
 
 @endsection
+
+{{-- <div class="sl-item">
+    <div class="sl-right">
+   
+        <p class="mt-2" style="background-color: #F2F4F8"> Salut monsieur. Comment allez-vous ? </p>
+    </div>
+</div>
+<hr>
+<div class="sl-item">
+    <div class="sl-right">
+      
+        <p class="mt-2"> Ça va, merci et vous ? Vous avez jeté un coup d'oeil à la conférence que je vous ai proposé ?</p>
+    </div>
+</div>
+<hr>
+<div class="sl-item">
+    <div class="sl-right">
+     
+        <p class="mt-2" style="background-color: #F2F4F8"> Oui, c'est interessant. </p>
+    </div>
+</div>
+<hr> --}}

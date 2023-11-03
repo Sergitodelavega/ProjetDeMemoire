@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\File;
+use App\Models\User;
 use App\Models\Comment;
 use App\Models\Activity;
 use App\Models\Doctorant;
+use App\Mail\PointDeThese;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ActivityController extends Controller
 {
@@ -90,20 +93,45 @@ class ActivityController extends Controller
     public function validate_activity(Request $request, $id, $doctorant){
         $doctorant = Doctorant::find($doctorant);
 
+        $action = $request->input('action');    
         $request->validate([
             'comment' => 'required|string',
         ]);
 
-        $comments= new Comment;
-        $comments->activity_id = $id;
-        $comments->comment = $request->input('comment');
-        $comments->save();
+        if($action === 'valider'){
+            $activity = Activity::find($id);
 
-        $activity = Activity::find($id);
-        $activity->status = 'validée';
+                $comments= new Comment;
+                $comments->activity_id = $id;
+                $comments->comment  .= "\n" . $request->input('comment');
+                $comments->save();
+
+            $activity->status = 'validée';
+            $request->session()->flash('success', 'Activité validée avec succès !');
+
+        } elseif($action === 'rejeter'){
+            $activity = Activity::find($id);
+            $activity->status = 'rejetée';
+
+            $comments= new Comment;
+            $comments->activity_id = $id;
+            $comments->comment  .= "\n" . $request->input('comment');
+            $comments->save();
+
+            $request->session()->flash('fail', 'Activité rejetée avec succès !');
+        }
+
+        if($activity->title == "Préparation de la défense de thèse"){
+            if($activity->doctorant->user->ecole_id){
+                $admins = User::where('ecole_id', $activity->doctorant->user->ecole_id)->get();
+                foreach($admins as $admin){
+                    Mail::to($admin->email)->send(new PointDeThese($admin, $activity));
+                }
+            }
+        }
         $activity->save();
 
-        return redirect()->route('encadreur.doctorant.show', $doctorant->id)->with('success',"Activité validée avec succès!");
+        return redirect()->route('encadreur.doctorant.show', $doctorant->id);
     }
 
     public function histo($doctorant){

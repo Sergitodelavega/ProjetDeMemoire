@@ -12,6 +12,9 @@ use Illuminate\Http\Request;
 use App\Mail\MessageDoctorant;
 use App\Mail\MessageEncadreur;
 use App\Http\Controllers\Controller;
+use App\Mail\Formation as MailFormation;
+use App\Mail\TheseDoctorant;
+use App\Mail\TheseEncadreur;
 use App\Models\Ecole;
 use App\Models\Laboratoire;
 use App\Models\Year;
@@ -87,6 +90,7 @@ class AdminController extends Controller
         $doctorant = Doctorant::find($id);
         $doctorantId = Doctorant::find($id)->id;
         $encadreurId = $doctorant->encadreur->id;
+        $encadreur = Encadreur::find($encadreurId);
 
         $ecole = Ecole::find($adminUser->ecole_id);
         $these->ecole_id = $ecole->id;
@@ -97,7 +101,10 @@ class AdminController extends Controller
         }
         $these->save();
      
-         $request->session()->flash('success', 'Thèse définie avec succès !');
+        $request->session()->flash('success', 'Thèse définie avec succès !');
+        Mail::to($doctorant->user->email)->send(new TheseDoctorant($doctorant, $these));
+        Mail::to($encadreur->user->email)->send(new TheseEncadreur($encadreur, $these));
+        
         return redirect()->route('admin.theses');
         }
     }
@@ -119,34 +126,43 @@ class AdminController extends Controller
         $adminUser = Auth::user();
         if($adminUser->role == "admin"){
             // Validation des données du formulaire
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'bail|required',
-            'date_heure' => 'bail|required',
-            'location' => 'bail|required|string|max:255',
-            'image' => 'bail|required|image',
-        ]);
+            $request->validate([
+                'title' => 'required|string|max:255',
+                'description' => 'bail|required',
+                'date_heure' => 'bail|required',
+                'location' => 'bail|required|string|max:255',
+                'image' => 'bail|required|image',
+            ]);
 
-        // On upload l'image dans "/storage/app/public/formations"
-        $chemin_image = $request->image->store("formations");
+            // On upload l'image dans "/storage/app/public/formations"
+            $chemin_image = $request->image->store("formations");
 
-        $formation = new Formation([
-            'title' => $request->title,
-            'description' => $request->description,
-            'date_heure' => $request->date_heure,
-            'location' => $request->location,
-            'image' => $chemin_image,
-        ]);
+            $formation = new Formation([
+                'title' => $request->title,
+                'description' => $request->description,
+                'date_heure' => $request->date_heure,
+                'location' => $request->location,
+                'image' => $chemin_image,
+            ]);
 
-        $ecole = Ecole::find($adminUser->ecole_id);
-        $formation->ecole_id = $ecole->id;
-        $formation->save();
+            $ecole = Ecole::find($adminUser->ecole_id);
+            $formation->ecole_id = $ecole->id;
+            $formation->save();
 
-        // Ajoutez le message flash pour la création de la formation 
-        $request->session()->flash('success', 'Formation créé avec succès !');
-        return redirect()->route('admin.formations');
+            $doctorants = Doctorant::with('user')
+                ->whereHas('user', function ($query) use ($adminUser){
+                    $query->where('ecole_id', $adminUser->ecole_id);
+                })
+                ->get();
+        
+            // Ajoutez le message flash pour la création de la formation 
+            $request->session()->flash('success', 'Formation créé avec succès !');
+
+            foreach($doctorants as $doctorant){
+                Mail::to($doctorant->user->email)->send(new MailFormation($formation, $doctorant));
+            }
+            return redirect()->route('admin.formations');
         }
-
     }
 
     public function deleteFormation($id){

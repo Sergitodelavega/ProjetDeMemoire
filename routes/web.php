@@ -90,7 +90,9 @@ Route::middleware('auth')->group(function() {
         Route::post('/validate/activity/{id}/{doctorant}', [ActivityController::class, 'validate_activity'])->name('encadreur.validate_activity');
         Route::post('/reject/activity/{id}', [ActivityController::class, 'reject_activity'])->name('encadreur.reject_activity');
         Route::get('/messages', [MessagesController::class, 'index'])->name('encadreur.messages');
-        Route::get('/messages/{id}', [MessagesController::class, 'show'])->name('encadreur.messages.show');
+        Route::get('/messages/{user}', [MessagesController::class, 'show'])->name('encadreur.messages.show');
+        Route::post('/messages/{user}', [MessagesController::class, 'store']);
+
     });
 
     // Routes pour l'espace doctorant 
