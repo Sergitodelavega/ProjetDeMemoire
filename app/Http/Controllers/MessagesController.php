@@ -7,6 +7,8 @@ use App\Models\Doctorant;
 use App\Models\Encadreur;
 use Illuminate\Http\Request;
 use Illuminate\Auth\AuthManager;
+use App\Http\Requests\StoreMessage;
+use App\Http\Requests\StoreMessageRequest;
 use App\Repository\ConversationRepository;
 
 class MessagesController extends Controller
@@ -77,7 +79,7 @@ class MessagesController extends Controller
         ]);
     }
 
-    public function store(User $user, Request $request){
+    public function store(User $user, StoreMessageRequest $request){
         $this->r->createMessage(
             $request->get('content'),
             $this->auth->user()->id,

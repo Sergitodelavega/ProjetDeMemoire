@@ -27,11 +27,15 @@
                                         </div>
                                     </div>
                                 @endforeach
+
                                 <form action="" method="POST">
                                     @csrf
                                     <div class="form-group">
                                         <textarea name="content" id="description" required rows="3" cols="10"
-                                                class="form-control ps-0 form-control-line" placeholder="Ecrivez votre message"></textarea>
+                                                class="form-control ps-0 form-control-line {{ $errors->has('content') ? 'is-invalid' : '' }}" placeholder="Ecrivez votre message"></textarea>
+                                        @if($errors->has('content'))
+                                            <div class="invalid-feedback">{{ implode(',', $errors->get('content')) }}</div>
+                                        @endif
                                         <div class="alert-danger">@error("description"){{ $message }}@enderror</div>
                                         
                                     </div>
