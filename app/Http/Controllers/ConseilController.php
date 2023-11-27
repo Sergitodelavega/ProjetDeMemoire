@@ -44,7 +44,9 @@ class ConseilController extends Controller
 
         $laboratoires = Laboratoire::where('ecole_id', $id)->get();
         $theses = These::where('ecole_id', $id)->get();
+        $thesesP = These::where('status', 'en cours')->get();
+        $thesesT = These::where('status', 'terminée')->get();
         
-        return view('conseil.show', compact('ecoles', 'ecole', 'doctorants', 'encadreurs', 'laboratoires', 'theses'));
+        return view('conseil.show', compact('ecoles', 'ecole', 'doctorants', 'encadreurs', 'laboratoires', 'theses', 'thesesP', 'thesesT'));
     }
 }

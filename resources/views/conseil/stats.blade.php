@@ -85,31 +85,12 @@
                 <div class="card-body text-center ">
                     <ul class="list-inline d-flex justify-content-center align-items-center mb-0">
                         <li class="me-4">
-                            <h6 class="text-success" style="font-size: 50px;">50</h6>
+                            <h6 class="text-success" style="font-size: 50px;">0</h6>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
-            <div class="card">
-                <div class="card-body text-center">
-                    <h3 class="card-title">Thèses en instance</h3>
-                </div>
-                <div>
-                    <hr class="mt-0 mb-0">
-                </div>
-                <div class="card-body text-center ">
-                    <ul class="list-inline d-flex justify-content-center align-items-center mb-0">
-                        <li class="me-4">
-                            <h6 class="text-success" style="font-size: 50px;">10</h6>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-body text-center">
@@ -127,6 +108,26 @@
                 </div>
             </div>
         </div>
+        {{-- <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h3 class="card-title">Thèses en instance</h3>
+                </div>
+                <div>
+                    <hr class="mt-0 mb-0">
+                </div>
+                <div class="card-body text-center ">
+                    <ul class="list-inline d-flex justify-content-center align-items-center mb-0">
+                        <li class="me-4">
+                            <h6 class="text-success" style="font-size: 50px;">10</h6>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div> --}}
+    </div>
+    <div class="row">
+        
     </div>
 
 

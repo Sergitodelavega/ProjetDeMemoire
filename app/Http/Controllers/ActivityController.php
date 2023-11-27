@@ -129,6 +129,10 @@ class ActivityController extends Controller
                 }
             }
         }
+        if($activity->title == "Version corrigée et finale de la thèse"){
+            $activity->doctorant->these->status = 'terminée';
+        }
+
         $activity->save();
 
         return redirect()->route('encadreur.doctorant.show', $doctorant->id);

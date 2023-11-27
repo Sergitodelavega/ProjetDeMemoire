@@ -14,7 +14,7 @@ if (auth()->check()) {
             <div class="card">
                 <div class="card-body profile-card">
                     <center class="mt-4"> 
-                        <img src="{{ asset('back/assets/images/users/5.jpg') }}" class="rounded-circle" width="150" />
+                        <img src="{{ asset('storage/'.$userLoger->photo) }}" class="rounded-circle" width="150" />
                         <h4 class="card-title mt-2">{{ $userLoger->name }}</h4>
                         <h6 class="card-subtitle">{{ $userLoger->email }}</h6>   
                     </center>
