@@ -17,7 +17,7 @@ class DoctorantController extends Controller
     public function profilDoctorant(){
         return view('doctorant.profil');
     }
-
+    
     public function formation(){
         $doctorantUser = Auth::user();
         if($doctorantUser->role == "doctorant")

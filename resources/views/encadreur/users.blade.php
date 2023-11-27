@@ -14,7 +14,13 @@
                       <!-- Message -->
                     <a id="myDiv" href="{{ route('encadreur.messages.show', $user->id) }}" class="d-flex align-items-center">
                         <div class="mail-contnet">
-                            <h5 class="mb-0">{{ $user->name }}</h5> 
+                            
+                            <h5 class="mb-0">{{ $user->name }} 
+                            @if (isset($unread[$user->id]))
+                            <span style="margin-left: 10px; border-radius : 50px; padding: 5px 5px; color:white; background-color: #1E88E5;">{{ $unread[$user->id] }}</span>
+                            @endif
+                            
+                            </h5> 
                             <span class="mail-desc">{{ $user->email }}</span>
                         </div>
                     </a> 

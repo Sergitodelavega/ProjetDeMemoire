@@ -44,7 +44,8 @@ class MessagesController extends Controller
             
         // }   
         return view('encadreur.messages', [
-            'users' => $this->r->getConversations($this->auth->user()->id)
+            'users' => $this->r->getConversations($this->auth->user()->id),
+            'unread' => $this->r->unreadCount($this->auth->user()->id)
         ]);
     }
 
@@ -71,11 +72,18 @@ class MessagesController extends Controller
         //     }
             
         // }
-        
+        $me = $this->auth->user();
+        $messages = $this->r->getMessagesFor($me->id, $user->id)->paginate(20);
+        $unread = $this->r->unreadCount($this->auth->user()->id);
+        if(isset($unread[$user->id])){
+            $this->r->readAllFrom($user->id, $me->id);
+            unset($unread[$user->id]);
+        }
         return view('encadreur.show', [
             'users' => $this->r->getConversations($this->auth->user()->id),
             'user' => $user,
-            'messages' => $this->r->getMessagesFor($this->auth->user()->id, $user->id)->get()->reverse()
+            'messages' => $messages,
+            'unread' => $unread
         ]);
     }
 
@@ -88,5 +96,6 @@ class MessagesController extends Controller
 
         return redirect(route('encadreur.messages.show', $user));
     }
+
 }
 

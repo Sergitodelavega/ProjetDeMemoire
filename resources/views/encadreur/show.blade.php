@@ -6,7 +6,7 @@
 <div class="container-fluid">
         <div class="row">
             <!-- Column -->
-            @include('encadreur.users', ['users' => $users])
+            @include('encadreur.users', ['users' => $users, 'unread' => $unread])
             <div class="col-lg-8 col-xlg-9">
                 <div class="card">
                     <ul class="nav nav-tabs profile-tab" role="tablist">
@@ -19,7 +19,12 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="home" role="tabpanel">
                             <div class="card-body conversations">
-                                @foreach ($messages as $message)
+                                @if ($messages->hasMorePages())
+                                    <div class="text-center">
+                                        <a href="{{ $messages->nextPageUrl() }}" class="btn btn-light">Voir les messages précédents</a>
+                                    </div>
+                                @endif
+                                @foreach (array_reverse($messages->items()) as $message)
                                     <div class="row">
                                         <div class="col-md-10 {{ $message->from->id !== $user->id ? 'offset-md-2 text-end' : '' }}">
                                             {{-- <strong>{{ $message->from->name }}</strong><br> --}}
@@ -27,7 +32,11 @@
                                         </div>
                                     </div>
                                 @endforeach
-
+                                @if ($messages->previousPageUrl())
+                                    <div class="text-center">
+                                        <a href="{{ $messages->previousPageUrl() }}" class="btn btn-light">Voir les messages suivants</a>
+                                    </div>
+                                @endif
                                 <form action="" method="POST">
                                     @csrf
                                     <div class="form-group">
