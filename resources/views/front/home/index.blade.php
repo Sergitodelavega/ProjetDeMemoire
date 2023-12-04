@@ -11,21 +11,21 @@ use Illuminate\Support\Str;
       <div class="carousel-item active" data-bs-interval="10000">
         <img src="{{ asset('front/img/accueil.jpg') }}" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
-            <h1 style="color:black; font-size:50px;">Plateforme Numérique Doctorale </h1>
+            <h1 style="color:white; font-size:50px;">Plateforme Numérique Doctorale </h1>
           </div>
       </div>
 
       <div class="carousel-item" data-bs-interval="10000">
         <img src="{{ asset('front/img/eres0.6b045dcd.jpg') }}" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
-            <h1 style="color:black; font-size:50px;">Plateforme Numérique Doctorale </h1>
+            <h1 style="color:white; font-size:50px;">Plateforme Numérique Doctorale </h1>
           </div>
       </div>
       
       <div class="carousel-item" data-bs-interval="10000">
         <img src="{{ asset('front/img/personnes-diplomees-diplomes-close-up1.jpg') }}" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
-            <h1 style="color:black; font-size:50px;">Plateforme Numérique Doctorale </h1>
+            <h1 style="color:white; font-size:50px;">Plateforme Numérique Doctorale </h1>
           </div>
       </div>
     </div>

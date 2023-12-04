@@ -81,7 +81,7 @@
                                 <a class="text-decoration-none" href="{{ route('theses.show', ['id'=>$these["id"]]) }}"><h6 class="text-black">{{ $these->title }}</h6></a>
                                 <div style="display: flex;">
                                     <p style="margin-right: 30px;" class="card-text">{{ $these->doctorant->user->name }}</p>
-                                    <p style="margin-right: 30px;" class="card-text">Année : <small class="text-muted">2022</small></p>
+                                    <p style="margin-right: 30px;" class="card-text">Année : <small class="text-muted">2023</small></p>
                                     <p class="card-text">Spécialité : <em class="text-muted">{{ $these->doctorant->specialite }}</em></p>
                                 </div>
                             </div>

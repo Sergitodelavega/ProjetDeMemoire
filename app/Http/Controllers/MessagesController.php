@@ -73,7 +73,7 @@ class MessagesController extends Controller
             
         // }
         $me = $this->auth->user();
-        $messages = $this->r->getMessagesFor($me->id, $user->id)->paginate(20);
+        $messages = $this->r->getMessagesFor($me->id, $user->id)->paginate(5);
         $unread = $this->r->unreadCount($this->auth->user()->id);
         if(isset($unread[$user->id])){
             $this->r->readAllFrom($user->id, $me->id);

@@ -15,7 +15,7 @@
                 <div class="card-body text-center ">
                     <ul class="list-inline d-flex justify-content-center align-items-center mb-0">
                         <li class="me-4">
-                            <a href="{{ route('conseil.ecoles') }}"><h6 class="text-success" style="font-size: 50px;">{{ count($ecoles) }}</h6></a>
+                            <a href="{{ route('conseil.ecoles') }}"><h6 class="text-success" style="font-size: 50px;">12</h6></a>
                         </li>
                     </ul>
                 </div>
@@ -32,7 +32,7 @@
                 <div class="card-body text-center ">
                     <ul class="list-inline d-flex justify-content-center align-items-center mb-0">
                         <li class="me-4">
-                            <a href="{{ route('conseil.doctorant') }}"><h6 class="text-success" style="font-size: 50px;">{{ count($doctorants) }}</h6></a>
+                            <a href="{{ route('conseil.doctorant') }}"><h6 class="text-success" style="font-size: 50px;">1500</h6></a>
                         </li>
                     </ul>
                 </div>
@@ -49,7 +49,7 @@
                 <div class="card-body text-center ">
                     <ul class="list-inline d-flex justify-content-center align-items-center mb-0">
                         <li class="me-4">
-                            <a href="{{ route('conseil.encadreur') }}"><h6 class="text-success" style="font-size: 50px;">{{ count($encadreurs) }}</h6></a>
+                            <a href="{{ route('conseil.encadreur') }}"><h6 class="text-success" style="font-size: 50px;">120</h6></a>
                         </li>
                     </ul>
                 </div>
@@ -68,7 +68,7 @@
                 <div class="card-body text-center ">
                     <ul class="list-inline d-flex justify-content-center align-items-center mb-0">
                         <li class="me-4">
-                            <h6 class="text-success" style="font-size: 50px;">{{ count($theses) }}</h6>
+                            <h6 class="text-success" style="font-size: 50px;">30</h6>
                         </li>
                     </ul>
                 </div>
@@ -85,7 +85,7 @@
                 <div class="card-body text-center ">
                     <ul class="list-inline d-flex justify-content-center align-items-center mb-0">
                         <li class="me-4">
-                            <h6 class="text-success" style="font-size: 50px;">0</h6>
+                            <h6 class="text-success" style="font-size: 50px;">50</h6>
                         </li>
                     </ul>
                 </div>
@@ -102,7 +102,7 @@
                 <div class="card-body text-center ">
                     <ul class="list-inline d-flex justify-content-center align-items-center mb-0">
                         <li class="me-4">
-                            <h6 class="text-success" style="font-size: 50px;">{{ count($laboratoires) }}</h6>
+                            <h6 class="text-success" style="font-size: 50px;">40</h6>
                         </li>
                     </ul>
                 </div>

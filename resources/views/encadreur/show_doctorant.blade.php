@@ -102,8 +102,8 @@
                                                 <th class="border-top-0">Semestre</th>
                                                 <th class="border-top-0">Titre</th>
                                                 <th class="border-top-0">Date limite</th>
-                                                <th class="border-top-0">Status</th>
-                                                {{-- <th class="border-top-0">Opération</th> --}}
+                                                <th class="border-top-0">Statut</th>
+                                                <th class="border-top-0">Opération</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -112,13 +112,13 @@
                                                     @if($activity->status !== "en attente")    
                                                         <?php $days = $activity->remainingTime(); ?>
                                                         <tr>
-                                                            <td>{{ $loop->iteration }}</td>
+                                                            {{-- <td>{{ $loop->iteration }}</td> --}}
                                                             <td>{{ $activity->semestre}}</td>
                                                             <td>{{ $activity->title }}</td>
                                                             @if ($activity->status == "validée")
                                                                 <td>---</td>
                                                             @else
-                                                                <td>{{ $days }}<br/>{{ $activity->deadline }}</td>
+                                                                <td>{{ $days }}<br/>{{ $activity->calculateDeadline() }}</td>
                                                             @endif
                                                             <td>
                                                                 @if($activity->status == "en attente")<span class="badge bg-primary"><i class="mdi mdi-clock"></i></span> @endif
@@ -144,7 +144,7 @@
                                                             @if ($activity->status == "validée")
                                                                 <td>---</td>
                                                             @else
-                                                                <td>{{ $days }}<br/>{{ $activity->deadline }}</td>
+                                                                <td>{{ $days }}<br/>{{ $activity->calculateDeadline() }}</td>
                                                             @endif
                                                             <td>
                                                                 @if($activity->status == "en attente")<span class="badge bg-primary"><i class="mdi mdi-clock"></i></span> @endif
@@ -169,7 +169,7 @@
                                                             @if ($activity->status == "validée")
                                                                 <td>---</td>
                                                             @else
-                                                                <td>{{ $days }}<br/>{{ $activity->deadline }}</td>
+                                                                <td>{{ $days }}<br/>{{ $activity->calculateDeadline() }}</td>
                                                             @endif
                                                             <td>
                                                                 @if($activity->status == "en attente")<span class="badge bg-primary"><i class="mdi mdi-clock"></i></span> @endif
