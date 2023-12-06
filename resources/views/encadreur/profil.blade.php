@@ -21,7 +21,7 @@ if (auth()->check()) {
                         <h5 class="card-subtitle text-dark">{{ $userLoger->encadreur->matricule }}</h5>
                         <h5 class="card-subtitle text-dark">{{ $userLoger->encadreur->grade }}</h5>
                         <h5 class="card-subtitle text-dark">{{ $userLoger->encadreur->specialite }}</h5>
-                        <h5 class="card-subtitle text-dark">{{ $userLoger->ecole->name }}</h5>
+                        {{-- <h5 class="card-subtitle text-dark">{{ $userLoger->ecole->name }}</h5> --}}
                     </center>
                 </div>
             </div>

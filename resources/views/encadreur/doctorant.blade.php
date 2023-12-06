@@ -1,10 +1,10 @@
 @extends('back.appback')
 @section('title', 'MesDoctorants')
 @section('content')
-  <!-- ============================================================== -->
-  <!-- End Bread crumb and right sidebar toggle -->
-  <!-- ============================================================== -->
-   <!-- ============================================================== -->
+<br>
+<div class="container" style="margin-left: 50px">
+    <h1>Doctorants</h1>
+</div>
    <div class="container-fluid">
     <!-- ============================================================== -->
     <!-- Start Page Content -->
