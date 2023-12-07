@@ -17,7 +17,7 @@ if (auth()->check()) {
               <b class="logo-icon">
                   <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                   <!-- Dark Logo icon -->
-                  <img src="{{ asset('back/assets/images/logo-light-icon.png') }}" alt="homepage" class="dark-logo" />
+                  <img style="width:250px;" src="{{ asset('back/assets/images/Logo-Head.png') }}" alt="homepage" class="dark-logo" />
 
               </b>
               <!--End Logo icon -->
@@ -53,16 +53,16 @@ if (auth()->check()) {
           <!-- ============================================================== -->
           <ul class="navbar-nav me-auto mt-md-0 ">
             @if ($user->role === "admin")
-              <li class="nav-item text-white" style="margin-left: 50px; font-size:20px">Espace Admin</li>
+              <li class="nav-item text-white" style="margin-left: 50px; font-size:20px">ESPACE ADMIN</li>
             @endif
             @if ($user->role === "encadreur")
-              <li class="nav-item text-white" style="margin-left: 50px; font-size:20px">Espace Encadreur</li>
+              <li class="nav-item text-white" style="margin-left: 50px; font-size:20px">ESPACE ENCADREUR</li>
             @endif
             @if ($user->role === "doctorant")
-              <li class="nav-item text-white" style="margin-left: 50px; font-size:20px">Espace Doctorant</li>
+              <li class="nav-item text-white" style="margin-left: 50px; font-size:20px">ESPACE DOCTORANT</li>
             @endif
             @if ($user->role === "conseil")
-              <li class="nav-item text-white" style="margin-left: 50px; font-size:20px">Conseil Scientifique</li>
+              <li class="nav-item text-white" style="margin-left: 50px; font-size:20px">CONSEIL SCIENTIFIQUE</li>
             @endif
           </ul>
 
