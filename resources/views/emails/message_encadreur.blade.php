@@ -4,7 +4,7 @@
         <title>Bienvenue sur notre plateforme</title>
     </head>
     <body>
-        <h1>Bienvenue sur notre plateforme</h1>
+        <h1>Bienvenue sur la Plateforme Numérique Doctorale de l'UAC</h1>
         <p>
             Bonjour <strong>{{ $encadreur->user->name }}</strong>.
         </p>
