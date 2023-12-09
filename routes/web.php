@@ -100,6 +100,7 @@ Route::middleware('auth')->group(function() {
         Route::get('/index', [DoctorantController::class, 'home'])->name('doctorant.index');
         Route::get('/profil', [DoctorantController::class, 'profilDoctorant'])->name('doctorant.profil');
         Route::get('/formation', [DoctorantController::class, 'formation'])->name('doctorant.formation');
+        Route::get('/formation/{id}', [DoctorantController::class, 'showFormation'])->name('doctorant.formation.show');
         Route::get('activities', [ActivityController::class, 'index'])->name('doctorant.activity.index');
         Route::get('historiques', [ActivityController::class, 'historiques'])->name('doctorant.his');
         Route::get('historiques/{id}', [ActivityController::class, 'histo'])->name('doctorant.histo');

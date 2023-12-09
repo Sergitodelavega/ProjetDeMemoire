@@ -27,4 +27,9 @@ class DoctorantController extends Controller
         return view('doctorant.formation', compact('formations'));
     }
 
+    public function showFormation($id){
+        $formation = Formation::find($id);
+        return view('doctorant.formation', compact("formation"));
+    }
+
 }

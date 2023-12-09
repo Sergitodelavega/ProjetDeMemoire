@@ -75,7 +75,7 @@ class OfferController extends Controller
             "deadline" => $request->deadline,
         ]);
 
-        return redirect(route("offers.show", $offer));
+        return redirect()->back();
     }
 
     public function destroy(Offer $offer)

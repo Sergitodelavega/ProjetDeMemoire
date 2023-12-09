@@ -19,7 +19,7 @@
         <div class="col-lg-8 col-xlg-9 col-md-7">
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin.store.formation') }}" class="form-horizontal form-material mx-2" enctype="multipart/form-data">
+                    {{-- <form method="POST" action="{{ route('admin.store.formation') }}" class="form-horizontal form-material mx-2" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="title" class="col-md-12 mb-0">Titre</label>
@@ -57,7 +57,7 @@
                         </div>
                         
                         <button type="submit" class="btn btn-info mx-auto mx-md-0 text-white">Ajouter</button>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
         </div>
