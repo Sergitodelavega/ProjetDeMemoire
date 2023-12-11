@@ -7,7 +7,7 @@
         <h1>Offres de thèse</h1><br>
         <p>
         <!-- Lien pour créer un nouveau doctorant : "posts.create" -->
-        <a href="{{ route('offers.create') }}" title="Ajouter une offre"  class="btn btn-info" style="color: white;" data-bs-toggle="modal" data-bs-target="#mediumModal">Ajouter une offre</a>
+        <a href="{{ route('offers.create') }}" title="Ajouter une offre"  class="btn btn-info" style="color: white; font-size: 20px;" data-bs-toggle="modal" data-bs-target="#mediumModal">Ajouter une offre</a>
         </p>
     </div>
 

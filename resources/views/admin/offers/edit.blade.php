@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-lg-8 col-xlg-9 col-md-7">
             <div class="card">
-                <div class="card-body">
+                {{-- <div class="card-body">
                     <!-- Si nous avons un Post $post -->
                     @if (isset($offer))
 
@@ -51,7 +51,7 @@
 
                         <button type="submit" class="btn btn-info mx-auto mx-md-0 text-white">Valider</button>
                     </form>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>           

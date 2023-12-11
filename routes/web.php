@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function() {
         Route::get('/doctorant/{id}', [AdminController::class, 'profilDoctorant'])->name('admin.doctorant.profil');
         Route::get('/doctorant/{id}/edit', [AdminController::class, 'editDoctorant'])->name('admin.doctorant.edit');
         Route::put('/doctorant/{id}', [AdminController::class, 'updateDoctorant'])->name('admin.doctorant.update');
-        Route::get('/enc9adreur/{id}', [AdminController::class, 'profilEncadreur'])->name('admin.encadreur.profil');
+        Route::get('/encadreur/{id}', [AdminController::class, 'profilEncadreur'])->name('admin.encadreur.profil');
         Route::get('/encadreur/{id}/edit', [AdminController::class, 'editEncadreur'])->name('admin.encadreur.edit');
         Route::put('/encadreur/{id}', [AdminController::class, 'updateEncadreur'])->name('admin.encadreur.update');
 

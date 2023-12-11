@@ -95,7 +95,7 @@ if (auth()->check()) {
             
             <li class="text-center p-20 upgrade-btn">
                 <a href="{{ route('index') }}"
-                    class="btn btn-info text-white mt-4">Accueil</a>
+                    class="btn btn-info text-white mt-4" style="font-size: 18px;">Accueil</a>
             </li>
           
           </ul>

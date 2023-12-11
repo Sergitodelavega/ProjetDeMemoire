@@ -186,7 +186,18 @@ class AdminController extends Controller
             })
             ->get();
 
-            return view('admin.doctorants.index', compact("doctorants"));
+            $ecole = Ecole::find($adminUser->ecole_id);
+            $laboratoires = $ecole->laboratoires;
+
+            $years = Year::all();
+
+            $encadreurs = Encadreur::with('user')
+            ->whereHas('user', function ($query) use ($adminUser){
+                $query->where('ecole_id', $adminUser->ecole_id);
+            })
+            ->get();
+
+            return view('admin.doctorants.index', compact("doctorants", "laboratoires", "years", "encadreurs"));
         }
     }
 

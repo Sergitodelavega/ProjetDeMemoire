@@ -5,7 +5,7 @@
 <div class="page-breadcrumb">
     <div class="row align-items-center">
         <div class="col-md-6 col-8 align-self-center">
-            <h3 class="page-title mb-0 p-0">Formulaire d'ajout d'un doctorant</h3>
+            <h3 class="page-title mb-0 p-0">Formulaire de mise à jour d'un doctorant</h3>
         </div>
     </div>
 </div>
@@ -25,31 +25,31 @@
                         
                         @csrf
                         <div class="form-group">
-                            <label for="name" class="col-md-12 mb-0">Nom et Prénoms</label>
+                            <label for="name" class="col-md-12 mb-0 lead" style="color: black;">Nom et Prénoms</label>
                             <input type="text" name="name" id="name" value="{{ isset($doctorant->user->name) ? $doctorant->user->name : old('name') }}" placeholder="Johnathan Doe"
                                     class="form-control ps-0 form-control-line" required>
                             <span class="alert-danger">@error("name"){{ $message }}@enderror</span>
                         </div>
                         <div class="form-group">
-                            <label for="email" class="col-md-12">Email</label>
+                            <label for="email" class="col-md-12 lead" style="color: black;">Email</label>
                             <input type="email" name="email" id="email" value="{{ isset($doctorant->user->email) ? $doctorant->user->email : old('email') }}" placeholder="johnathandoe@gmail.com"
                                     class="form-control ps-0 form-control-line" required>      
                             <span class="alert-danger">@error("email"){{ $message }}@enderror</span>
                         </div>
                         <div class="form-group">
-                            <label for="matricule" class="col-md-12">Matricule</label>
+                            <label for="matricule" class="col-md-12 lead" style="color: black;">Matricule</label>
                             <input type="text" name="matricule" id="matricule" value="{{ isset($doctorant->matricule) ? $doctorant->matricule : old('matricule') }}" placeholder="12345678"
                                     class="form-control ps-0 form-control-line" required>
                             <span class="alert-danger">@error("matricule"){{ $message }}@enderror</span>
                         </div>
                         <div class="form-group">
-                            <label for="specialite" class="col-md-12 mb-0">Spécialité</label>
+                            <label for="specialite" class="col-md-12 mb-0 lead" style="color: black;">Spécialité</label>
                             <input type="text" name="specialite" id="specialite" value="{{ isset($doctorant->specialite) ? $doctorant->specialite : old('specialite') }}" placeholder="Mathématiques"
                                     class="form-control ps-0 form-control-line" required>
                             <span class="alert-danger">@error("specialite"){{ $message }}@enderror</span>
                         </div>
                         <div class="form-group">
-                            <label for="year_id" class="col-md-12">Année de thèse </label>
+                            <label for="year_id" class="col-md-12 lead" style="color: black;">Année de thèse </label>
                                 <select name="year_id" id="year_id" class="form-control ps-0 form-control-line" required>
                                     @foreach($years as $year)
                                     <option
@@ -59,7 +59,7 @@
                             <span class="alert-danger">@error("year_id"){{ $message }}@enderror</span>
                         </div>
                         <div class="form-group">
-                            <label for="laboratoire_id" class="col-md-12">Laboratoire </label>
+                            <label for="laboratoire_id" class="col-md-12 lead" style="color: black;">Laboratoire </label>
                                 <select name="laboratoire_id" id="laboratoire_id" class="form-control ps-0 form-control-line" required>
                                     @foreach($laboratoires as $laboratoire)
                                     <option
@@ -72,19 +72,19 @@
                         <div class="form-group">
                             @if (isset($doctorant->user->photo))
                                 <p>
-                                    <span>Photo de profil actuelle</span><br>
+                                    <span style="color: black;">Photo de profil actuelle</span><br>
                                     <img src="{{ asset('storage/'.$doctorant->user->photo) }}" style="max-height: 200px;" >
                                 </p>
                             @endif
 
-                            <label for="photo" class="col-md-12 mb-0">Photo de profil</label>
+                            <label for="photo" class="col-md-12 mb-0 lead" style="color: black;">Photo de profil</label>
                             <input type="file" name="photo" id="photo" value= "{{ old('photo') }}" 
                                     class="form-control ps-0 form-control-line">
                             <span class="alert-danger">@error("photo"){{ $message }}@enderror</span>
                         </div>
 
                         <div class="form-group">
-                            <label for="encadreur_id" class="col-md-12">Encadreur assigné</label>
+                            <label for="encadreur_id" class="col-md-12 lead" style="color: black;">Encadreur assigné</label>
                                 <select name="encadreur_id" id="encadreur_id" class="form-control ps-0 form-control-line" required>
                                    
                                     @foreach($encadreurs as $encadreur)
@@ -95,7 +95,7 @@
                             <span class="alert-danger">@error("encadreur_id"){{ $message }}@enderror</span>
                         </div>
                         @if (isset($doctorant))
-                            <button type="submit" class="btn btn-info mx-auto mx-md-0 text-white">Mettre à jour</button>
+                            <button type="submit" class="btn btn-info mx-auto mx-md-0 text-white" style="font-size: 20px;">Mettre à jour</button>
                         @else
                             <button type="submit" class="btn btn-info mx-auto mx-md-0 text-white">Créer le compte</button>
                         @endif

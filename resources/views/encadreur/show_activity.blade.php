@@ -72,8 +72,8 @@
                                         </textarea>
                                     <span class="alert-danger">@error("comment"){{ $message }}@enderror</span>   
                                 </div>
-                                <button type="submit" name="action" value="valider" class="btn btn-info mx-auto mx-md-0 text-white">Valider</button>
-                                <button type="submit" name="action" value="rejeter" class="btn btn-danger mx-auto mx-md-0 text-white">Rejeter</button>
+                                <button type="submit" name="action" value="valider" class="btn btn-info mx-auto mx-md-0 text-white" style="font-size: 18px;">Valider</button>
+                                <button type="submit" name="action" value="rejeter" class="btn btn-danger mx-auto mx-md-0 text-white" style="font-size: 18px;">Rejeter</button>
 
                             </form>
                         @endif

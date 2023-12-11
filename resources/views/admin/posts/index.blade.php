@@ -7,7 +7,7 @@
         <h1>Publications</h1><br>
         <p>
         <!-- Lien pour créer un nouveau doctorant : "posts.create" -->
-        <a href="{{ route('posts.create') }}" title="Ajouter un post"  class="btn btn-info" style="color: white;" data-bs-toggle="modal" data-bs-target="#mediumModal">Ajouter une publication</a>
+        <a href="{{ route('posts.create') }}" title="Ajouter un post"  class="btn btn-info" style="color: white; font-size: 20px;" data-bs-toggle="modal" data-bs-target="#mediumModal">Ajouter une publication</a>
         </p>
     </div>
 
@@ -74,43 +74,19 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <!-- Si nous avons un Post $post -->
-                                    @if (isset($post))
-                
-                                    <!-- Le formulaire est géré par la route "posts.update" -->
-                                    <form method="POST" action="{{ route('posts.update', $post) }}" enctype="multipart/form-data" >
-                
-                                        <!-- <input type="hidden" name="_method" value="PUT"> -->
-                                        @method('PUT')
-                
-                                    @else
                 
                                     <form method="POST" action="{{ route('posts.store') }}" class="form-horizontal form-material mx-2" enctype="multipart/form-data">
-                
-                                    @endif
-                
                                         @csrf
                                         <div class="form-group">
                                             <label for="title" class="col-md-12 mb-0">Titre</label>
                                             <div class="col-md-12">
-                                                <input type="text" name="title" id="title"  value="{{ isset($post->title) ? $post->title : old('title') }}"  placeholder=""
+                                                <input type="text" name="title" id="title"  value="{{old('title') }}"  placeholder=""
                                                     class="form-control ps-0 form-control-line">
                                             </div>
                                             @error("title")
                                             <div>{{ $message }}</div>
                                             @enderror
                                         </div>
-                
-                                        @if(isset($post->picture))
-                                        <div class="form-group">
-                                            <span class="col-md-12">Couverture actuellle</span>
-                                            <img src="{{ asset('storage/'.$post->picture) }}" alt="image de couverture actuelle" style="max-height: 200px;" >
-                                            <!-- Le message d'erreur pour "name" -->
-                                            @error("picture")
-                                            <div>{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        @endif
                 
                                         <div class="form-group">
                                             <label for="picture" class="col-md-12">Couverture</label>
@@ -129,7 +105,7 @@
                                             <label for="content" class="col-md-12 mb-0">Contenu</label>
                                             <div class="col-md-12">
                                                 <textarea name="content" id="content" value="{{ old('content') }}" required rows="8" cols="50"
-                                                    class="form-control ps-0 form-control-line">{{ isset($post->content) ? $post->content : old('content') }}</textarea>
+                                                    class="form-control ps-0 form-control-line">{{ old('content') }}</textarea>
                                             </div>
                                             <!-- Le message d'erreur pour "name" -->
                                             @error("content")
@@ -137,7 +113,7 @@
                                             @enderror
                                         </div>
                 
-                                        <button type="submit" class="btn btn-info mx-auto mx-md-0 text-white">Valider</button>
+                                        <button type="submit" class="btn btn-info mx-auto mx-md-0 text-white" style="font-size: 18px;">Valider</button>
                                     </form>
                                 </div>
                             </div>

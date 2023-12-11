@@ -62,7 +62,7 @@ if (auth()->check()) {
                                 <span class="text-danger">@error('confirm'){{$message}}@enderror</span>       
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-success mx-auto mx-md-0 text-white">Changer mot de passe</button>
+                                <button class="btn btn-info mx-auto mx-md-0 text-white" style="font-size: 18px;">Changer mot de passe</button>
                             </div>
                         </form>
                     </div>

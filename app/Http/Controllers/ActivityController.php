@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ActiviteEnvoi;
+use App\Mail\ActiviteValide;
 use App\Models\File;
 use App\Models\User;
 use App\Models\Comment;
@@ -43,6 +45,13 @@ class ActivityController extends Controller
             ]);
             $file->save();
         }
+
+        $encadreur = $activity->doctorant->encadreur;
+        $doctorant = $activity->doctorant;
+        Mail::to($encadreur->user->email)->send(new ActiviteEnvoi($doctorant, $activity));
+
+
+
         return redirect()->route('doctorant.activity.index')->with('success',"Activité soumis avec succès");
     }
 
@@ -129,11 +138,17 @@ class ActivityController extends Controller
                 }
             }
         }
+
         if($activity->title == "Version corrigée et finale de la thèse"){
-            $activity->doctorant->these->status = 'terminée';
+            $these = $activity->doctorant->these;
+            $these->status = 'terminée';
         }
 
         $activity->save();
+
+        $doctorant = $activity->doctorant;
+        $comments = $activity->comment;
+        Mail::to($doctorant->user->email)->send(new ActiviteValide($comments, $activity));
 
         return redirect()->route('encadreur.doctorant.show', $doctorant->id);
     }

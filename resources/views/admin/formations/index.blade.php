@@ -7,7 +7,7 @@
         <h1>Formations</h1><br>
         <p>
         <!-- Lien pour créer un nouveau doctorant : "posts.create" -->
-        <a href="" title="Ajouter une formation"  class="btn btn-info" style="color: white;" data-bs-toggle="modal" data-bs-target="#mediumModal">Ajouter une formation</a>
+        <a href="" title="Ajouter une formation"  class="btn btn-info" style="color: white; font-size:20px;" data-bs-toggle="modal" data-bs-target="#mediumModal">Ajouter une formation</a>
         </p>
     </div>
 
@@ -53,35 +53,35 @@
                                 <form method="POST" action="{{ route('admin.store.formation') }}" class="form-horizontal form-material mx-2" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="title" class="col-md-12 mb-0">Titre</label>
+                                        <label for="title" class="col-md-12 mb-0 lead" style="color: black;">Titre</label>
                                         <input type="text" name="title" id="title" value="{{ old('title') }}" placeholder=""
                                                 class="form-control ps-0 form-control-line">
                                         <span class="alert-danger">@error("title"){{ $message }}@enderror</span>
                                     </div>
                 
                                     <div class="form-group">
-                                        <label for="date_heure" class="col-md-12">Date et Heure</label>
+                                        <label for="date_heure" class="col-md-12 lead" style="color: black;">Date et Heure</label>
                                         <input type="datetime-local" name="date_heure" id="date_heure" value="{{ old('date_heure') }}" placeholder=""
                                                 class="form-control ps-0 form-control-line">
                                         <span class="alert-danger">@error("date_heure"){{ $message }}@enderror</span>
                                     </div>
                 
                                     <div class="form-group">
-                                        <label for="location" class="col-md-12">Lieu</label>
+                                        <label for="location" class="col-md-12 lead" style="color: black;">Lieu</label>
                                         <input type="text" name="location" id="location" value="{{ old('location') }}" placeholder=""
                                                 class="form-control ps-0 form-control-line">
                                         <span class="alert-danger">@error("location"){{ $message }}@enderror</span>
                                     </div>
                 
                                     <div class="form-group">
-                                        <label for="description" class="col-md-12 mb-0">Description</label>
+                                        <label for="description" class="col-md-12 mb-0 lead" style="color: black;">Description</label>
                                         <textarea name="description" id="description" value="{{ old('description') }}" required rows="8"
                                                 class="form-control ps-0 form-control-line"></textarea>
                                         <span class="alert-danger">@error("description"){{ $message }}@enderror</span>
                                     </div>
                 
                                     <div class="form-group">
-                                        <label for="image" class="col-md-12">Image</label>
+                                        <label for="image" class="col-md-12 lead" style="color: black;">Image</label>
                                         <input type="file" name="image"
                                                 class="form-control ps-0 form-control-line">    
                                         <span   span class="alert-danger">@error("image"){{ $message }}@enderror</span>
