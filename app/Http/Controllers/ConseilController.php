@@ -20,9 +20,10 @@ class ConseilController extends Controller
         $ecoles = Ecole::all();
         $doctorants = Doctorant::all();
         $encadreurs = Encadreur::all();
-        $theses = These::all();
+        $thesesP = These::where('status', 'en cours')->get();
+        $thesesT = These::where('status', 'terminée')->get();
         $laboratoires = Laboratoire::all();
-        return view('conseil.stats', compact('ecoles', 'doctorants', 'encadreurs', 'theses', 'laboratoires'));
+        return view('conseil.stats', compact('ecoles', 'doctorants', 'encadreurs', 'thesesP', 'laboratoires', 'thesesT'));
     }
 
     public function ecoles(){

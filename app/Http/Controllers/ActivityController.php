@@ -141,7 +141,8 @@ class ActivityController extends Controller
 
         if($activity->title == "Version corrigée et finale de la thèse"){
             $these = $activity->doctorant->these;
-            $these->status = 'terminée';
+            $these->status = "terminée";
+            $these->save();
         }
 
         $activity->save();

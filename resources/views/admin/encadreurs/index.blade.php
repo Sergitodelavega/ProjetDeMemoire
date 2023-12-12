@@ -125,7 +125,7 @@
     </div>
 
             <!-- modal medium -->
-<div class="modal fade" id="mediumModal2-{{$encadreur->id}}" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="mediumModal2-{{$encadreur->id}}" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -192,7 +192,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 
 @endsection

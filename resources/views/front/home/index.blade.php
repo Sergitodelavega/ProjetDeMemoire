@@ -15,19 +15,7 @@ use Illuminate\Support\Str;
           </div>
       </div>
 
-      <div class="carousel-item" data-bs-interval="10000">
-        <img src="{{ asset('front/img/eres0.6b045dcd.jpg') }}" class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h1 style="color:white; font-size:50px;">Plateforme Numérique Doctorale </h1>
-          </div>
-      </div>
-      
-      <div class="carousel-item" data-bs-interval="10000">
-        <img src="{{ asset('front/img/personnes-diplomees-diplomes-close-up1.jpg') }}" class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h1 style="color:white; font-size:50px;">Plateforme Numérique Doctorale </h1>
-          </div>
-      </div>
+    
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

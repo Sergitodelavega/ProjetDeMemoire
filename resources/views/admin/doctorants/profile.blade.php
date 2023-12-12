@@ -194,66 +194,8 @@
                                             </div>
                     
                                             
-                                            {{-- <div class="form-group">
-                                                <label for="deadline" class="col-md-12">Date limite</label>
-                                                <div class="col-md-12">
-                                                    <input type="date" name="deadline" id="deadline" value="{{ old('date') }}" placeholder=""
-                                                        class="form-control ps-0 form-control-line">
-                                                        
-                                                </div>
-                                                <!-- Le message d'erreur pour "name" -->
-                                                @error("date")
-                                                <div>{{ $message }}</div>
-                                                @enderror
-                                            </div> --}}
-                    
-                                            {{-- <div class="form-group">
-                                                <label for="status" class="col-md-12">Statut</label>
-                                                <div class="col-md-12">
-                                                    <select name="status" id="status" class="form-control ps-0 form-control-line">
-                                                        @foreach(App\Models\These::STATUS as $status)
-                                                        <option
-                                                            value="{{ $status }}" {{ old('status') == $status ? 'selected' : '' }}>{{ ucfirst($status) }}</option>
-                                                        @endforeach
-                                                    </select>    
-                                                </div>
-                                                <!-- Le message d'erreur pour "name" -->
-                                                @error("status")
-                                                <div>{{ $message }}</div>
-                                                @enderror
-                                            </div> --}}
-                    
-                                            {{-- <div class="form-group">
-                                                <label for="encadreur_id" class="col-md-12">Encadreur assigné</label>
-                                                <div class="col-md-12">
-                                                    <select name="encadreur_id" id="encadreur_id" class="form-control ps-0 form-control-line" required>
-                                                        @foreach($encadreurs as $encadreur)
-                                                        <option
-                                                            value="{{ $encadreur->id }}" {{ old('encadreur_id') == $encadreur->id ? 'selected' : '' }}>{{ $encadreur->user->name }}</option>
-                                                        @endforeach
-                                                    </select>    
-                                                </div>
-                                                <!-- Le message d'erreur pour "name" -->
-                                                @error("encadreur_id")
-                                                <div>{{ $message }}</div>
-                                                @enderror
-                                            </div> --}}
-                    
-                                            {{-- <div class="form-group">
-                                                <label for="doctorant_id" class="col-md-12">Doctorant assigné</label>
-                                                <div class="col-md-12">
-                                                    <select name="doctorant_id" id="doctorant_id" class="form-control ps-0 form-control-line" required>
-                                                        @foreach($doctorants as $doctorant)
-                                                        <option value="{{ $doctorant->id }}"  {{ old('doctorant_id') == $doctorant->id ? 'selected' : '' }}>{{ $doctorant->user->name }}</option>
-                                                        @endforeach
-                                                    </select>    
-                                                </div>
-                                                <!-- Le message d'erreur pour "name" -->
-                                                @error("doctorant_id")
-                                                <div>{{ $message }}</div>
-                                                @enderror
-                                            </div> --}}
-                                            <button type="submit" class="btn btn-info mx-auto mx-md-0 text-white">Ajouter</button>
+                            
+                                            <button type="submit" class="btn btn-info mx-auto mx-md-0 text-white" style="font-size: 18px;">Ajouter</button>
                                         </form>
                                     </div>
                                 </div>

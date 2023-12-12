@@ -27,7 +27,7 @@ class HomeController extends Controller
     }
 
     public function theses(){
-        $theses = These::all();
+        $theses = These::where('status', 'terminée')->get();
         $doctorants = Doctorant::all();
         return view('front.home.theses', compact('theses', 'doctorants'));
     }
