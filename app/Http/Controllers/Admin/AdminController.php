@@ -12,6 +12,12 @@ use Illuminate\Http\Request;
 use App\Mail\MessageDoctorant;
 use App\Mail\MessageEncadreur;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DoctorantRequest;
+use App\Http\Requests\EncadreurRequest;
+use App\Http\Requests\FormationRequest;
+use App\Http\Requests\TheseRequest;
+use App\Http\Requests\UpdateDoctorantRequest;
+use App\Http\Requests\UpdateEncadreurRequest;
 use App\Mail\Formation as MailFormation;
 use App\Mail\TheseDoctorant;
 use App\Mail\TheseEncadreur;
@@ -71,15 +77,9 @@ class AdminController extends Controller
         }
     }
 
-    public function storeThese(Request $request, $id){
+    public function storeThese(TheseRequest $request, $id){
         $adminUser = Auth::user();
         if($adminUser->role == "admin"){
-        // Validation des données du formulaire
-        $request->validate([
-            'title' => 'required|string',
-            'description' => 'required|string',
-        ]);
-       
         // Créer un nouvel projet
         $these = new These([
             'title' => $request->input('title'),
@@ -122,18 +122,9 @@ class AdminController extends Controller
         return view('admin.formations.create');
     }
 
-    public function storeFormation(Request $request){
+    public function storeFormation(FormationRequest $request){
         $adminUser = Auth::user();
         if($adminUser->role == "admin"){
-            // Validation des données du formulaire
-            $request->validate([
-                'title' => 'required|string|max:255',
-                'description' => 'bail|required',
-                'date_heure' => 'bail|required',
-                'location' => 'bail|required|string|max:255',
-                'image' => 'bail|required|image',
-            ]);
-
             // On upload l'image dans "/storage/app/public/formations"
             $chemin_image = $request->image->store("formations");
 
@@ -251,22 +242,11 @@ class AdminController extends Controller
         }
     }
 
-    public function storeDoctorant(Request $request)
+    public function storeDoctorant(DoctorantRequest $request)
     {
         if (auth()->check()) {
             $userLoged = auth()->user();
             if($userLoged->role === "admin"){
-               
-            $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'matricule' => 'required|string',
-            'specialite' => 'required|string',
-            'laboratoire_id' => 'required|exists:laboratoires,id',
-            'photo' => 'required|image',
-            'year_id' => 'required|exists:years,id',
-            'encadreur_id' => 'required|exists:encadreurs,id'
-            ]);
 
             // On upload l'image dans "/storage/app/public/users"
             $chemin_image = $request->photo->store("users");
@@ -340,18 +320,9 @@ class AdminController extends Controller
         return view('admin.doctorants.create', compact('doctorant', 'laboratoires', 'years', 'encadreurs'));
     }
 
-    public function updateDoctorant(Request $request, $id){
+    public function updateDoctorant(UpdateDoctorantRequest $request, $id){
         $doctorant = Doctorant::find($id);
         $user = $doctorant->user;
-        $rules = [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|string',
-            'matricule' => 'required|string',
-            'specialite' => 'required|string',
-            'laboratoire_id' => 'required|exists:laboratoires,id',
-            'year_id' => 'required|exists:years,id',
-            'encadreur_id' => 'required|exists:encadreurs,id'
-        ];
 
         if ($request->has("photo")) {
             $rules["photo"] = 'bail|required|image';
@@ -399,19 +370,10 @@ class AdminController extends Controller
         return view('admin.encadreurs.create');
     }
 
-    public function storeEncadreur(Request $request)
+    public function storeEncadreur(EncadreurRequest $request)
     {
         if(Auth::check() && Auth::user()->role === 'admin'){
             $userLoged = auth()->user();
-              // Validation des données du formulaire
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'matricule' => 'required|string',
-            'grade' => 'required|string',
-            'specialite' => 'required|string',
-            'photo' => 'required|image',
-        ]);
 
         $chemin_image = $request->photo->store("users");
         $ecole_id = $userLoged->ecole_id;
@@ -422,6 +384,7 @@ class AdminController extends Controller
             'email' => $request->input('email'),
             'photo' => $chemin_image,
         ]);
+
         $user->role ="encadreur";
         $password = bin2hex(random_bytes(4));
         $user->password = $password;
@@ -453,16 +416,9 @@ class AdminController extends Controller
         return view('admin.encadreurs.create', compact('encadreur'));
     }
 
-    public function updateEncadreur(Request $request, $id){
+    public function updateEncadreur(UpdateEncadreurRequest $request, $id){
         $encadreur = Encadreur::find($id);
         $user = $encadreur->user;
-        $rules = [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|string',
-            'matricule' => 'required|string',
-            'specialite' => 'required|string',
-            'grade' => 'required|string',
-        ];
 
         if ($request->has("photo")) {
             $rules["photo"] = 'bail|required|image';

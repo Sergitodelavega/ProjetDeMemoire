@@ -6,6 +6,8 @@ use App\Models\Ecole;
 use App\Models\Offer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\OfferRequest;
+use App\Http\Requests\UpdateOfferRequest;
 use Illuminate\Support\Facades\Auth;
 
 class OfferController extends Controller
@@ -25,17 +27,11 @@ class OfferController extends Controller
         return view('admin.offers.edit');
     }
 
-    public function store(Request $request)
+    public function store(OfferRequest $request)
     {
         $adminUser = Auth::user();
         if($adminUser->role == "admin")
         {
-        $this->validate($request, [
-            "name" => 'bail|required|string',
-            "domaine" => 'bail|required|string',
-            "details" => 'bail|required|string',
-            "deadline" => 'bail|required|date',
-        ]);
 
         $offer = new Offer([
             "name" => $request->name,
@@ -59,15 +55,8 @@ class OfferController extends Controller
         return view('admin.offers.edit', compact('offer'));
     }
 
-    public function update(Request $request, Offer $offer)
+    public function update(UpdateOfferRequest $request, Offer $offer)
     {
-        $this->validate($request, [
-            "name" => 'bail|required|string',
-            "domaine" => 'bail|required|string',
-            "details" => 'bail|required|string',
-            "deadline" => 'bail|required|date',
-        ]);
-
         $offer->update([
             "name" => $request->name,
             "domaine" => $request->domaine,

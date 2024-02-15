@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -20,15 +21,8 @@ class PostController extends Controller
         return view('admin.posts.edit');
     }
 
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-
-        $this->validate($request, [
-            'title' => 'bail|required|string|max:255',
-            "picture" => 'bail|required|image',
-            "content" => 'bail|required',
-        ]);
-
         $chemin_image = $request->picture->store("posts");
         Post::create([
             "title" => $request->title,

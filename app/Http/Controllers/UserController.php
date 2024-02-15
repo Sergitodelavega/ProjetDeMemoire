@@ -17,7 +17,7 @@ class UserController extends Controller{
         return back();
     }
 
-        public function update_password(Request $request, $id){
+    public function update_password(Request $request, $id){
             $request->validate([
                 'old'=>'required',
                 'password'=>'required|max:255',
@@ -33,5 +33,6 @@ class UserController extends Controller{
             else{
                 return back()->with('fail',"Mauvais mot de passe !");
             }    
-        }
     }
+    
+}
