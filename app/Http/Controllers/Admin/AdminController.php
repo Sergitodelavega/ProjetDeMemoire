@@ -275,7 +275,7 @@ class AdminController extends Controller
             'specialite' => $request->input('specialite'),
             'encadreur_id' => $request->input('encadreur_id'),
             ]);
-            $doctorant->user()->associate($user);
+            $doctorant->vuser()->associate($user);
             $doctorant->laboratoire = $laboratoire;
             $doctorant->year = $year->year;
             // Assigner l'encadreur au doctorant s'il est spécifié
